@@ -4,14 +4,27 @@ import styles from "./Nav.module.scss";
 const Nav = () => {
   return (
     <nav className={styles.nav}>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
-      <Link to="/cars">Cars</Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
+      <Link className={styles.navLink} to="/cars">
+        Cars
+      </Link>
     </nav>
   );
 };

@@ -20,12 +20,14 @@ const Header = () => {
 
         <nav className={styles.auth}>
           <Button
+            className={styles.authButton}
             variant="contained"
             onClick={() => navigate("/login", { replace: true })}
           >
             Zaloguj się
           </Button>
           <Button
+            className={styles.authButton}
             variant="contained"
             onClick={() => navigate("/register", { replace: true })}
           >

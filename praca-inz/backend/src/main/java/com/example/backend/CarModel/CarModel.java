@@ -7,27 +7,32 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "CarModel")
+@Getter
+@Setter
 @Entity
+@Table(name = "car_model")
 public class CarModel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "carmodel_seq")
-    @SequenceGenerator(name = "carmodel_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "car_model_seq")
+    @SequenceGenerator(name = "car_model_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "price", nullable = false)
     private Double price;
 
+    @Column(name = "rating", nullable = false)
     private Double rating;
 
+    @Column(name = "description", nullable = false)
     private String description;
 
-    private String[] imgPath;
+    @Column(name = "img_path", nullable = false)
+    private String imgPath;
+
 }

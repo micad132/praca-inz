@@ -1,4 +1,4 @@
-package com.example.backend.Review;
+package com.example.backend.Image;
 
 import com.example.backend.CarModel.CarModel;
 import com.example.backend.Post.PostModel;
@@ -9,29 +9,22 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "review_model")
-public class ReviewModel {
+@Table(name = "image_model")
+public class ImageModel {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_model_seq")
-    @SequenceGenerator(name = "review_model_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "image_model_seq")
+    @SequenceGenerator(name = "image_model_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "description", nullable = false)
-    private String description;
-
-    @Column(name = "rate", nullable = false)
-    private Double rate;
-
-    @Column(name = "date", nullable = false)
-    private Timestamp date;
+    @Column(name = "image_path", nullable = false)
+    private String imagePath;
 
     @ManyToOne
     @JoinColumn(name = "product_model_id")

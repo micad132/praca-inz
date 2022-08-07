@@ -1,32 +1,45 @@
 package com.example.backend.Order;
 
-
+import com.example.backend.Product.ProductModel;
+import com.example.backend.User.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Timestamp;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Order")
+@Getter
+@Setter
 @Entity
+@Table(name = "order_model")
 public class OrderModel {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_seq")
-    @SequenceGenerator(name = "order_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "order_model_seq")
+    @SequenceGenerator(name = "order_model_seq", allocationSize = 1)
     @Column(name = "id", nullable = false)
     private Long id;
 
-    private Date deliveryStart;
+    @Column(name = "delivery_start", nullable = false)
+    private Timestamp deliveryStart;
 
-    private Date deliveryEnd;
+    @Column(name = "delivery_end", nullable = false)
+    private Timestamp deliveryEnd;
 
+    @Column(name = "status", nullable = false)
     private String status;
+
+
+
+    @ManyToMany
+    @JoinTable(name = "order_model_product_models",
+            joinColumns = @JoinColumn(name = "order_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_models_id"))
+    private Set<ProductModel> productModels = new LinkedHashSet<>();
 
 }

@@ -1,5 +1,12 @@
+import Commercials from "../Commercials/Commercials";
+
 const Home = () => {
-  return <h1>HomeScreen</h1>;
+  return (
+      <>
+        <Commercials />
+        <h1>HomeScreen</h1>
+      </>
+  );
 };
 
 export default Home;

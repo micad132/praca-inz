@@ -2,7 +2,7 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import styles from "./Login.module.scss";
 import { useState } from "react";
-import AuthWrapper from "./AuthWrapper";
+import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {

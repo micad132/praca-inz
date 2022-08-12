@@ -1,6 +1,10 @@
 
 .App{
-	
-	width: 80%;
+	border: 2px solid blue;
+	min-height: 100vh;
+}
+
+.App__main-content{
+	width: 65%;
 	margin: 0 auto;
 }

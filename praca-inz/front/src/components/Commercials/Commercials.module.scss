@@ -1,0 +1,21 @@
+
+.wrapper{
+  margin-left: auto;
+  width: 17.5%;
+  min-height: 80vh;
+
+}
+
+.commercial{
+  margin: 10px 0;
+  border: 3px solid black;
+  text-align: center;
+  cursor: pointer;
+  &__img{
+    max-width: 100%;
+    display: block;
+    width: 100%;
+
+
+  }
+}

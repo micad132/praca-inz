@@ -3,6 +3,7 @@ package com.example.backend.Review;
 import com.example.backend.CarModel.CarModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
+import com.example.backend.User.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -44,5 +45,9 @@ public class ReviewModel {
     @ManyToOne
     @JoinColumn(name = "post_model_id")
     private PostModel postModel;
+
+    @ManyToOne
+    @JoinColumn(name = "user_model_id")
+    private UserModel userModel;
 
 }

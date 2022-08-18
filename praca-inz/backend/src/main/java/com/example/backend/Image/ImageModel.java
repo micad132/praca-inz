@@ -1,6 +1,7 @@
 package com.example.backend.Image;
 
 import com.example.backend.CarModel.CarModel;
+import com.example.backend.Commercial.CommercialModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
 import lombok.AllArgsConstructor;
@@ -37,5 +38,9 @@ public class ImageModel {
     @ManyToOne
     @JoinColumn(name = "post_model_id")
     private PostModel postModel;
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "commercial_model_id")
+    private CommercialModel commercialModel;
 
 }

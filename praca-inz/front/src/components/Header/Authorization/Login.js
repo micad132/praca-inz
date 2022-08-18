@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
 
+
 const Login = () => {
   let navigate = useNavigate();
   const [loginValidation, setLoginValidation] = useState({
@@ -60,6 +61,7 @@ const Login = () => {
     // console.log(loginValidation.passwordField);
     // console.log(loginValidation.confirmPasswordField);
     if (isFormValid) {
+
       navigate("/", { replace: true });
     }
   };
@@ -94,6 +96,7 @@ const Login = () => {
           }
           helperText="Przynajmniej 4 znaki"
           variant="outlined"
+          type="password"
           value={loginValues.passwordValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({
@@ -110,6 +113,7 @@ const Login = () => {
           }
           variant="outlined"
           helperText="Proszę potwierdzić hasło"
+          type="password"
           value={loginValues.confirmPasswordValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({

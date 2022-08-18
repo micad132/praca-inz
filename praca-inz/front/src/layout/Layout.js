@@ -7,7 +7,7 @@ const Layout = ({children}) => {
     return(
         <div className={styles.wrapper}>
             <Header />
-            {routes}
+
             <main>{children}</main>
         </div>
     )

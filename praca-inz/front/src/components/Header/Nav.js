@@ -5,25 +5,25 @@ const Nav = () => {
   return (
     <nav className={styles.nav}>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Polska
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Świat
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Samochody
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Części
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Dealerzy
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Reklamy
       </Link>
       <Link className={styles.navLink} to="/cars">
-        Cars
+        Konfiguracje
       </Link>
     </nav>
   );

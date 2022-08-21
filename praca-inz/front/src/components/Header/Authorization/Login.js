@@ -68,7 +68,7 @@ const Login = () => {
 
   return (
     <AuthWrapper>
-      <h2>Zaloguj się aby w pełni korzystać z możliwości!</h2>
+      <h2 className={styles.title}>Zaloguj się aby w pełni korzystać z możliwości!</h2>
       <form className={styles.form} onSubmit={(e) => validateForm(e)}>
         <TextField
           id="outlined-basic"

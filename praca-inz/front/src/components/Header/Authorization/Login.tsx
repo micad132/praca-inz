@@ -4,6 +4,7 @@ import styles from "./Login.module.scss";
 import { useState } from "react";
 import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
+import {FormChangeEventHandler} from "../../../utils/types";
 
 
 const Login = () => {
@@ -23,7 +24,7 @@ const Login = () => {
   //   const [isFormValid, setIsFormValid] = useState(true);
   let isFormValid = true;
 
-  const validateForm = (e) => {
+  const validateForm = (e : FormChangeEventHandler) => {
     e.preventDefault();
     setLoginValidation((prevState) => ({
       emailField: false,

@@ -5,16 +5,17 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import Select, { SelectChangeEvent } from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from 'react-toastify';
 import {useState} from "react";
+import {MouseClickEventHandler} from "../../../utils/types";
 
 
 const Register = () => {
 
   const [role,setRole] = useState('');
-  const submitRegister = (e) => {
+  const submitRegister = (e: MouseClickEventHandler) => {
       e.preventDefault();
       toast.success('Rejestracja udana!', {
           position: "top-right",
@@ -26,8 +27,11 @@ const Register = () => {
 
   }
 
-    const handleChange = (e) => {
+    const handleChange = (e: SelectChangeEvent) => {
+        console.log('halo');
+        console.log(e.target.value);
         setRole(e.target.value);
+
     }
 
     return (
@@ -86,7 +90,7 @@ const Register = () => {
                   label='Wprowadz kod pocztowy'
                   variant="outlined"
                   onChange={(e) => {
-
+                        console.log('siema');
                   }}
 
               />
@@ -97,8 +101,7 @@ const Register = () => {
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
                           value={role}
-                          label="Age"
-                          onChange={handleChange}
+                          onChange={(e) => handleChange(e)}
                       >
                           <MenuItem value={'Uzytkownik'}>Uzytkownik</MenuItem>
                           <MenuItem value={'Moderator'}>Moderator</MenuItem>

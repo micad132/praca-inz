@@ -1,6 +1,12 @@
 import styles from './InfoWrapper.module.scss';
+import {PolandInfoType} from "../../pages/Home/Home";
 
-const InfoWrapper = ({title,details}) => {
+interface Props {
+    title: string,
+    details: PolandInfoType[]
+}
+
+const InfoWrapper = ({title,details} : Props) => {
 
     return(
     <section className={styles.wrapper}>

@@ -1,7 +1,12 @@
 
 import styles from './Commercials.module.scss';
 
-const Commercial = ({src,header}) => {
+interface Props {
+    src: string,
+    header: string
+}
+
+const Commercial = ({src,header} : Props) => {
 
     return(
     <div className={styles.commercial}>

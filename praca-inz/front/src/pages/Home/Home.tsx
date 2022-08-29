@@ -1,7 +1,12 @@
 import InfoWrapper from "../../components/InfoWrapper/InfoWrapper";
+import styles from './Home.module.scss';
 
+export interface PolandInfoType {
+    title: string,
+    src: string
+}
 
-const polandInfo = [
+const polandInfo: PolandInfoType[] = [
 
     {
         title: 'Paliwo drozeje',
@@ -22,9 +27,13 @@ const polandInfo = [
 const Home = () => {
   return (
       <>
-        <h1>Witaj na portalu motoryzacyjnym!</h1>
-        <h2>Jesteś zalogowany jako user</h2>
+        <div className={styles.text_wrapper}>
+            <h1>Witaj na portalu motoryzacyjnym!</h1>
+            <h2>Jesteś zalogowany jako user</h2>
+        </div>
         <InfoWrapper title='Informacje z Polski' details={polandInfo} />
+        <InfoWrapper title='Informacje ze Świata' details={polandInfo} />
+        <InfoWrapper title='Najnowsze samochody' details={polandInfo} />
       </>
   );
 };

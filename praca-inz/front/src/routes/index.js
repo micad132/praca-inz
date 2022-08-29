@@ -1,7 +1,7 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Cars from "../components/Cars/Cars.js";
-import Login from "../components/Header/Authorization/Login.js";
-import Register from "../components/Header/Authorization/Register.js";
+import Cars from "../components/Cars/Cars.tsx";
+import Login from "../components/Header/Authorization/Login.tsx";
+import Register from "../components/Header/Authorization/Register.tsx";
 import Home from "../pages/Home/Home";
 
 const routes = (

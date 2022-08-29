@@ -43,6 +43,8 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^8.21.0"
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "eslint": "8.22.0"
   }
 }

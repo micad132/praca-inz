@@ -9,23 +9,82 @@ header{
 	justify-content: space-evenly;
 	align-items: center;
 	border: 2px solid yellow;
+
+	.icon{
+		border: 2px solid red;
+		transform: scale(2);
+		margin-left: 10px;
+	}
+
+
 }
 
 
 
 .auth{
 	border: 2px solid blue;
-	padding: 1rem;
+	padding: 1rem 2rem;
 	margin: 0;
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 25%;
 
-	.authButton{
-		margin: 0 .5rem;
-	}
 }
+
+
+.authMobile{
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: aqua;
+	width: 0;
+	opacity: 0;
+	transition: all 500ms ease;
+
+	&> *{
+		width: 0;
+	}
+
+}
+
+.authMobileShow{
+
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 500px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	background-color: aqua;
+	z-index: 100;
+	width: 20%;
+	opacity: 1;
+	transition: all 500ms ease;
+}
+
 
 .author{
 	color: rgb(0, 132, 255);
 	font-weight: bold;
 
+}
+
+.authButton{
+	min-width: 100px;
+}
+
+@media (max-width: 800px){
+	.auth{
+		display: none;
+	}
 }
 

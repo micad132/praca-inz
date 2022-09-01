@@ -15,11 +15,13 @@ const Header = () => {
   const mobileNavRef = useRef(null);
 
   const checkIfMobileNavShouldBeDisplayed = () => {
-    if(window.innerWidth < 800 || window.innerHeight < 800){
+    if(window.innerWidth < 1200 || window.innerHeight < 1200){
       setShowHamburgerMenu(true);
+
     }
     else{
       setShowHamburgerMenu(false);
+
     }
   }
 
@@ -42,7 +44,7 @@ const Header = () => {
           <span className={styles.author}>Michał Mosiołek</span>
         </h3>
 
-        <nav className={styles.auth}>
+        {!showHamburerMenu && <nav className={styles.auth}>
           <Button
             className={styles.authButton}
             variant="contained"
@@ -58,9 +60,9 @@ const Header = () => {
             Zarejestruj się
           </Button>
 
-        </nav>
+        </nav>}
         {/*ikonka z profilem*/}
-        <MenuIcon onClick={()=> setShowMobileNav(!showMobileNav)}/>
+        {showHamburerMenu && <MenuIcon onClick={()=> setShowMobileNav(!showMobileNav)}/>}
         <nav className={showMobileNav ? styles.authMobileShow : styles.authMobile} ref={mobileNavRef}>
           <Button
               className={styles.authButton}

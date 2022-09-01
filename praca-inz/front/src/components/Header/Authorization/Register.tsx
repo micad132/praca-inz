@@ -5,16 +5,39 @@ import Box from '@mui/material/Box';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select, {SelectChangeEvent} from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from 'react-toastify';
 import {useState} from "react";
-import {MouseClickEventHandler} from "../../../utils/types";
+import {FormChangeEventHandler, MouseClickEventHandler} from "../../../utils/types";
+import RegisterService from "../../../services/RegisterService";
+import {USER_TYPE_ROLES} from "../../../utils/types/AuthorizationTypes";
 
+
+const initialValidationValues = {
+    name: false,
+    password: false,
+    confirmPassword: false,
+    cityName: false,
+    postalCode: false,
+}
+
+const initialRegisterValues = {
+    name: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+    cityName: '',
+    postalCode: '',
+    role: USER_TYPE_ROLES.USER,
+}
 
 const Register = () => {
 
   const [role,setRole] = useState('');
+  const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState(initialValidationValues)
+
+  const [registerValues,setRegisterValues] = useState(initialRegisterValues)
   const submitRegister = (e: MouseClickEventHandler) => {
       e.preventDefault();
       toast.success('Rejestracja udana!', {
@@ -28,23 +51,47 @@ const Register = () => {
   }
 
     const handleChange = (e: SelectChangeEvent) => {
-        console.log('halo');
-        console.log(e.target.value);
-        setRole(e.target.value);
+            setRegisterValues((prevState) => ({
+                ...prevState,
+                role: mapProperRole(e.target.value)
+            }));
+    }
+
+    const mapProperRole = (role : string) : USER_TYPE_ROLES =>{
+      switch(role){
+          case 'USER':
+              return USER_TYPE_ROLES.USER
+          case 'MODERATOR':
+              return USER_TYPE_ROLES.MODERATOR
+          default:
+              return USER_TYPE_ROLES.UNKNOWN
+      }
 
     }
 
+    const validateForm = ( e: FormChangeEventHandler) =>{
+        e.preventDefault();
+        console.log(registerValues);
+        RegisterService.addUser(registerValues);
+
+    }
+
+    console.log(USER_TYPE_ROLES.USER);
     return (
 
       <AuthWrapper>
           <h2>Zarejestruj się aby w pełni korzystać z możliwości!</h2>
-          <form>
+          <form onSubmit={(e) => validateForm(e) }>
 
               <TextField
                   id="outlined-basic"
                   label='Wprowadz nazwe uzytkownika'
                   variant="outlined"
                   onChange={(e) => {
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          name: e.target.value,
+                      }));
                   }}
               />
               <TextField
@@ -52,7 +99,10 @@ const Register = () => {
                   label='Wprowadz email'
                   variant="outlined"
                   onChange={(e) => {
-
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          email: e.target.value,
+                      }));
                   }}
 
               />
@@ -63,7 +113,10 @@ const Register = () => {
                   type="password"
                   variant="outlined"
                   onChange={(e) => {
-
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          password: e.target.value,
+                      }));
                   }}
               />
               <TextField
@@ -73,7 +126,10 @@ const Register = () => {
                   type="password"
                   variant="outlined"
                   onChange={(e) => {
-
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          confirmPassword: e.target.value,
+                      }));
                   }}
               />
               <TextField
@@ -81,7 +137,10 @@ const Register = () => {
                   label='Wprowadz nazwę miasta'
                   variant="outlined"
                   onChange={(e) => {
-
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          cityName: e.target.value,
+                      }));
                   }}
 
               />
@@ -90,7 +149,10 @@ const Register = () => {
                   label='Wprowadz kod pocztowy'
                   variant="outlined"
                   onChange={(e) => {
-                        console.log('siema');
+                      setRegisterValues((prevState) => ({
+                          ...prevState,
+                          postalCode: e.target.value,
+                      }));
                   }}
 
               />
@@ -100,11 +162,11 @@ const Register = () => {
                       <Select
                           labelId="demo-simple-select-label"
                           id="demo-simple-select"
-                          value={role}
+                          value={registerValues.role}
                           onChange={(e) => handleChange(e)}
                       >
-                          <MenuItem value={'Uzytkownik'}>Uzytkownik</MenuItem>
-                          <MenuItem value={'Moderator'}>Moderator</MenuItem>
+                          <MenuItem value={USER_TYPE_ROLES.USER}>Uzytkownik</MenuItem>
+                          <MenuItem value={USER_TYPE_ROLES.MODERATOR}>Moderator</MenuItem>
                       </Select>
                   </FormControl>
               </Box>
@@ -113,7 +175,7 @@ const Register = () => {
                   variant="contained"
                   type="submit"
                   sx={{ width: "50%", margin: "0 auto" }}
-                  onClick={ (e) => submitRegister(e)}
+
               >
                   Zarejestruj się
               </Button>

@@ -57,6 +57,14 @@ const Register = () => {
             }));
     }
 
+    // const isNumeric = (cityName: string) : boolean => {
+    //     // Checks if the provided string
+    //     // is a numeric by applying a regular
+    //     // expression on it.
+    //     const regex = "[0-9]+[\\.]?[0-9]*";
+    //     return
+    // }
+
     const mapProperRole = (role : string) : USER_TYPE_ROLES =>{
       switch(role){
           case 'USER':
@@ -69,14 +77,59 @@ const Register = () => {
 
     }
 
-    const validateForm = ( e: FormChangeEventHandler) =>{
+    const validateForm = async (e: FormChangeEventHandler) => {
         e.preventDefault();
+
+        const {name,email,password,confirmPassword,cityName,postalCode,role} = registerValues;
+        console.log(isFinite(Number(cityName)));
+        const postalCodeRegex = new RegExp(`\\d{2}-\\d{3}`);
+        console.log('POSTAL', postalCodeRegex.test(postalCode));
+        // if(postalCode.match(postalCodeRegex)){
+        //     console.log('DZIALA');
+        // }
+        let a  = postalCode.match("[0-9]{2}-[0-9]{3}");
+        if(a){
+            console.log('DZ', a[0])
+        }
+        if(name.length < 5 || name.length > 30){
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                name: true
+            }));
+        }
+        if(email){
+
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                email: true
+            }));
+        }
+        if(password.length < 5 || password.length > 30 ){
+
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                password: true
+            }));
+        }
+        if(confirmPassword.length < 5 || confirmPassword.length > 30 ){
+
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                confirmPassword: true
+            }));
+        }
+        if(cityName.length <5 || cityName.length > 30 || isFinite(Number(cityName))){
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                cityName: true
+            }));
+        }
         console.log(registerValues);
-        RegisterService.addUser(registerValues);
+        // const data = await RegisterService.addUser(registerValues);
+        // console.log(data.data);
 
     }
 
-    console.log(USER_TYPE_ROLES.USER);
     return (
 
       <AuthWrapper>
@@ -121,8 +174,8 @@ const Register = () => {
               />
               <TextField
                   id="outlined-basic"
-                  label='Potwierdź haslo'
-                  helperText="Przynajmniej 4 znaki"
+                  label='Potwierdz haslo'
+                  helperText="Proszę potwierdz haslo"
                   type="password"
                   variant="outlined"
                   onChange={(e) => {

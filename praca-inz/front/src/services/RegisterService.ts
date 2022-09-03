@@ -6,8 +6,11 @@ const RegisterService = {
     addUser: async (user : RegisterTypes) => {
         return axios({
             method: 'POST',
-            url: 'localhost:8080/api/v1/user',
+            url: 'http://localhost:8080/api/v1/user',
             data: user,
+            headers: {
+                
+            }
         })
     }
 }

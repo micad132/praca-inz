@@ -3,6 +3,7 @@ import Commercials from "./components/Commercials/Commercials";
 import Layout from "./layout/Layout";
 import routes from "./routes";
 import {useEffect} from "react";
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
     useEffect(() => {
@@ -12,6 +13,7 @@ function App() {
     <div className="App">
         <Layout>
             {routes}
+            <ScrollToTop smooth top={80}/>
         </Layout>
     </div>
   );

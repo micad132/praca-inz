@@ -12,10 +12,17 @@ import {useState} from "react";
 import {FormChangeEventHandler, MouseClickEventHandler} from "../../../utils/types";
 import RegisterService from "../../../services/RegisterService";
 import {USER_TYPE_ROLES} from "../../../utils/types/AuthorizationTypes";
+import {
+    cityNameValidation,
+    emailValidation,
+    nameValidation,
+    passwordValidation, postalCodeValidation
+} from "../../../services/ValidationService";
 
 
 const initialValidationValues = {
     name: false,
+    email: false,
     password: false,
     confirmPassword: false,
     cityName: false,
@@ -79,49 +86,46 @@ const Register = () => {
 
     const validateForm = async (e: FormChangeEventHandler) => {
         e.preventDefault();
-
+        setIsRegisterValidationIncorrect(initialValidationValues);
         const {name,email,password,confirmPassword,cityName,postalCode,role} = registerValues;
         console.log(isFinite(Number(cityName)));
-        const postalCodeRegex = new RegExp(`\\d{2}-\\d{3}`);
-        console.log('POSTAL', postalCodeRegex.test(postalCode));
-        // if(postalCode.match(postalCodeRegex)){
-        //     console.log('DZIALA');
-        // }
-        let a  = postalCode.match("[0-9]{2}-[0-9]{3}");
-        if(a){
-            console.log('DZ', a[0])
-        }
-        if(name.length < 5 || name.length > 30){
+        if(!nameValidation(name)){
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 name: true
             }));
         }
-        if(email){
+        if(!emailValidation(email)){
 
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 email: true
             }));
         }
-        if(password.length < 5 || password.length > 30 ){
+        if(!passwordValidation(password)){
 
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 password: true
             }));
         }
-        if(confirmPassword.length < 5 || confirmPassword.length > 30 ){
+        if(!passwordValidation(confirmPassword) || password !== confirmPassword ){
 
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 confirmPassword: true
             }));
         }
-        if(cityName.length <5 || cityName.length > 30 || isFinite(Number(cityName))){
+        if(cityNameValidation(cityName) || isFinite(Number(cityName))){
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 cityName: true
+            }));
+        }
+        if(!postalCodeValidation(postalCode)){
+            setIsRegisterValidationIncorrect((prevState) => ({
+                ...prevState,
+                postalCode: true
             }));
         }
         console.log(registerValues);
@@ -138,7 +142,8 @@ const Register = () => {
 
               <TextField
                   id="outlined-basic"
-                  label='Wprowadz nazwe uzytkownika'
+                  label={isRegisterValidationIncorrect.name ? 'Wprowadz poprawna nazwe'
+                      : 'Wprowadz nazwe'}
                   variant="outlined"
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -146,10 +151,12 @@ const Register = () => {
                           name: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.name}
               />
               <TextField
                   id="outlined-basic"
-                  label='Wprowadz email'
+                  label={isRegisterValidationIncorrect.email ? 'Wprowadz poprawny email'
+                      : 'Wprowadz email'}
                   variant="outlined"
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -157,11 +164,13 @@ const Register = () => {
                           email: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.email}
 
               />
               <TextField
                   id="outlined-basic"
-                  label='Wprowadz haslo'
+                  label={isRegisterValidationIncorrect.password ? 'Wprowadz poprawne haslo'
+                      : 'Wprowadz haslo'}
                   helperText="Przynajmniej 4 znaki"
                   type="password"
                   variant="outlined"
@@ -171,10 +180,12 @@ const Register = () => {
                           password: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.password}
               />
               <TextField
                   id="outlined-basic"
-                  label='Potwierdz haslo'
+                  label={isRegisterValidationIncorrect.confirmPassword ? 'Wprowadz poprawne haslo'
+                      : 'Wprowadz ponownie haslo'}
                   helperText="Proszę potwierdz haslo"
                   type="password"
                   variant="outlined"
@@ -184,10 +195,12 @@ const Register = () => {
                           confirmPassword: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.confirmPassword}
               />
               <TextField
                   id="outlined-basic"
-                  label='Wprowadz nazwę miasta'
+                  label={isRegisterValidationIncorrect.cityName ? 'Wprowadz poprawna nazwe miasta'
+                      : 'Wprowadz nazwe miasta'}
                   variant="outlined"
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -195,11 +208,13 @@ const Register = () => {
                           cityName: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.cityName}
 
               />
               <TextField
                   id="outlined-basic"
-                  label='Wprowadz kod pocztowy'
+                  label={isRegisterValidationIncorrect.postalCode ? 'Wprowadz poprawny kod pocztowy'
+                      : 'Wprowadz kod pocztowy'}
                   variant="outlined"
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -207,6 +222,7 @@ const Register = () => {
                           postalCode: e.target.value,
                       }));
                   }}
+                  error={isRegisterValidationIncorrect.postalCode}
 
               />
               <Box sx={{ minWidth: 120 }}>

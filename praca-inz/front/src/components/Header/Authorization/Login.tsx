@@ -5,6 +5,7 @@ import { useState } from "react";
 import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
 import {FormChangeEventHandler} from "../../../utils/types";
+import {emailValidation, passwordValidation} from "../../../services/ValidationService";
 
 
 const Login = () => {
@@ -26,20 +27,21 @@ const Login = () => {
 
   const validateForm = (e : FormChangeEventHandler) => {
     e.preventDefault();
+    const {emailValue,passwordValue,confirmPasswordValue} = loginValues;
     setLoginValidation((prevState) => ({
       emailField: false,
       passwordField: false,
       confirmPasswordField: false,
     }));
 
-    if (loginValues.emailValue.length < 4) {
+    if (!emailValidation(emailValue)) {
       isFormValid = false;
       setLoginValidation((prevState) => ({
         ...prevState,
         emailField: true,
       }));
     }
-    if (loginValues.passwordValue.length < 4) {
+    if (!passwordValidation(passwordValue)) {
       isFormValid = false;
       setLoginValidation((prevState) => ({
         ...prevState,
@@ -47,8 +49,8 @@ const Login = () => {
       }));
     }
     if (
-      loginValues.confirmPasswordValue.length < 4 ||
-      loginValues.confirmPasswordValue !== loginValues.passwordValue
+        !passwordValidation(passwordValue) ||
+      confirmPasswordValue !== passwordValue
     ) {
       isFormValid = false;
       setLoginValidation((prevState) => ({

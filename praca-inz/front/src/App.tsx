@@ -15,6 +15,8 @@ function App() {
             {routes}
             <ScrollToTop smooth top={80}/>
         </Layout>
+        <Commercials />
+
     </div>
   );
 }

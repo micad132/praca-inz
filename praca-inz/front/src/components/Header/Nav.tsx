@@ -19,9 +19,6 @@ const Nav = () => {
       <Link className={styles.navLink} to="/dealers">
         Dealerzy
       </Link>
-      <Link className={styles.navLink} to="/commercials">
-        Reklamy
-      </Link>
       <Link className={styles.navLink} to="/configurations">
         Konfiguracje
       </Link>

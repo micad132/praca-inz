@@ -1,0 +1,16 @@
+
+.commercialsWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto 0 auto;
+  width: 55%;
+  border: 2px solid purple;
+  justify-content: space-evenly;
+
+}
+
+
+.commercialDiv{
+  border: 2px solid yellow;
+  position: relative;
+}

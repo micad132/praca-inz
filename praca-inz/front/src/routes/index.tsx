@@ -8,6 +8,9 @@ import WorldInfo from "../pages/WorldInfo";
 import PartsPage from "../pages/PartsPage";
 import DealersPage from "../pages/DealersPage";
 import ConfigurationPage from "../pages/ConfigurationPage";
+import ProfilePage from "../pages/ProfilePage";
+import CommercialsPage from "../pages/ProfilePage/CommercialsPage";
+import AccountSettings from "../pages/ProfilePage/AccountSettings";
 
 const routes = (
   <Routes>
@@ -20,6 +23,11 @@ const routes = (
     <Route path="/parts" element={<PartsPage />} />
     <Route path="/dealers" element={<DealersPage />} />
     <Route path="/configurations" element={<ConfigurationPage />} />
+    <Route path="/profile" element={<ProfilePage />}>
+        <Route path="commercials" element={<CommercialsPage />} />
+        <Route path="settings" element={<AccountSettings />} />
+
+    </Route>
   </Routes>
 );
 

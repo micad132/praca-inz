@@ -15,13 +15,12 @@ const Header = () => {
   const mobileNavRef = useRef(null);
 
   const checkIfMobileNavShouldBeDisplayed = () => {
-    if(window.innerWidth < 1200 || window.innerHeight < 1200){
+    if(window.innerWidth < 1450){
       setShowHamburgerMenu(true);
 
     }
     else{
       setShowHamburgerMenu(false);
-
     }
   }
 
@@ -86,7 +85,11 @@ const Header = () => {
           </Button>
 
         </nav>
-        <AccountCircleIcon className={styles.icon}/>
+        <AccountCircleIcon
+            className={styles.icon}
+            onClick={()=> navigate("/profile",{replace: true})}
+
+        />
 
       </div>
       <Nav />

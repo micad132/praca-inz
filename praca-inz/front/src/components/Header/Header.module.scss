@@ -14,6 +14,7 @@ header{
 		border: 2px solid red;
 		transform: scale(2);
 		margin-left: 10px;
+		cursor: pointer;
 	}
 
 
@@ -29,6 +30,7 @@ header{
 	justify-content: space-evenly;
 	align-items: center;
 	width: 25%;
+
 
 }
 
@@ -82,9 +84,14 @@ header{
 	min-width: 100px;
 }
 
+
 @media (max-width: 800px){
 	.auth{
 		display: none;
+	}
+
+	.authButton{
+		font-size: 10px !important;
 	}
 }
 

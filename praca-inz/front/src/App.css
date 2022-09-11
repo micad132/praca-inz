@@ -1,6 +1,11 @@
 
 .App{
-	border: 2px solid blue;
+	border: 2px solid pink;
 	min-height: 100vh;
+	display: flex;
+	margin: 0 auto;
+	width: 90%;
+	position: relative;
+
 
 }

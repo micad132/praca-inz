@@ -5,13 +5,17 @@ export type CommercialType = {
     id: number
     title: string,
     imgSrc: string,
-    idForCommercial: number
+    carModelId: number
 }
 
 const CommercialService = {
     getAllCommercials: async () => {
         const res = await axios.get(`${URL}/getAllCommercials`)
         return res.data;
+    },
+
+    addNewCommercial: async () => {
+
     }
 }
 

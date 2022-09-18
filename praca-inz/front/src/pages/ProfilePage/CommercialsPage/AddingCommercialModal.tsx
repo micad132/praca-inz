@@ -54,7 +54,7 @@ const AddingCommercialModal = () => {
                             <InputLabel id="commercialSelect">Wybierz produkt do reklamy</InputLabel>
                             <Select
                                 labelId="commercialSelect"
-                                label="Wybierz produkt do reklamy"
+                                label="Wybierz model auta do reklamy"
                                 id="commercialSelect"
                                 value={idForCommercial}
                                 onChange={handleChange}

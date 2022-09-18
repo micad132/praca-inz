@@ -1,5 +1,6 @@
 package com.example.backend.Commercial;
 
+import com.example.backend.CarModel.CarModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -28,5 +29,9 @@ public class CommercialModel {
 
     @Column(name = "img_path", nullable = false)
     private String imgPath;
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "car_model_id")
+    private CarModel carModel;
 
 }

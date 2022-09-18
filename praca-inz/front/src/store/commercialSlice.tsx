@@ -1,30 +1,44 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import CommercialService from "../services/CommercialService";
 
-const initialState = [
-    {
-        id: 1,
-        title: 'testowa reklama',
-        imgSrc: 'https://picsum.photos/200/300'
-    },
-    {
-        id: 2,
-        title: 'druga reklama',
-        imgSrc: 'https://picsum.photos/200/300'
-    },
-    {
-        id: 3,
-        title: 'trzecia reklama',
-        imgSrc: 'https://picsum.photos/200/300'
-    }
-]
+
+export interface CommercialsState {
+    commercials: SingleCommercialState[]
+}
+
+
+export interface  SingleCommercialState  {
+    id: number,
+    idForCommercial: number,
+    title: string,
+    imgSrc: string
+}
+
+const initialState : CommercialsState = {
+    // {
+    //     id: 1,
+    //     title: 'testowa reklama',
+    //     imgSrc: 'https://picsum.photos/200/300'
+    // },
+    // {
+    //     id: 2,
+    //     title: 'druga reklama',
+    //     imgSrc: 'https://picsum.photos/200/300'
+    // },
+    // {
+    //     id: 3,
+    //     title: 'trzecia reklama',
+    //     imgSrc: 'https://picsum.photos/200/300'
+    // }
+    commercials: []
+}
 
 const fetchCommercialsThunk = createAsyncThunk(
     "commercial/getAllCommercials",
     async () => {
         try{
             const data = await CommercialService.getAllCommercials();
-            return data;
+            return { data };
 
         }catch(err){
             console.log(err);
@@ -41,7 +55,9 @@ export const commercialSlice = createSlice({
     name: 'commercials',
     initialState,
     reducers: {
+        fetchAllCommercials: (state,{payload}) => {
 
+        }
     }
 
 })

@@ -63,6 +63,13 @@ const AddingCommercialModal = () => {
                                 <MenuItem value={2}>Audi</MenuItem>
                                 <MenuItem value={3}>Opel</MenuItem>
                             </Select>
+                            <Button
+                                variant="contained"
+                                type="submit"
+
+                            >
+                                Dodaj
+                            </Button>
                         </form>
                     </FormWrapper>
                 </Box>

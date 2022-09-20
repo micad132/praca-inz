@@ -1,18 +1,14 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import CommercialService from "../services/CommercialService";
+import CommercialService, {CommercialType} from "../services/CommercialService";
 
 
 export interface CommercialsState {
-    commercials: SingleCommercialState[]
+    commercials: CommercialType[]
+    isLoaded: boolean,
+    error: string | undefined
 }
 
 
-export interface  SingleCommercialState  {
-    id: number,
-    idForCommercial: number,
-    title: string,
-    imgSrc: string
-}
 
 const initialState : CommercialsState = {
     // {
@@ -30,7 +26,9 @@ const initialState : CommercialsState = {
     //     title: 'trzecia reklama',
     //     imgSrc: 'https://picsum.photos/200/300'
     // }
-    commercials: []
+    commercials: [],
+    isLoaded: false,
+    error: '',
 }
 
 const fetchCommercialsThunk = createAsyncThunk(
@@ -51,6 +49,10 @@ export const CommercialThunk = {
     fetchCommercialsThunk: fetchCommercialsThunk
 }
 
+export const getAllCommercials = (state : CommercialsState)  => state.commercials;
+export const getCommercialsError = (state : CommercialsState) => state.error;
+
+
 export const commercialSlice = createSlice({
     name: 'commercials',
     initialState,
@@ -58,6 +60,20 @@ export const commercialSlice = createSlice({
         fetchAllCommercials: (state,{payload}) => {
 
         }
+    },
+    extraReducers(builder) {
+        builder
+            .addCase(fetchCommercialsThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(fetchCommercialsThunk.fulfilled, (state, action) => {
+                state.isLoaded = true;
+
+            })
+            .addCase(fetchCommercialsThunk.rejected, (state, action) => {
+                state.isLoaded = false;
+                state.error = action.error.message;
+            })
     }
 
 })

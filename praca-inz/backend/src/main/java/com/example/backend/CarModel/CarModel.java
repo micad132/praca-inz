@@ -32,7 +32,5 @@ public class CarModel {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "img_path", nullable = false)
-    private String imgPath;
 
 }

@@ -20,6 +20,25 @@ import {
 } from "../../../services/ValidationService";
 
 
+interface InitialValidationValues {
+    name: boolean,
+    email: boolean,
+    password: boolean,
+    confirmPassword: boolean,
+    cityName: boolean,
+    postalCode: boolean
+}
+
+interface InitialRegisterValues {
+    name: string,
+    email: string,
+    password: string,
+    confirmPassword: string,
+    cityName: string,
+    postalCode: string
+    role: USER_TYPE_ROLES
+}
+
 const initialValidationValues = {
     name: false,
     email: false,
@@ -41,10 +60,10 @@ const initialRegisterValues = {
 
 const Register = () => {
 
-  const [role,setRole] = useState('');
-  const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState(initialValidationValues)
+  const [role,setRole] = useState<string>('');
+  const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<InitialValidationValues>(initialValidationValues)
 
-  const [registerValues,setRegisterValues] = useState(initialRegisterValues)
+  const [registerValues,setRegisterValues] = useState<InitialRegisterValues>(initialRegisterValues)
   const submitRegister = (e: MouseClickEventHandler) => {
       e.preventDefault();
       toast.success('Rejestracja udana!', {

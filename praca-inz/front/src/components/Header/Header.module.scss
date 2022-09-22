@@ -17,9 +17,14 @@ header{
 		cursor: pointer;
 	}
 
+	.logo{
+		color: green;
+	}
+
+
+
 
 }
-
 
 
 .auth{
@@ -92,6 +97,13 @@ header{
 
 	.authButton{
 		font-size: 10px !important;
+	}
+
+	.headerDiv{
+
+		.logo{
+			font-size: 10px;
+		}
 	}
 }
 

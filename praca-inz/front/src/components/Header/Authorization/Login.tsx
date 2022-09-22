@@ -7,20 +7,35 @@ import { useNavigate } from "react-router-dom";
 import {FormChangeEventHandler} from "../../../utils/types";
 import {emailValidation, passwordValidation} from "../../../services/ValidationService";
 
+interface LoginValidationType {
+  emailField: boolean,
+  passwordField: boolean,
+  confirmPasswordField: boolean
+}
+
+interface LoginValuesType {
+  emailValue: string,
+  passwordValue: string,
+  confirmPasswordValue: string
+}
+
+const initialLoginValidationState = {
+  emailField: false,
+  passwordField: false,
+  confirmPasswordField: false
+}
+
+const initialLoginValuesState = {
+  emailValue: '',
+  passwordValue: '',
+  confirmPasswordValue: ''
+}
 
 const Login = () => {
   let navigate = useNavigate();
-  const [loginValidation, setLoginValidation] = useState({
-    emailField: false,
-    passwordField: false,
-    confirmPasswordField: false,
-  });
+  const [loginValidation, setLoginValidation] = useState<LoginValidationType>(initialLoginValidationState);
 
-  const [loginValues, setLoginValues] = useState({
-    emailValue: "",
-    passwordValue: "",
-    confirmPasswordValue: "",
-  });
+  const [loginValues, setLoginValues] = useState<LoginValuesType>(initialLoginValuesState);
 
   //   const [isFormValid, setIsFormValid] = useState(true);
   let isFormValid = true;

@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import CommercialService from "../services/CommercialService";
 import ImageService, {ImageType} from "../services/ImageService";
+import {RootState} from "./index";
 
 
 export interface ImageState {
@@ -15,11 +15,12 @@ const initialState : ImageState  = {
     error: ''
 }
 
-const fetchImagesThunk = createAsyncThunk(
-    "image/getAllImages",
+export const fetchImagesThunk = createAsyncThunk(
+    "images/getAllImages",
     async () => {
         try{
             const data = await ImageService.getAllImages();
+            console.log('DANE REDUX', data.data);
             return { data };
 
         }catch(err){
@@ -29,18 +30,15 @@ const fetchImagesThunk = createAsyncThunk(
     }
 )
 
-export const getAllImages = (state : ImageState)  => state.images;
-export const getImagesError = (state : ImageState) => state.error;
+//test czy dziala
+export const getAllImages = (state : RootState)  => state.images.images;
+export const getImagesError = (state : RootState) => state.images.error;
 
 
-export const imageSlice = createSlice({
+const imageSlice = createSlice({
     name: 'images',
     initialState,
-    reducers: {
-        fetchAllImages: (state,{payload}) => {
-
-        }
-    },
+    reducers: {},
     extraReducers(builder) {
         builder
             .addCase(fetchImagesThunk.pending, (state, action) => {
@@ -48,7 +46,8 @@ export const imageSlice = createSlice({
             })
             .addCase(fetchImagesThunk.fulfilled, (state, action) => {
                 state.isLoaded = true;
-
+                state.images = action.payload.data;
+                // return action.payload.data;
             })
             .addCase(fetchImagesThunk.rejected, (state, action) => {
                 state.isLoaded = false;
@@ -57,3 +56,5 @@ export const imageSlice = createSlice({
     }
 
 })
+
+export default imageSlice.reducer;

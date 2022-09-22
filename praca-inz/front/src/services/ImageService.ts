@@ -13,7 +13,9 @@ export type ImageType = {
 const ImageService = {
     getAllImages: async () => {
         const res = await axios.get(`${URL}/image/getAllImages`)
+        console.log('DANE Z BACKU', res.data);
         return res.data;
+
     },
 
     addNewCommercial: async () => {

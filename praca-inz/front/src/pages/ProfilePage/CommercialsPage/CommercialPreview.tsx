@@ -10,7 +10,7 @@ interface Props {
 
 const CommercialPreview = ({imgSrc,title} : Props)  => {
 
-    const [isShowButtons,setIsShowButtons] = useState(false);
+    const [isShowButtons,setIsShowButtons] = useState<boolean>(false);
     return(
         <div className={styles.commercialDiv} onMouseEnter={()=> setIsShowButtons(true)} onMouseLeave={() => setIsShowButtons(false)}>
             <img src={imgSrc} />

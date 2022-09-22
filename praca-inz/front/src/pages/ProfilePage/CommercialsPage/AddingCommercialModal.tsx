@@ -8,6 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import styles from './CommercialsPage.module.scss';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
+import {useSelector} from "react-redux";
+import {getAllImages} from "../../../store/imageSlice";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -24,11 +26,13 @@ const style = {
 
 const AddingCommercialModal = () => {
 
-    const [isOpen,setIsOpen] = useState(false);
-    const [idForCommercial,setIdForCommercial] = useState('');
+    const [isOpen,setIsOpen] = useState<boolean>(false);
+    const [idForCommercial,setIdForCommercial] = useState<string>('');
     const handleChange = (event: SelectChangeEvent) => {
         setIdForCommercial(event.target.value as string);
     };
+    // const images = useSelector(getAllImages);
+    // console.log('OBRAZY Z ADDINGU', images)
     return(
         <div>
             <Button  variant="contained" onClick={()=> setIsOpen(true)}>Dodaj reklame</Button>

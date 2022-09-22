@@ -10,17 +10,20 @@ import {useClickAway} from 'react-use';
 
 const Header = () => {
   let navigate = useNavigate();
-  const [showMobileNav,setShowMobileNav] = useState(false);
-  const [showHamburerMenu,setShowHamburgerMenu] = useState(false);
+  const [showMobileNav,setShowMobileNav] = useState<boolean>(false);
+  const [showHamburerMenu,setShowHamburgerMenu] = useState<boolean>(false);
+  const [showAuthorInfo,setShowAuthorInfo] = useState<boolean>(false);
   const mobileNavRef = useRef(null);
 
   const checkIfMobileNavShouldBeDisplayed = () => {
     if(window.innerWidth < 1450){
       setShowHamburgerMenu(true);
+      setShowAuthorInfo(false);
 
     }
     else{
       setShowHamburgerMenu(false);
+      setShowAuthorInfo(true);
     }
   }
 
@@ -36,12 +39,12 @@ const Header = () => {
       <div className={styles.headerDiv}>
         <Link to="/">
           {" "}
-          <h1>motoPortal</h1>
+          <h1 className={styles.logo}>motoPortal</h1>
         </Link>
-        <h3>
+        { showAuthorInfo && <h3>
           Portal motoryzacyjny wykonany przez{" "}
           <span className={styles.author}>Michał Mosiołek</span>
-        </h3>
+        </h3>}
 
         {!showHamburerMenu && <nav className={styles.auth}>
           <Button

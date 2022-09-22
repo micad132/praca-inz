@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import CommercialService, {CommercialType} from "../services/CommercialService";
+import {RootState} from "./index";
 
 
 export interface CommercialsState {
@@ -11,21 +12,7 @@ export interface CommercialsState {
 
 
 const initialState : CommercialsState = {
-    // {
-    //     id: 1,
-    //     title: 'testowa reklama',
-    //     imgSrc: 'https://picsum.photos/200/300'
-    // },
-    // {
-    //     id: 2,
-    //     title: 'druga reklama',
-    //     imgSrc: 'https://picsum.photos/200/300'
-    // },
-    // {
-    //     id: 3,
-    //     title: 'trzecia reklama',
-    //     imgSrc: 'https://picsum.photos/200/300'
-    // }
+
     commercials: [],
     isLoaded: false,
     error: '',
@@ -49,11 +36,11 @@ export const CommercialThunk = {
     fetchCommercialsThunk: fetchCommercialsThunk
 }
 
-export const getAllCommercials = (state : CommercialsState)  => state.commercials;
-export const getCommercialsError = (state : CommercialsState) => state.error;
+export const getAllCommercials = (state : RootState)  => state.commercials.commercials;
+export const getCommercialsError = (state : RootState) => state.commercials.error;
 
 
-export const commercialSlice = createSlice({
+const commercialSlice = createSlice({
     name: 'commercials',
     initialState,
     reducers: {
@@ -77,4 +64,6 @@ export const commercialSlice = createSlice({
     }
 
 })
+
+export default commercialSlice.reducer;
 

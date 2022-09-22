@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping("/api/v1/commercial")
 @RestController
 public class CommercialController {
 
@@ -22,12 +23,12 @@ public class CommercialController {
         commercialService.addCommercial(commercialModel);
     }
 
-    @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable(value = "userId")Long userId){
+    @DeleteMapping("/{carModelId}")
+    public void deleteCommercial(@PathVariable(value = "carModelId")Long userId){
         commercialService.deleteCommercialById(userId);
     }
 
-    @GetMapping("/getAllUsers")
+    @GetMapping("/getAllCommercials")
     public List<CommercialModel> getAllCommercial(){
         return commercialService.getAllCommercials();
     }

@@ -27,8 +27,8 @@ public class CommercialModel {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @Column(name = "img_path", nullable = false)
-    private String imgPath;
+//    @Column(name = "img_path", nullable = false)
+//    private String imgPath;
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "car_model_id")

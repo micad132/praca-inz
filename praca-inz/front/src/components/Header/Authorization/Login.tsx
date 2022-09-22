@@ -6,18 +6,9 @@ import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
 import {FormChangeEventHandler} from "../../../utils/types";
 import {emailValidation, passwordValidation} from "../../../services/ValidationService";
+import {LoginValidationValuesTypes, LoginValuesTypes} from "../../../utils/types/AuthorizationTypes";
 
-interface LoginValidationType {
-  emailField: boolean,
-  passwordField: boolean,
-  confirmPasswordField: boolean
-}
 
-interface LoginValuesType {
-  emailValue: string,
-  passwordValue: string,
-  confirmPasswordValue: string
-}
 
 const initialLoginValidationState = {
   emailField: false,
@@ -33,9 +24,9 @@ const initialLoginValuesState = {
 
 const Login = () => {
   let navigate = useNavigate();
-  const [loginValidation, setLoginValidation] = useState<LoginValidationType>(initialLoginValidationState);
+  const [loginValidation, setLoginValidation] = useState<LoginValidationValuesTypes>(initialLoginValidationState);
 
-  const [loginValues, setLoginValues] = useState<LoginValuesType>(initialLoginValuesState);
+  const [loginValues, setLoginValues] = useState<LoginValuesTypes>(initialLoginValuesState);
 
   //   const [isFormValid, setIsFormValid] = useState(true);
   let isFormValid = true;

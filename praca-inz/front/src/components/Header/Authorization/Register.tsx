@@ -11,7 +11,11 @@ import {toast, ToastContainer} from 'react-toastify';
 import {useState} from "react";
 import {FormChangeEventHandler, MouseClickEventHandler} from "../../../utils/types";
 import RegisterService from "../../../services/RegisterService";
-import {USER_TYPE_ROLES} from "../../../utils/types/AuthorizationTypes";
+import {
+    RegisterValidationValuesTypes,
+    RegisterValuesTypes,
+    USER_TYPE_ROLES
+} from "../../../utils/types/AuthorizationTypes";
 import {
     cityNameValidation,
     emailValidation,
@@ -20,24 +24,7 @@ import {
 } from "../../../services/ValidationService";
 
 
-interface InitialValidationValues {
-    name: boolean,
-    email: boolean,
-    password: boolean,
-    confirmPassword: boolean,
-    cityName: boolean,
-    postalCode: boolean
-}
 
-interface InitialRegisterValues {
-    name: string,
-    email: string,
-    password: string,
-    confirmPassword: string,
-    cityName: string,
-    postalCode: string
-    role: USER_TYPE_ROLES
-}
 
 const initialValidationValues = {
     name: false,
@@ -61,9 +48,9 @@ const initialRegisterValues = {
 const Register = () => {
 
   const [role,setRole] = useState<string>('');
-  const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<InitialValidationValues>(initialValidationValues)
+  const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<RegisterValidationValuesTypes>(initialValidationValues)
 
-  const [registerValues,setRegisterValues] = useState<InitialRegisterValues>(initialRegisterValues)
+  const [registerValues,setRegisterValues] = useState<RegisterValuesTypes>(initialRegisterValues)
   const submitRegister = (e: MouseClickEventHandler) => {
       e.preventDefault();
       toast.success('Rejestracja udana!', {

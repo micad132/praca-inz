@@ -30,7 +30,6 @@ export const fetchCarModelsThunk = createAsyncThunk(
     }
 )
 
-//test czy dziala
 export const getAllCarModels = (state : RootState)  => state.carModels.carModels;
 export const getImagesError = (state : RootState) => state.carModels.error;
 

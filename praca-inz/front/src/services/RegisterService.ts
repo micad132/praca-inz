@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {RegisterTypes} from "../utils/types/AuthorizationTypes";
+import {RegisterValuesTypes} from "../utils/types/AuthorizationTypes";
 
 const RegisterService = {
 
-    addUser: async (user : RegisterTypes) => {
+    addUser: async (user : RegisterValuesTypes) => {
         return axios({
             method: 'POST',
             url: 'http://localhost:8080/api/v1/user',

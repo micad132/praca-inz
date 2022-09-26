@@ -23,22 +23,23 @@ public class UserModel {
     @Column(name = "id", nullable = false)
     private Long id;
 
+    @Column(name = "name", nullable = false)
+    private String name;
+
     @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role", nullable = false)
-    private String role;
-
-    @Column(name = "name", nullable = false)
-    private String name;
-
     @Column(name = "city_name", nullable = false)
     private String cityName;
 
     @Column(name = "postal_code", nullable = false)
     private String postalCode;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role", nullable = false)
+    private UserRole role;
 
 }

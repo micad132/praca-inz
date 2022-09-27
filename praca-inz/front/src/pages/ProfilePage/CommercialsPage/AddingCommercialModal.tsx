@@ -8,8 +8,8 @@ import InputLabel from '@mui/material/InputLabel';
 import styles from './CommercialsPage.module.scss';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import {useSelector} from "react-redux";
-import {getAllImages} from "../../../store/imageSlice";
+import {useAppSelector} from "../../../utils/types/hooks";
+import {getAllCarModels} from "../../../store/carModelSlice";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -28,11 +28,17 @@ const AddingCommercialModal = () => {
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const [idForCommercial,setIdForCommercial] = useState<string>('');
+    const carModels = useAppSelector(getAllCarModels);
+    console.log('CARMODELS Z ADDING', carModels);
     const handleChange = (event: SelectChangeEvent) => {
         setIdForCommercial(event.target.value as string);
     };
     // const images = useSelector(getAllImages);
     // console.log('OBRAZY Z ADDINGU', images)
+    const addCommercial = (id : string) => {
+
+    }
+
     return(
         <div>
             <Button  variant="contained" onClick={()=> setIsOpen(true)}>Dodaj reklame</Button>
@@ -63,13 +69,12 @@ const AddingCommercialModal = () => {
                                 value={idForCommercial}
                                 onChange={handleChange}
                             >
-                                <MenuItem value={1}>BMW</MenuItem>
-                                <MenuItem value={2}>Audi</MenuItem>
-                                <MenuItem value={3}>Opel</MenuItem>
+                                {carModels.map(car => <MenuItem key={car.id} value={car.name}>{car.name}</MenuItem>)}
                             </Select>
                             <Button
                                 variant="contained"
                                 type="submit"
+                                onClick={addCommercial}
 
                             >
                                 Dodaj

@@ -28,10 +28,11 @@ public class UserController {
     @GetMapping("/getLoggedUser")
     public ResponseEntity<UserModel> getLoggedUser(Authentication authentication){
         UserModel loggedUser = Optional.ofNullable(authentication)
-                .filter(f -> f.getPrincipal() instanceof  UserModel)
+                .filter(f -> f.getPrincipal() instanceof  UserWrapper)
                 .map(Authentication::getPrincipal)
-                .map(UserModel.class::cast)
-                .orElseThrow(()-> new UsernameNotFoundException("Username not logged"));
+                .map(UserWrapper.class::cast)
+                .map(UserWrapper::getUserModel)
+                .orElse(null);
         return ResponseEntity.ok(loggedUser);
     }
 

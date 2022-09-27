@@ -1,5 +1,11 @@
 import InfoWrapper from "../../components/InfoWrapper/InfoWrapper";
 import styles from './Home.module.scss';
+import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
+import {useEffect} from "react";
+import {fetchImagesThunk, getAllImages} from "../../store/imageSlice";
+import {fetchCarModelsThunk, getAllCarModels} from "../../store/carModelSlice";
+import {fetchUserDetailsThunk, getLoggedUser} from "../../store/userSlice";
+
 
 export interface PolandInfoType {
     title: string,
@@ -25,11 +31,18 @@ const polandInfo: PolandInfoType[] = [
 
 
 const Home = () => {
+  const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(fetchUserDetailsThunk())
+    }, [dispatch]);
+    const userDetails = useAppSelector(getLoggedUser);
+    console.log('USER', userDetails);
+    const loggedUser = userDetails ? `Jesteś zalogowany jako ${userDetails.role}` : '';
   return (
       <>
         <div className={styles.text_wrapper}>
             <h1>Witaj na portalu motoryzacyjnym!</h1>
-            <h2>Jesteś zalogowany jako user</h2>
+            <h2>{loggedUser}</h2>
         </div>
         <InfoWrapper title='Informacje z Polski' details={polandInfo} />
         <InfoWrapper title='Informacje ze Świata' details={polandInfo} />

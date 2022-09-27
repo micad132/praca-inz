@@ -14,8 +14,14 @@ const CommercialService = {
         return res.data;
     },
 
-    addNewCommercial: async () => {
-
+    addNewCommercial: async (id : number , ) => {
+        return axios({
+            method: 'POST',
+            url: `${URL}/commercial/${id}`,
+            data: user,
+            headers: {
+            }
+        })
     }
 }
 

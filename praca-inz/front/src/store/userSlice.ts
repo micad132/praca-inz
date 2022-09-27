@@ -19,7 +19,7 @@ export const fetchUserDetailsThunk = createAsyncThunk(
     async () => {
         try{
             const data = await RegisterService.getLoggedUser();
-            console.log('DANE REDUX', data.data);
+            console.log('DANE REDUX USER', data);
             return { data };
 
         }catch(err){

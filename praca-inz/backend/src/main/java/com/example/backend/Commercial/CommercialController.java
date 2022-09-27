@@ -18,9 +18,10 @@ public class CommercialController {
         this.commercialService = commercialService;
     }
 
-    @PostMapping
-    public void addCommercial(@RequestBody CommercialModel commercialModel){
-        commercialService.addCommercial(commercialModel);
+    @PostMapping("/{id}")
+    public String addCommercial(@RequestBody CommercialModel commercialModel, @PathVariable String id){
+          return id;
+//        commercialService.addCommercial(commercialModel);
     }
 
     @DeleteMapping("/{carModelId}")

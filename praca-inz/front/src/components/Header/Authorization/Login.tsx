@@ -78,7 +78,7 @@ const Login = () => {
   return (
     <AuthWrapper>
       <h2 className={styles.title}>Zaloguj się aby w pełni korzystać z możliwości!</h2>
-      <form className={styles.form} onSubmit={(e) => validateForm(e)}>
+      <form className={styles.form}  method="post" action="http://localhost:8080/login" >
         <TextField
           id="outlined-basic"
           label={
@@ -87,6 +87,7 @@ const Login = () => {
               : "E-mail"
           }
           variant="outlined"
+          name="username"
           value={loginValues.emailValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({
@@ -106,6 +107,7 @@ const Login = () => {
           helperText="Przynajmniej 4 znaki"
           variant="outlined"
           type="password"
+          name="password"
           value={loginValues.passwordValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({

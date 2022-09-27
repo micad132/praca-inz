@@ -21,4 +21,8 @@ const postalCodeValidation = (value : string) : boolean => {
     return postalCodeRegex.test(value);
 }
 
-export { emailValidation, nameValidation,  passwordValidation, cityNameValidation, postalCodeValidation };
+const containsNumbers = (str : string) => {
+    return /\d/.test(str);
+}
+
+export { emailValidation, nameValidation,  passwordValidation, cityNameValidation, postalCodeValidation, containsNumbers };

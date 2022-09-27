@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {RegisterValuesTypes} from "../utils/types/AuthorizationTypes";
+import {URL} from "../utils/GlobalVariables";
 
 const RegisterService = {
 
@@ -12,6 +13,16 @@ const RegisterService = {
                 
             }
         })
+    },
+
+    getUsers: async () => {
+        const res = await axios.get(`${URL}/user/getAllUsers`)
+        return res.data;
+    },
+
+    getLoggedUser: async () => {
+        const res = await axios.get(`${URL}/user/getLoggedUser`)
+        return res.data;
     }
 }
 

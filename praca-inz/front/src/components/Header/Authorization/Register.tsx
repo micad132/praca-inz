@@ -17,7 +17,7 @@ import {
     USER_TYPE_ROLES
 } from "../../../utils/types/AuthorizationTypes";
 import {
-    cityNameValidation,
+    cityNameValidation, containsNumbers,
     emailValidation,
     nameValidation,
     passwordValidation, postalCodeValidation
@@ -49,8 +49,8 @@ const Register = () => {
 
   const [role,setRole] = useState<string>('');
   const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<RegisterValidationValuesTypes>(initialValidationValues)
-
-  const [registerValues,setRegisterValues] = useState<RegisterValuesTypes>(initialRegisterValues)
+  const [registerValues,setRegisterValues] = useState<RegisterValuesTypes>(initialRegisterValues);
+  let isRegisterInvalid = false;
   const submitRegister = (e: MouseClickEventHandler) => {
       e.preventDefault();
       toast.success('Rejestracja udana!', {
@@ -95,7 +95,10 @@ const Register = () => {
         setIsRegisterValidationIncorrect(initialValidationValues);
         const {name,email,password,confirmPassword,cityName,postalCode,role} = registerValues;
         console.log(isFinite(Number(cityName)));
+        console.log(containsNumbers(cityName));
+        console.log(cityNameValidation(cityName));
         if(!nameValidation(name)){
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 name: true
@@ -103,6 +106,7 @@ const Register = () => {
         }
         if(!emailValidation(email)){
 
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 email: true
@@ -110,6 +114,7 @@ const Register = () => {
         }
         if(!passwordValidation(password)){
 
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 password: true
@@ -117,26 +122,42 @@ const Register = () => {
         }
         if(!passwordValidation(confirmPassword) || password !== confirmPassword ){
 
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 confirmPassword: true
             }));
         }
-        if(cityNameValidation(cityName) || isFinite(Number(cityName))){
+        if(!cityNameValidation(cityName) || containsNumbers(cityName)){
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 cityName: true
             }));
         }
         if(!postalCodeValidation(postalCode)){
+            isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
                 ...prevState,
                 postalCode: true
             }));
         }
+
         console.log(registerValues);
-        // const data = await RegisterService.addUser(registerValues);
-        // console.log(data.data);
+        if(!isRegisterInvalid){
+            const data = await RegisterService.addUser(registerValues);
+            setRegisterValues(initialRegisterValues);
+            toast.success('Rejestracja udana!', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+
 
     }
 
@@ -151,6 +172,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.name ? 'Wprowadz poprawna nazwe'
                       : 'Wprowadz nazwe'}
                   variant="outlined"
+                  value={registerValues.name}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -164,6 +186,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.email ? 'Wprowadz poprawny email'
                       : 'Wprowadz email'}
                   variant="outlined"
+                  value={registerValues.email}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -180,6 +203,7 @@ const Register = () => {
                   helperText="Przynajmniej 4 znaki"
                   type="password"
                   variant="outlined"
+                  value={registerValues.password}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -195,6 +219,7 @@ const Register = () => {
                   helperText="Proszę potwierdz haslo"
                   type="password"
                   variant="outlined"
+                  value={registerValues.confirmPassword}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -208,6 +233,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.cityName ? 'Wprowadz poprawna nazwe miasta'
                       : 'Wprowadz nazwe miasta'}
                   variant="outlined"
+                  value={registerValues.cityName}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -222,6 +248,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.postalCode ? 'Wprowadz poprawny kod pocztowy'
                       : 'Wprowadz kod pocztowy'}
                   variant="outlined"
+                  value={registerValues.postalCode}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -242,6 +269,7 @@ const Register = () => {
                       >
                           <MenuItem value={USER_TYPE_ROLES.USER}>Uzytkownik</MenuItem>
                           <MenuItem value={USER_TYPE_ROLES.MODERATOR}>Moderator</MenuItem>
+                          <MenuItem value={USER_TYPE_ROLES.ADMIN}>Admin</MenuItem>
                       </Select>
                   </FormControl>
               </Box>

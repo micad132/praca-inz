@@ -30,7 +30,7 @@ export const fetchImagesThunk = createAsyncThunk(
     }
 )
 
-//test czy dziala
+
 export const getAllImages = (state : RootState)  => state.images.images;
 export const getImagesError = (state : RootState) => state.images.error;
 

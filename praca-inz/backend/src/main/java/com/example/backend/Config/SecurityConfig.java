@@ -25,17 +25,38 @@ public class SecurityConfig {
                 .defaultSuccessUrl("http://localhost:3000")
                 .failureUrl("http://localhost:3000/failed")
                 .loginPage("http://localhost:3000/login")
+                .permitAll()
+                .and()
+                .authorizeRequests()
+                .antMatchers("/login")
+                .permitAll()
+                .anyRequest().permitAll()
                 .and()
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests(auth -> {
-                    auth.antMatchers("/").permitAll();
-                    auth.antMatchers("/user").hasRole("USER");
-                    auth.antMatchers("/admin").hasRole("ADMIN");
-
-                })
                 .httpBasic(Customizer.withDefaults())
                 .headers()
                 .frameOptions().disable();
+
+//        httpSecurity
+//                .csrf()
+//                .disable()
+//                .cors().configurationSource(corsConfigurationSource)
+//                .and()
+//                .headers()
+//                .frameOptions().disable()
+//                .and()
+//                .authorizeRequests()
+//                .antMatchers("/login")
+//                .permitAll()
+//                .anyRequest().permitAll()
+//                .and()
+//                .formLogin()
+//                .loginProcessingUrl("/login")
+//                .failureUrl("http://localhost:3000/failed")
+//                .defaultSuccessUrl("http://localhost:3000")
+//                .loginPage("http://localhost:3000/login")
+//                .permitAll();
+
         httpSecurity.cors().configurationSource(corsConfigurationSource);
 
         return httpSecurity.build();

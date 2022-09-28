@@ -36,6 +36,12 @@ public class UserController {
         return ResponseEntity.ok(loggedUser);
     }
 
+    @GetMapping("/getUserDetails")
+    public UserDTO getUserDetails(@RequestBody UserModel userModel){
+        UserDTO userDTO = userService.convertUserToUserDTO(userModel);
+        return userDTO;
+    }
+
     @DeleteMapping("/{userId}")
     public void deleteUser(@PathVariable(value = "userId")Long userId){
         userService.deleteUserById(userId);

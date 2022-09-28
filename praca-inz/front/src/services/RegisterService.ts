@@ -23,6 +23,11 @@ const RegisterService = {
     getLoggedUser: async () => {
         const res = await axios.get(`${URL}/user/getLoggedUser`)
         return res.data;
+    },
+
+    getUserDetailsDTO: async () => {
+        const res = await axios.get(`${URL}/user/getUserDetails`)
+        return res.data;
     }
 }
 

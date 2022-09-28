@@ -35,5 +35,14 @@ public class UserService implements UserDetailsService {
         return userRepository.findUserModelByEmail(username).map(UserWrapper::new).orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
+    public UserDTO convertUserToUserDTO(UserModel userModel){
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(userModel.getId());
+        userDTO.setName(userModel.getName());
+        userDTO.setCityName(userModel.getCityName());
+        userDTO.setPostalCode(userModel.getPostalCode());
+        return userDTO;
+    }
+
 
 }

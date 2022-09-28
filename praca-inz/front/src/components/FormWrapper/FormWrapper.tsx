@@ -1,7 +1,7 @@
 import styles from "./FormWrapper.module.scss";
 
 const FormWrapper = ({ children }:any) => {
-    return <div className={styles.formDiv}>{children}</div>;
+    return <form className={styles.formDiv}>{children}</form>;
 };
 
 export default FormWrapper;

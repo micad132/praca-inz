@@ -17,6 +17,7 @@ public class UserWrapper implements UserDetails {
     private final UserModel userModel;
 
 
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority(userModel.getRole().name()));

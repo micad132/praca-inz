@@ -1,5 +1,6 @@
 package com.example.backend.Post;
 
+import com.example.backend.Image.ImageModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,6 +8,8 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -36,5 +39,11 @@ public class PostModel {
     @ManyToOne
     @JoinColumn(name = "post_category_model_id")
     private PostCategoryModel postCategoryModel;
+
+    @ManyToMany
+    @JoinTable(name = "post_model_image_models",
+            joinColumns = @JoinColumn(name = "post_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+    private List<ImageModel> imageModels = new ArrayList<>();
 
 }

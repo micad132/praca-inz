@@ -1,5 +1,6 @@
 package com.example.backend.Commercial;
 
+import com.example.backend.CarModel.CarModel;
 import com.example.backend.User.UserModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,10 +19,17 @@ public class CommercialController {
         this.commercialService = commercialService;
     }
 
+    @PostMapping
+    public void addCommercial(@RequestBody CommercialModel commercialModel){
+        commercialService.addCommercial(commercialModel);
+    }
+
     @PostMapping("/{id}")
-    public String addCommercial(@RequestBody CommercialModel commercialModel, @PathVariable String id){
-          return id;
+    public void addCommercial(@RequestBody CommercialModel commercialModel, @PathVariable(value = "id") String id){
+
+
 //        commercialService.addCommercial(commercialModel);
+          commercialService.addCommercialForCarModel(commercialModel,id);
     }
 
     @DeleteMapping("/{carModelId}")

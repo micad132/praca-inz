@@ -11,6 +11,7 @@ import ConfigurationPage from "../pages/ConfigurationPage";
 import ProfilePage from "../pages/ProfilePage";
 import CommercialsPage from "../pages/ProfilePage/CommercialsPage";
 import AccountSettings from "../pages/ProfilePage/AccountSettings";
+import ErrorPage from "../pages/ErrorPage";
 
 const routes = (
   <Routes>
@@ -28,6 +29,7 @@ const routes = (
         <Route path="settings" element={<AccountSettings />} />
 
     </Route>
+    <Route path="/failed" element={<ErrorPage />} />
   </Routes>
 );
 

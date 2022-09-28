@@ -18,12 +18,12 @@ const initialState : CommercialsState = {
     error: '',
 }
 
-const fetchCommercialsThunk = createAsyncThunk(
+export const fetchCommercialsThunk = createAsyncThunk(
     "commercial/getAllCommercials",
     async () => {
         try{
             const data = await CommercialService.getAllCommercials();
-            return { data };
+            return { data }
 
         }catch(err){
             console.log(err);
@@ -55,6 +55,7 @@ const commercialSlice = createSlice({
             })
             .addCase(fetchCommercialsThunk.fulfilled, (state, action) => {
                 state.isLoaded = true;
+                state.commercials = action.payload.data;
 
             })
             .addCase(fetchCommercialsThunk.rejected, (state, action) => {

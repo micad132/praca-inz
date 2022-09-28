@@ -1,6 +1,12 @@
 
 .wrapper{
-  width: 80%;
+  width: 100%;
   //margin: 0 auto 0 auto;
   border: 2px solid purple;
+}
+
+@media (min-width:1200px){
+  .wrapper{
+    width: 80%;
+  }
 }

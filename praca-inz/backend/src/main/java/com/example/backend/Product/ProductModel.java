@@ -1,5 +1,6 @@
 package com.example.backend.Product;
 
+import com.example.backend.Image.ImageModel;
 import com.example.backend.User.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @AllArgsConstructor
@@ -36,6 +39,12 @@ public class ProductModel {
     @JoinColumn(name = "user_model_id")
     private UserModel userModel;
 
+    @ManyToMany
+    @JoinTable(name = "product_model_image_models",
+            joinColumns = @JoinColumn(name = "product_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+    private List<ImageModel> imageModels = new ArrayList<>();
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -48,4 +57,6 @@ public class ProductModel {
     public int hashCode() {
         return getClass().hashCode();
     }
+
+
 }

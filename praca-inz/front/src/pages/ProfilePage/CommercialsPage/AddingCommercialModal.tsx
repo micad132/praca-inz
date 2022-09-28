@@ -10,6 +10,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import {useAppSelector} from "../../../utils/types/hooks";
 import {getAllCarModels} from "../../../store/carModelSlice";
+import CommercialService from "../../../services/CommercialService";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -28,15 +29,17 @@ const AddingCommercialModal = () => {
 
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const [idForCommercial,setIdForCommercial] = useState<string>('');
+    const [commercialName,setCommercialName] = useState<string>('');
     const carModels = useAppSelector(getAllCarModels);
     console.log('CARMODELS Z ADDING', carModels);
     const handleChange = (event: SelectChangeEvent) => {
-        setIdForCommercial(event.target.value as string);
+        console.log(event.target.value);
+        setIdForCommercial(event.target.value);
     };
     // const images = useSelector(getAllImages);
     // console.log('OBRAZY Z ADDINGU', images)
-    const addCommercial = (id : string) => {
-
+    const addCommercial = async () => {
+        const data = await CommercialService.addNewCommercial(idForCommercial,commercialName);
     }
 
     return(
@@ -56,11 +59,12 @@ const AddingCommercialModal = () => {
                                 id="outlined-basic"
                                 label="Wprowadz tytul"
                                 variant="outlined"
+                                onChange={ (e) => setCommercialName(e.target.value)}
                             />
-                            <Button variant="contained" component="label">
-                                Dodaj zdjecie
-                                <input hidden accept="image/*" multiple type="file" />
-                            </Button>
+                            {/*<Button variant="contained" component="label">*/}
+                            {/*    Dodaj zdjecie*/}
+                            {/*    <input hidden accept="image/*" multiple type="file" />*/}
+                            {/*</Button>*/}
                             <InputLabel id="commercialSelect">Wybierz produkt do reklamy</InputLabel>
                             <Select
                                 labelId="commercialSelect"
@@ -69,7 +73,7 @@ const AddingCommercialModal = () => {
                                 value={idForCommercial}
                                 onChange={handleChange}
                             >
-                                {carModels.map(car => <MenuItem key={car.id} value={car.name}>{car.name}</MenuItem>)}
+                                {carModels.map(car => <MenuItem  key={car.id} value={car.id ? car.id : ''}>{car.name}</MenuItem>)}
                             </Select>
                             <Button
                                 variant="contained"

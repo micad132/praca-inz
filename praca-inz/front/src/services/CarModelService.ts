@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {URL} from '../utils/GlobalVariables';
+import {ImageType} from "./ImageService";
 
 export type CarModelType = {
     id: number
@@ -7,6 +8,7 @@ export type CarModelType = {
     price: number,
     rating: number,
     description: string,
+    imageModels: ImageType[]
 
 }
 

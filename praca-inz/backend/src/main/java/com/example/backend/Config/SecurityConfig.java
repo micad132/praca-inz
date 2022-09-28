@@ -77,6 +77,13 @@ public class SecurityConfig {
                 .loginPage("http://localhost:3000/login")
                 .permitAll();
 
+        httpSecurity.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("http://localhost:3000")
+                .deleteCookies("JSESSIONID")
+                .invalidateHttpSession(true)
+                .clearAuthentication(true);
+
 //        httpSecurity.cors().configurationSource(corsConfigurationSource);
 
         return httpSecurity.build();

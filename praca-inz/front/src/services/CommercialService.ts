@@ -1,24 +1,30 @@
 import axios from 'axios';
 import {URL} from '../utils/GlobalVariables';
+import {CarModelType} from "./CarModelService";
 
 export type CommercialType = {
     id: number
-    title: string,
-    imgSrc: string,
-    carModelId: number
+    name: string,
+    description: string,
+    carModel: CarModelType,
+
 }
 
 const CommercialService = {
     getAllCommercials: async () => {
-        const res = await axios.get(`${URL}/getAllCommercials`)
+        const res = await axios.get(`${URL}/commercial/getAllCommercials`)
         return res.data;
     },
 
-    addNewCommercial: async (id : number , ) => {
+    addNewCommercial:  (id : string  , name : string ) => {
         return axios({
             method: 'POST',
             url: `${URL}/commercial/${id}`,
-            data: user,
+            data: {
+                name,
+                description: 'siemanko',
+                carModel: { id }
+            },
             headers: {
             }
         })

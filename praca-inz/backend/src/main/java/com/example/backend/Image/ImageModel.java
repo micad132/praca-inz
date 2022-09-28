@@ -27,20 +27,20 @@ public class ImageModel {
     @Column(name = "image_path", nullable = false)
     private String imagePath;
 
-    @ManyToOne
-    @JoinColumn(name = "product_model_id")
-    private ProductModel productModel;
-
-    @ManyToOne
-    @JoinColumn(name = "car_model_id")
-    private CarModel carModel;
-
-    @ManyToOne
-    @JoinColumn(name = "post_model_id")
-    private PostModel postModel;
-
-    @OneToOne(orphanRemoval = true)
-    @JoinColumn(name = "commercial_model_id")
-    private CommercialModel commercialModel;
+//    @ManyToOne
+//    @JoinColumn(name = "product_model_id")
+//    private ProductModel productModel;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "car_model_id")
+//    private CarModel carModel;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "post_model_id")
+//    private PostModel postModel;
+//
+//    @OneToOne(orphanRemoval = true)
+//    @JoinColumn(name = "commercial_model_id")
+//    private CommercialModel commercialModel;
 
 }

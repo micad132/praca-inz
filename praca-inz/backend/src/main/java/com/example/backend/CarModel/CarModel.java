@@ -1,11 +1,14 @@
 package com.example.backend.CarModel;
 
+import com.example.backend.Image.ImageModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -32,5 +35,10 @@ public class CarModel {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @ManyToMany
+    @JoinTable(name = "car_model_image_models",
+            joinColumns = @JoinColumn(name = "car_model_id"),
+            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+    private List<ImageModel> imageModels = new ArrayList<>();
 
 }

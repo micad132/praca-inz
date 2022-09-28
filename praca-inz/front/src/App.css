@@ -7,5 +7,14 @@
 	width: 90%;
 	position: relative;
 
+}
 
+@media (max-width: 1200px){
+	.App{
+		flex-direction: column;
+	}
+
+	.App * >{
+		width: 100%;
+	}
 }

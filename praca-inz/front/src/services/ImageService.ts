@@ -3,7 +3,9 @@ import {URL} from '../utils/GlobalVariables';
 
 export type ImageType = {
     id: number
-    imagePath: string
+    image: string,
+    name: string,
+    type: string
 }
 
 const ImageService = {

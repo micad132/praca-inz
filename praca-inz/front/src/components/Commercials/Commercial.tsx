@@ -1,5 +1,5 @@
-
 import styles from './Commercials.module.scss';
+import {fetchingImagesURL} from "../../utils/GlobalVariables";
 
 
 interface Props {
@@ -8,14 +8,15 @@ interface Props {
 }
 
 
-const Commercial = ({src,header} : Props) => {
+const Commercial = ({src, header}: Props) => {
 
-    console.log(src);
-    return(
-    <div className={styles.commercial}>
-        <img className={styles.commercial__img} src={'Users/micha/OneDrive/Desktop/front/bmw2.jpg'} alt="placeholder"></img>
-        <h2>{header}</h2>
-    </div>
+
+    console.log(`${fetchingImagesURL}/${src}`);
+    return (
+        <div className={styles.commercial}>
+            <img className={styles.commercial__img} src={`${fetchingImagesURL}/${src}`} alt="placeholder"></img>
+            <h2>{header}</h2>
+        </div>
     )
 }
 

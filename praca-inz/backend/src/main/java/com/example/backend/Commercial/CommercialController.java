@@ -32,9 +32,9 @@ public class CommercialController {
           commercialService.addCommercialForCarModel(commercialModel,id);
     }
 
-    @DeleteMapping("/{carModelId}")
-    public void deleteCommercial(@PathVariable(value = "carModelId")Long userId){
-        commercialService.deleteCommercialById(userId);
+    @DeleteMapping("/delete/{carModelId}")
+    public void deleteCommercial(@PathVariable(value = "carModelId")Long commercialId){
+        commercialService.deleteCommercialById(commercialId);
     }
 
     @GetMapping("/getAllCommercials")

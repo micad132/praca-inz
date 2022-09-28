@@ -15,7 +15,7 @@ const Commercials = () => {
     const commercials = useAppSelector(getAllCommercials);
     commercials.forEach(commercial => console.log('SRC', commercial.carModel));
     const commercialList = commercials.map(commercial =>
-        <Commercial key={commercial.id} src={commercial.carModel?.imageModels[0].imagePath} header={commercial.name}/>
+        <Commercial key={commercial.id} src={commercial.carModel?.imageModels[0].name} header={commercial.name}/>
     );
     console.log('REKLAMKI', commercials);
 

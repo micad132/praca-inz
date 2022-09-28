@@ -30,7 +30,7 @@ public class CommercialModel {
 //    @Column(name = "img_path", nullable = false)
 //    private String imgPath;
 
-    @OneToOne(orphanRemoval = true)
+    @OneToOne(orphanRemoval = true, cascade = {CascadeType.REMOVE})
     @JoinColumn(name = "car_model_id")
     private CarModel carModel;
 

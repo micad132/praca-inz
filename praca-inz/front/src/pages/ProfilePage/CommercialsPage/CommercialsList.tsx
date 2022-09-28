@@ -1,5 +1,8 @@
 import CommercialPreview from "./CommercialPreview";
 import styles from './CommercialsPage.module.scss';
+import {useAppSelector} from "../../../utils/types/hooks";
+import {getAllCommercials} from "../../../store/commercialSlice";
+import {fetchingImagesURL} from "../../../utils/GlobalVariables";
 
 const dummyCommercials = [
     {
@@ -37,10 +40,11 @@ const dummyCommercials = [
 
 const CommercialsList = () => {
 
+    const commercials = useAppSelector(getAllCommercials);
     return(
         <section className={styles.commercialsWrapper}>
-            {dummyCommercials.map(commercial =>
-                <CommercialPreview key={commercial.id} imgSrc={commercial.imgSrc} title={commercial.title} />
+            {commercials.map(commercial =>
+                <CommercialPreview key={commercial.id} id={commercial.id} imgSrc={`${fetchingImagesURL}/${commercial.carModel.imageModels[0].name}`} title={commercial.name} />
             )}
         </section>
     )

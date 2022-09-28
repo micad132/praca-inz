@@ -28,6 +28,10 @@ const CommercialService = {
             headers: {
             }
         })
+    },
+
+    deleteCommercial: async (id: number) => {
+        return await axios.delete(`${URL}/commercial/delete/${id}`)
     }
 }
 

@@ -4,10 +4,7 @@ import com.example.backend.CarModel.CarModel;
 import com.example.backend.Commercial.CommercialModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "image_model")
 public class ImageModel {
@@ -24,8 +22,19 @@ public class ImageModel {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "image_path", nullable = false)
-    private String imagePath;
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @Column(name = "type")
+    private String type;
+
+    @Column(name = "image", unique = false, nullable = false, length = 100000)
+    private byte[] image;
+
+//    @Column(name = "image_path", nullable = false)
+//    private String imagePath;
+
+
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_model_id")

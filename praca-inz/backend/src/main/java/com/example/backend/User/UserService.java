@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,6 +20,20 @@ public class UserService implements UserDetailsService {
     public void registerUser(UserModel userModel){
         userModel.setPassword(encoder.encode(userModel.getPassword()));
         userRepository.save(userModel);
+
+    }
+
+    public void updateUserDetails(UserDTO userDTO){
+        UserModel newUserModel = new UserModel();
+        Optional<UserModel> userModelToChange = Optional.of(userRepository.findById(userDTO.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found")));
+        newUserModel.setId(userModelToChange.get().getId());
+        newUserModel.setName(userDTO.getName());
+        newUserModel.setEmail(userModelToChange.get().getEmail());
+        newUserModel.setPassword(userModelToChange.get().getPassword());
+        newUserModel.setCityName(userDTO.getCityName());
+        newUserModel.setPostalCode(userDTO.getPostalCode());
+        newUserModel.setRole(userModelToChange.get().getRole());
+        userRepository.save(newUserModel);
 
     }
 

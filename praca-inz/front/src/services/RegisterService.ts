@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {RegisterValuesTypes} from "../utils/types/AuthorizationTypes";
 import {URL} from "../utils/GlobalVariables";
+import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
 
 const RegisterService = {
 
@@ -28,6 +29,18 @@ const RegisterService = {
     getUserDetailsDTO: async () => {
         const res = await axios.get(`${URL}/user/getUserDetails`)
         return res.data;
+    },
+
+    updateUserDetails: async (data : NewUserDetailsType) => {
+        console.log('WTF', data);
+        // await axios.put(`${URL}/user/updateUserDetails`,{ newUserDetails: data})
+        const res = await axios({
+            method: 'put',
+            url: `${URL}/user/updateUserDetails`,
+            data: {
+                newUserDetails: data
+            }
+        });
     }
 }
 

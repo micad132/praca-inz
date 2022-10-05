@@ -1,5 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import RegisterService from "../services/RegisterService";
+import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
 
 const initialState = {
     userRole: {
@@ -47,6 +48,20 @@ export const fetchUserDTODetailsThunk = createAsyncThunk(
     }
 )
 
+export const updateUserDetailsThunk = createAsyncThunk(
+    'user/updateUserDetails',
+    async (data : NewUserDetailsType) => {
+        try{
+            console.log('NOWEDANE', data);
+            await RegisterService.updateUserDetails(data)
+            const res = await RegisterService.getLoggedUser();
+            return { res };
+        }catch (e){
+            throw e;
+        }
+    }
+)
+
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
 
@@ -77,6 +92,17 @@ const userSlice = createSlice({
                 state.userDetailsDTO = action.payload.data;
             })
             .addCase(fetchUserDTODetailsThunk.rejected, (state, action) => {
+                state.isLoaded = false;
+                state.userDetailsDTO = initialState.userDetailsDTO;
+            })
+            .addCase(updateUserDetailsThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(updateUserDetailsThunk.fulfilled, (state, action) => {
+                state.isLoaded = true;
+                state.userDetailsDTO = action.payload.res;
+            })
+            .addCase(updateUserDetailsThunk.rejected, (state, action) => {
                 state.isLoaded = false;
                 state.userDetailsDTO = initialState.userDetailsDTO;
             })

@@ -2,6 +2,8 @@
 .wrapper{
   border: 2px solid blue;
   margin-top: 20px;
+
+
   .title{
     background-color: rgb(25, 103, 248);
     color: #fff;
@@ -13,16 +15,24 @@
     display: flex;
     justify-content: space-evenly;
 
+
+    }
+
     .content__details{
       border: 2px solid red;
       display: flex;
       flex-direction: column;
       align-items: center;
+      cursor: pointer;
 
-      h3{
+
+
+
+
+        h3{
         padding: 5px 0;
       }
-    }
+
   }
 }
 

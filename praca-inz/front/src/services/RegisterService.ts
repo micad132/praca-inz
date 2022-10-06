@@ -37,9 +37,10 @@ const RegisterService = {
         const res = await axios({
             method: 'put',
             url: `${URL}/user/updateUserDetails`,
-            data: {
-                newUserDetails: data
-            }
+            // data: {
+            //     newUserDetails: data
+            // }
+            data: data
         });
     }
 }

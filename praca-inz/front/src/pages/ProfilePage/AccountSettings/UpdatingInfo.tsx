@@ -6,14 +6,13 @@ import {fetchUserDTODetailsThunk, getLoggedUserDetailsDTO, updateUserDetailsThun
 import {useEffect, useState} from "react";
 
 export interface NewUserDetailsType {
-    id: number,
     name: string,
     cityName: string,
     postalCode: string
 }
 
 const initialNewUserDetails = {
-    id: 1,
+
     name: '',
     cityName: '',
     postalCode: ''
@@ -21,9 +20,17 @@ const initialNewUserDetails = {
 
 const UpdatingInfo = () => {
     const userDetails = useAppSelector(getLoggedUserDetailsDTO);
-    const {id, name, cityName, postalCode} = userDetails;
-    const [newUserDetails,setNewUserDetails] = useState<NewUserDetailsType>(initialNewUserDetails);
+    const {userId, name, cityName, postalCode} = userDetails;
+    let newUserDTO = {
+        id: userId
+    };
+    const [newUserDetails,setNewUserDetails] = useState<NewUserDetailsType>({
+        name: name,
+        cityName: cityName,
+        postalCode: postalCode
+    });
     const dispatch = useAppDispatch();
+
     console.log('DETAILS', userDetails);
     useEffect(() => {
         dispatch(fetchUserDTODetailsThunk());
@@ -80,10 +87,12 @@ const UpdatingInfo = () => {
                     variant="contained"
                     type="submit"
                     onClick={(e) => {
-                        setNewUserDetails((prevState) => {
-                            return {...prevState, id: id}
-                        })
-                        dispatch(updateUserDetailsThunk(newUserDetails))
+                        console.log(userDetails.id);
+                        const newUserModel = {id: userDetails.id, ...newUserDetails}
+                         console.log(newUserModel);
+                        dispatch(updateUserDetailsThunk(newUserModel));
+                        dispatch(fetchUserDTODetailsThunk());
+
                     }}
 
                 >

@@ -1,6 +1,6 @@
 import InfoWrapper from "../../components/InfoWrapper/InfoWrapper";
 import SingleNews from "../../components/SingleNews";
-
+import styles from './PolandInfo.module.scss';
 
 const dummyArr = [
     {
@@ -26,9 +26,11 @@ const PolandInfo = () => {
 
     return (
         <>
-            <h1>Poland gurom!!!</h1>
+            <h1 className={styles.title}>Informacje z Polski</h1>
             <InfoWrapper title={'Najnowsze informacje'} details={dummyArr}/>
             <SingleNews />
+            <SingleNews />
+            <InfoWrapper title={'Najnowsze informacje'} details={dummyArr}/>
         </>
     )
 }

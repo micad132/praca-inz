@@ -6,6 +6,29 @@
   display: flex;
 
   &__image{
+    flex-basis: 50%;
+    border: 2px solid red;
+    img{
+      display: block;
+      max-width: 100%;
+      background-size: cover;
+      object-fit: contain;
+    }
+  }
+
+  &__content{
+    padding: 20px;
+    flex-basis: 50%;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    p{
+      font-size: 18px;
+      text-align: center;
+    }
 
   }
 }

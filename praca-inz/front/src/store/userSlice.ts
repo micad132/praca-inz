@@ -62,6 +62,18 @@ export const updateUserDetailsThunk = createAsyncThunk(
     }
 )
 
+export const fetchUpdatedUser = createAsyncThunk(
+    'user/getUpdatedUser',
+    async () => {
+        try{
+            const data = await RegisterService.getUpdatedUser();
+            return { data }
+        }catch (e) {
+            throw e;
+        }
+}
+)
+
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
 

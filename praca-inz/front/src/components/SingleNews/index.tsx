@@ -4,7 +4,7 @@ const SingleNews = () => {
     return(
         <section className={styles.wrapper}>
             <div className={styles.wrapper__image}>
-                <img src={'https://picsum.photos/400'}  alt={'dummy car'}/>
+                <img src={'https://picsum.photos/1200'}  alt={'dummy car'}/>
             </div>
 
             <div className={styles.wrapper__content}>

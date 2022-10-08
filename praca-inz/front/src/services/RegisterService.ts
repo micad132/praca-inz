@@ -42,6 +42,11 @@ const RegisterService = {
             // }
             data: data
         });
+    },
+
+    getUpdatedUser: async () => {
+        const res = await axios.get(`${URL}/user/getUserById`)
+        return res.data;
     }
 }
 

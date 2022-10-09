@@ -1,0 +1,40 @@
+
+.opinionsWrapper{
+  border: 2px solid yellow;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+
+
+  .opinion{
+    margin: 20px auto;
+    max-width: 800px;
+    border: 1px solid black;
+    border-radius: 5px;
+    display: flex;
+    padding: 20px;
+
+    .opinionDetails{
+      font-size: 17px;
+      width: 30%;
+      text-align: justify;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+
+      .boldFont{
+        font-weight: bold;
+      }
+
+    }
+
+    .opinionText{
+      width: 60%;
+
+
+      p{
+        text-align: justify;
+      }
+    }
+  }
+}

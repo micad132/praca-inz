@@ -12,6 +12,7 @@ import ProfilePage from "../pages/ProfilePage";
 import CommercialsPage from "../pages/ProfilePage/CommercialsPage";
 import AccountSettings from "../pages/ProfilePage/AccountSettings";
 import ErrorPage from "../pages/ErrorPage";
+import Opinions from "../components/Opinions/Opinions";
 
 const routes = (
   <Routes>
@@ -30,6 +31,7 @@ const routes = (
 
     </Route>
     <Route path="/failed" element={<ErrorPage />} />
+    <Route path="/opinions" element={<Opinions />} />
   </Routes>
 );
 

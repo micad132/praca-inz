@@ -59,5 +59,9 @@ public class UserService implements UserDetailsService {
         return userDTO;
     }
 
+    public UserModel getUserById(Long id){
+        return userRepository.findById(id).orElseThrow(()-> new UsernameNotFoundException("User not found"));
+    }
+
 
 }

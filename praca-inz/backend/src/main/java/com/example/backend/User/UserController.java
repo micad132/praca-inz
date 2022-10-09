@@ -3,7 +3,6 @@ package com.example.backend.User;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,9 +37,8 @@ public class UserController {
 //        return userDTO;
 //    }
     @GetMapping("/getUserDetails")
-    public ResponseEntity<UserDTO> getUserDetails() {
+    public ResponseEntity<UserDTO> getUserDetails(Authentication authentication) {
 //        UserDTO userDTO = userService.convertUserToUserDTO(userModel);
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         UserModel loggedUser = Optional.ofNullable(authentication)
                 .filter(f -> f.getPrincipal() instanceof  UserWrapper)
                 .map(Authentication::getPrincipal)
@@ -67,5 +65,19 @@ public class UserController {
     @GetMapping("/getAllUsers")
     public List<UserModel> getAllUsers(){
         return userService.getAllUsers();
+    }
+
+    @GetMapping("/getUserById")
+    public UserModel getUserById(Authentication authentication){
+        UserModel loggedUser = Optional.ofNullable(authentication)
+                .filter(f -> f.getPrincipal() instanceof  UserWrapper)
+                .map(Authentication::getPrincipal)
+                .map(UserWrapper.class::cast)
+                .map(UserWrapper::getUserModel)
+                .orElse(null);
+        if(loggedUser == null){
+            return new UserModel();
+        }
+        return userService.getUserById(loggedUser.getId());
     }
 }

@@ -35,19 +35,23 @@ public class ReviewModel {
     private Timestamp date;
 
     @ManyToOne
-    @JoinColumn(name = "product_model_id")
-    private ProductModel productModel;
-
-    @ManyToOne
     @JoinColumn(name = "car_model_id")
     private CarModel carModel;
 
-    @ManyToOne
-    @JoinColumn(name = "post_model_id")
-    private PostModel postModel;
-
-    @ManyToOne
-    @JoinColumn(name = "user_model_id")
-    private UserModel userModel;
+//    @ManyToOne
+//    @JoinColumn(name = "product_model_id")
+//    private ProductModel productModel;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "car_model_id")
+//    private CarModel carModel;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "post_model_id")
+//    private PostModel postModel;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "user_model_id")
+//    private UserModel userModel;
 
 }

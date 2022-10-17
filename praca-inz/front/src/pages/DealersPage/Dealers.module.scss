@@ -21,6 +21,30 @@
   cursor: pointer;
 }
 
+.dealersInfoWrapper{
+  margin: 10px auto 0 auto;
+  max-width: 600px;
+  text-align: center;
+  padding: 10px 20px;
+  background-color: rgb(25, 103, 248);
+  color: #fff;
+  border-radius: 10px;
+
+  .span{
+    font-weight: bold;
+  }
+
+  .mainInfo{
+    text-align: left;
+
+
+  }
+}
+
+.moreInfo{
+  padding: 20px 0;
+}
+
 @media (max-width: 1000px){
   .dealersWrapper{
     flex-direction: column;

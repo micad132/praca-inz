@@ -44,12 +44,12 @@ const dummyDealersArray = [
 
 const initialDealerInfo = {
 
-    img: 'costam',
-    cityName: 'Kielce',
-    year: 2000,
-    street:'sosnowa 3a',
-    director: 'mikad6',
-    additionalInfo: 'Dodatkowe infohhdfhhdf',
+    img: '',
+    cityName: '',
+    year: 1,
+    street:'',
+    director: '',
+    additionalInfo: '',
     id: 1
 
 }
@@ -70,9 +70,9 @@ const DealersMap = () => {
     // const [isClicked,setIsClicked] = useState<boolean>(false);
     const [dealerInfo,setDealerInfo] = useState<DealerInfoType>(initialDealerInfo);
     const dealers = dummyDealersArray.map((dealer) =>
-        <SingleDealer  onClick={() => {
-
-        }} dealerInfo={dealer} setDealerInfo={setDealerInfo} key={dealer.id}/>)
+        <SingleDealer
+         dealerInfo={dealer} setDealerInfo={setDealerInfo} key={dealer.id}
+        />)
     return(
         <>
             <div className={styles.dealersWrapper}>

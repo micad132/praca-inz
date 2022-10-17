@@ -1,7 +1,15 @@
+import DealersMap from "./Dealers/DealersMap";
+import styles from './Dealers.module.scss';
+import DealersInfo from "./Dealers/DealersInfo";
 
 const DealersPage = () => {
     return(
-        <h1>Dealers Page!</h1>
+        <div className={styles.wrapper}>
+            <h1>Salony z którymi współpracujemy</h1>
+            <h3>Kliknij na salon aby uzyskać szczegółowe informacje</h3>
+            <DealersMap />
+        </div>
+
     )
 }
 

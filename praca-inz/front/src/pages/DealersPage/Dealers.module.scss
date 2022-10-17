@@ -1,0 +1,28 @@
+
+.wrapper{
+  text-align: center;
+  margin: 0 auto;
+  width: 80%;
+  max-width: 1200px;
+}
+
+.dealersWrapper{
+
+  padding: 5px;
+  margin: 10px 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 10px;
+  border: 2px solid blue;
+}
+
+.singleDealer{
+  cursor: pointer;
+}
+
+@media (max-width: 1000px){
+  .dealersWrapper{
+    flex-direction: column;
+  }
+}

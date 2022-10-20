@@ -3,6 +3,7 @@ import imageReducer from "./imageSlice";
 import carModelReducer from './carModelSlice';
 import commercialReducer from './commercialSlice';
 import userReducer from './userSlice';
+import companyReducer from './companySlice';
 
 export const store = configureStore({
     reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
         carModels: carModelReducer,
         commercials: commercialReducer,
         user: userReducer,
+        companies: companyReducer
 
     }
 })

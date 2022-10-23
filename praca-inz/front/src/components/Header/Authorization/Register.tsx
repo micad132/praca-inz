@@ -11,6 +11,7 @@ import {toast, ToastContainer} from 'react-toastify';
 import {useState} from "react";
 import {FormChangeEventHandler, MouseClickEventHandler} from "../../../utils/types";
 import RegisterService from "../../../services/RegisterService";
+import styles from './Authorization.module.scss';
 import {
     RegisterValidationValuesTypes,
     RegisterValuesTypes,
@@ -22,6 +23,7 @@ import {
     nameValidation,
     passwordValidation, postalCodeValidation
 } from "../../../services/ValidationService";
+import {useNavigate} from "react-router-dom";
 
 
 
@@ -51,17 +53,7 @@ const Register = () => {
   const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<RegisterValidationValuesTypes>(initialValidationValues)
   const [registerValues,setRegisterValues] = useState<RegisterValuesTypes>(initialRegisterValues);
   let isRegisterInvalid = false;
-  const submitRegister = (e: MouseClickEventHandler) => {
-      e.preventDefault();
-      toast.success('Rejestracja udana!', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-      });
-
-  }
+  const navigate = useNavigate();
 
     const handleChange = (e: SelectChangeEvent) => {
             setRegisterValues((prevState) => ({
@@ -70,13 +62,6 @@ const Register = () => {
             }));
     }
 
-    // const isNumeric = (cityName: string) : boolean => {
-    //     // Checks if the provided string
-    //     // is a numeric by applying a regular
-    //     // expression on it.
-    //     const regex = "[0-9]+[\\.]?[0-9]*";
-    //     return
-    // }
 
     const mapProperRole = (role : string) : USER_TYPE_ROLES =>{
       switch(role){
@@ -147,7 +132,7 @@ const Register = () => {
         if(!isRegisterInvalid){
             const data = await RegisterService.addUser(registerValues);
             setRegisterValues(initialRegisterValues);
-            toast.success('Rejestracja udana!', {
+            toast.success('Rejestracja udana! Za chwilę nastąpi przekierowanie do strony głównej', {
                 position: "top-left",
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -156,6 +141,8 @@ const Register = () => {
                 draggable: true,
                 progress: undefined,
             });
+            setTimeout(()=> navigate("/",{ replace: true}),2000);
+
         }
 
 
@@ -165,7 +152,7 @@ const Register = () => {
 
       <AuthWrapper>
           <h2>Zarejestruj się aby w pełni korzystać z możliwości!</h2>
-          <form onSubmit={(e) => validateForm(e) }>
+          <form className={styles.registerForm} onSubmit={(e) => validateForm(e) }>
 
               <TextField
                   id="outlined-basic"

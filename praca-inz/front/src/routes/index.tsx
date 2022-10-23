@@ -13,6 +13,7 @@ import CommercialsPage from "../pages/ProfilePage/CommercialsPage";
 import AccountSettings from "../pages/ProfilePage/AccountSettings";
 import ErrorPage from "../pages/ErrorPage";
 import Opinions from "../components/Opinions/Opinions";
+import CarmodelsPage from "../pages/ProfilePage/CarmodelsPage";
 
 const routes = (
   <Routes>
@@ -28,6 +29,7 @@ const routes = (
     <Route path="/profile" element={<ProfilePage />}>
         <Route path="commercials" element={<CommercialsPage />} />
         <Route path="settings" element={<AccountSettings />} />
+        <Route path="carmodels" element={<CarmodelsPage />} />
 
     </Route>
     <Route path="/failed" element={<ErrorPage />} />

@@ -17,6 +17,10 @@ const ProfilePageButtons = () => {
                 variant="contained"
                 onClick={()=> navigate("/profile/commercials",{replace: true})}
             >Zarzadzaj reklamami</Button>
+            <Button
+                variant="contained"
+                onClick={()=> navigate("/profile/carmodels",{replace: true})}
+            >Zarzadzaj modelami aut</Button>
         </ButtonWrapper>
     )
 }

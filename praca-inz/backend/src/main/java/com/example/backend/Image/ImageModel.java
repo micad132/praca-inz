@@ -4,6 +4,7 @@ import com.example.backend.CarModel.CarModel;
 import com.example.backend.Commercial.CommercialModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,6 +32,14 @@ public class ImageModel {
     @Column(name = "image", unique = false, nullable = false, length = 100000)
     private byte[] image;
 
+//    @ManyToOne
+//    @JoinColumn(name = "car_model_id")
+//    private CarModel carModel;
+
+//    @ManyToOne
+//    @JoinColumn(name = "car_model_id")
+//    private CarModel carModel;
+
 //    @Column(name = "image_path", nullable = false)
 //    private String imagePath;
 
@@ -40,6 +49,7 @@ public class ImageModel {
 //    @JoinColumn(name = "product_model_id")
 //    private ProductModel productModel;
 //
+//    @JsonIgnore
 //    @ManyToOne
 //    @JoinColumn(name = "car_model_id")
 //    private CarModel carModel;

@@ -38,9 +38,10 @@ export const fetchUserDetailsThunk = createAsyncThunk(
 
 export const fetchUserDTODetailsThunk = createAsyncThunk(
     'user/getUserDetails',
-    async () => {
+    async (userId: number) => {
         try{
-            const data = await RegisterService.getUserDetailsDTO();
+            console.log('START');
+            const data = await RegisterService.getUserDetailsDTO(userId);
             return { data };
         }catch (e) {
             throw e;
@@ -54,7 +55,7 @@ export const updateUserDetailsThunk = createAsyncThunk(
         try{
             console.log('NOWEDANE', data);
             await RegisterService.updateUserDetails(data)
-            const res = await RegisterService.getLoggedUser();
+            const res = await RegisterService.getUserDetailsDTO(data.id);
             return { res };
         }catch (e){
             throw e;

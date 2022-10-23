@@ -17,8 +17,6 @@ const Commercials = () => {
     const commercialList = commercials.map(commercial =>
         <Commercial key={commercial.id} src={commercial.carModel?.imageModels[0].name} header={commercial.name}/>
     );
-    console.log('REKLAMKI', commercials);
-
     return(
         <div className={styles.wrapper}>
             {commercialList}

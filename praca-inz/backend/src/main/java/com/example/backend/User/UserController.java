@@ -36,15 +36,10 @@ public class UserController {
 //        UserDTO userDTO = userService.convertUserToUserDTO(userModel);
 //        return userDTO;
 //    }
-    @GetMapping("/getUserDetails")
-    public ResponseEntity<UserDTO> getUserDetails(Authentication authentication) {
+    @GetMapping("/getUserDetails/{userId}")
+    public ResponseEntity<UserDTO> getUserDetails(@PathVariable(value = "userId") Long userId) {
 //        UserDTO userDTO = userService.convertUserToUserDTO(userModel);
-        UserModel loggedUser = Optional.ofNullable(authentication)
-                .filter(f -> f.getPrincipal() instanceof  UserWrapper)
-                .map(Authentication::getPrincipal)
-                .map(UserWrapper.class::cast)
-                .map(UserWrapper::getUserModel)
-                .orElse(null);
+        UserModel loggedUser = userService.getUserById(userId);
         UserDTO userDTO = userService.convertUserToUserDTO(loggedUser);
         return ResponseEntity.ok(userDTO);
     }

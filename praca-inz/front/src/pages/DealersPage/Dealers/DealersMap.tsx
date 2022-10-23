@@ -45,7 +45,7 @@ const DealersMap = () => {
     return(
         <>
             <div className={styles.dealersWrapper}>
-                {dealers}
+                {dealers.length > 0 ? dealers : <h1>Obecnie nie wspolpracujemy z nikim</h1>}
             </div>
             <DealersInfo dealerInfo={dealerInfo}/>
         </>

@@ -1,6 +1,6 @@
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
-import styles from "./Login.module.scss";
+import styles from "./Authorization.module.scss";
 import { useState } from "react";
 import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
@@ -78,7 +78,7 @@ const Login = () => {
   return (
     <AuthWrapper>
       <h2 className={styles.title}>Zaloguj się aby w pełni korzystać z możliwości!</h2>
-      <form className={styles.form}  method="post" action="http://localhost:8080/login" >
+      <form className={styles.loginForm}  method="post" action="http://localhost:8080/login" >
         <TextField
           id="outlined-basic"
           label={

@@ -15,7 +15,6 @@ function App() {
     const dispatch = useAppDispatch();
     // const commercials = useSelector(getAllCommercials);
     useEffect(() => {
-        console.log('wbilem');
         dispatch(fetchImagesThunk())
         dispatch(fetchCarModelsThunk())
         dispatch(fetchUserDetailsThunk())
@@ -24,9 +23,6 @@ function App() {
     const images = useAppSelector(getAllImages);
     const cars = useAppSelector(getAllCarModels)
     const userDetails = useAppSelector(getLoggedUser);
-    console.log('OBRAZY', images);
-    console.log('AUTA', cars);
-    console.log('DANE USERA', userDetails);
 
   return (
     <div className="App">

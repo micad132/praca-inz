@@ -22,7 +22,8 @@ const style = {
     backgroundColor: '#fff',
     border: '2px solid #000',
     boxShadow: 24,
-    p: 3
+    p: 2,
+    textAlign: 'center'
 };
 
 const AddingCommercialModal = () => {
@@ -52,14 +53,15 @@ const AddingCommercialModal = () => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <FormWrapper>
-                        <h3>Dodaj reklame</h3>
-                        <form className={styles.addingCommercialForm}>
+                        <h3>Dodaj reklame dla dostępnego modelu auta</h3>
+                    {carModels.length > 0 ? <form className={styles.addingCommercialForm}>
+
                             <TextField
                                 id="outlined-basic"
                                 label="Wprowadz tytul"
                                 variant="outlined"
                                 onChange={ (e) => setCommercialName(e.target.value)}
+                                className={styles.addingButtonFormElements}
                             />
                             {/*<Button variant="contained" component="label">*/}
                             {/*    Dodaj zdjecie*/}
@@ -72,6 +74,7 @@ const AddingCommercialModal = () => {
                                 id="commercialSelect"
                                 value={idForCommercial}
                                 onChange={handleChange}
+                                className={styles.addingButtonFormElements}
                             >
                                 {carModels.map(car => <MenuItem  key={car.id} value={car.id ? car.id : ''}>{car.name}</MenuItem>)}
                             </Select>
@@ -79,12 +82,13 @@ const AddingCommercialModal = () => {
                                 variant="contained"
                                 type="submit"
                                 onClick={addCommercial}
+                                className={styles.addingButtonFormElements}
 
                             >
                                 Dodaj
                             </Button>
-                        </form>
-                    </FormWrapper>
+                        </form> : <h3 style={{color: 'red'}}>Nie ma dostępnych aut w bazie</h3> }
+
                 </Box>
             </Modal>
         </div>

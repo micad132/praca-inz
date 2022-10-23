@@ -2,6 +2,7 @@ package com.example.backend.CarModel;
 
 import com.example.backend.Image.ImageModel;
 import com.example.backend.Review.ReviewModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -43,7 +44,12 @@ public class CarModel {
             inverseJoinColumns = @JoinColumn(name = "image_models_id"))
     private List<ImageModel> imageModels = new ArrayList<>();
 
+
+
     @OneToMany(mappedBy = "carModel", orphanRemoval = true)
     private List<ReviewModel> reviewModels = new ArrayList<>();
+
+//    @OneToMany(mappedBy = "carModel", orphanRemoval = true)
+//    private List<ImageModel> imageModels = new ArrayList<>();
 
 }

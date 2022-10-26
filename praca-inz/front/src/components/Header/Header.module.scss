@@ -18,7 +18,12 @@ header{
 	}
 
 	.logo{
-		color: green;
+		color: rgb(25, 103, 248);
+		font-weight: bold;
+
+		&:hover{
+			color: blue;
+		}
 	}
 
 

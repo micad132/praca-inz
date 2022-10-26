@@ -38,8 +38,21 @@ export const deleteCommercialThunk = createAsyncThunk(
         try{
             await CommercialService.deleteCommercial(commercialId);
             const data = await CommercialService.getAllCommercials();
-            return { data }
+            return { data };
         }catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const addCommercialThunk = createAsyncThunk(
+    'commercial/addCommercial',
+    async ({id,name} : any) => {
+        try{
+            await CommercialService.addNewCommercial(id,name);
+            const data = await CommercialService.getAllCommercials();
+            return { data };
+        } catch (e) {
             throw e;
         }
     }
@@ -83,6 +96,16 @@ const commercialSlice = createSlice({
                 state.commercials = action.payload.data;
             })
             .addCase(deleteCommercialThunk.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
+            .addCase(addCommercialThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(addCommercialThunk.fulfilled, (state, action) => {
+                state.isLoaded = true;
+                state.commercials = action.payload.data;
+            })
+            .addCase(addCommercialThunk.rejected, (state, action) => {
                 state.error = action.error.message;
             })
     }

@@ -8,9 +8,10 @@ import InputLabel from '@mui/material/InputLabel';
 import styles from './CommercialsPage.module.scss';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
-import {useAppSelector} from "../../../utils/types/hooks";
+import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
 import {getAllCarModels} from "../../../store/carModelSlice";
 import CommercialService from "../../../services/CommercialService";
+import {addCommercialThunk} from "../../../store/commercialSlice";
 
 const style = {
     position: 'absolute' as 'absolute',
@@ -32,6 +33,7 @@ const AddingCommercialModal = () => {
     const [idForCommercial,setIdForCommercial] = useState<string>('');
     const [commercialName,setCommercialName] = useState<string>('');
     const carModels = useAppSelector(getAllCarModels);
+    const dispatch = useAppDispatch();
     console.log('CARMODELS Z ADDING', carModels);
     const handleChange = (event: SelectChangeEvent) => {
         console.log(event.target.value);
@@ -39,8 +41,10 @@ const AddingCommercialModal = () => {
     };
     // const images = useSelector(getAllImages);
     // console.log('OBRAZY Z ADDINGU', images)
-    const addCommercial = async () => {
-        const data = await CommercialService.addNewCommercial(idForCommercial,commercialName);
+    const addCommercial = async (e : any) => {
+        e.preventDefault();
+        dispatch(addCommercialThunk({id: idForCommercial, name: commercialName}));
+        setIsOpen(false);
     }
 
     return(
@@ -81,7 +85,7 @@ const AddingCommercialModal = () => {
                             <Button
                                 variant="contained"
                                 type="submit"
-                                onClick={addCommercial}
+                                onClick={(e) => addCommercial(e)}
                                 className={styles.addingButtonFormElements}
 
                             >

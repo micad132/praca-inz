@@ -39,13 +39,11 @@ const Header = () => {
     return (
         <header className={styles.header}>
             <div className={styles.headerDiv}>
-                <Link to="/">
-                    {" "}
+                <Link to="/" style={{textDecoration: 'none'}}>
                     <h1 className={styles.logo}>motoPortal</h1>
                 </Link>
                 {showAuthorInfo && <h3>
-                    Portal motoryzacyjny wykonany przez{" "}
-                    <span className={styles.author}>Michał Mosiołek</span>
+                    Motoryzacyjny portal społecznościowy
                 </h3>}
 
                 {!showHamburerMenu && <nav className={styles.auth}>

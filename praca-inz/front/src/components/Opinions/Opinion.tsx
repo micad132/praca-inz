@@ -1,16 +1,22 @@
 import styles from './Opinions.module.scss';
 
-const Opinion = () => {
+interface Props {
+    nick: string,
+    rating: number,
+    description: string,
+}
+
+const Opinion = ({nick,rating,description} : Props) => {
 
     return(
         <div className={styles.opinion}>
             <div className={styles.opinionDetails}>
-                <h3>Michal132</h3>
-                <p><span className={styles.boldFont}>Ocena:</span> 3.7/10</p>
+                <h3>{nick}</h3>
+                <p><span className={styles.boldFont}>Ocena:</span> {rating}</p>
                 <p><span className={styles.boldFont}>Data wystawienia</span> 27.09.2022</p>
             </div>
             <div className={styles.opinionText}>
-                <p>Przykladowy tekscik</p>
+                <p>{description}</p>
             </div>
         </div>
     )

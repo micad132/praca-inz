@@ -14,11 +14,15 @@ import AccountSettings from "../pages/ProfilePage/AccountSettings";
 import ErrorPage from "../pages/ErrorPage";
 import Opinions from "../components/Opinions/Opinions";
 import CarmodelsPage from "../pages/ProfilePage/CarmodelsPage";
+import SingleCarPage from "../components/SingleCarPage";
 
 const routes = (
   <Routes>
     <Route path="/" element={<Home />} />
-    <Route path="/cars" element={<CarsPage />} />
+    <Route path="/cars">
+        <Route index element={<CarsPage />} />
+        <Route path=":carId" element={<SingleCarPage />} />
+    </Route>
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
     <Route path="/poland" element={<PolandInfo />} />

@@ -44,7 +44,7 @@ const Home = () => {
             <h1>Witaj na portalu motoryzacyjnym!</h1>
             <h2>{loggedUser}</h2>
         </div>
-        <InfoWrapper title='Informacje z Polski' details={polandInfo} />
+        <InfoWrapper title='Informacje z Polski' details={polandInfo}  />
         <InfoWrapper title='Informacje ze Świata' details={polandInfo} />
         <InfoWrapper title='Najnowsze samochody' details={polandInfo} />
       </>

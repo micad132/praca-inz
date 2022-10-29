@@ -3,24 +3,33 @@ import styles from "./ProfilePage.module.scss";
 import { useNavigate } from "react-router-dom";
 import ButtonWrapper from "./components/ButtonWrapper";
 
+interface Props {
+    role: string
+}
 
-const ProfilePageButtons = () => {
+const ProfilePageButtons = ({role} : Props) => {
 
     let navigate = useNavigate();
+    const isAdmin = role === 'ADMIN';
+
     return(
         <ButtonWrapper>
             <Button
                 variant="contained"
                 onClick={()=> navigate("/profile/settings",{replace: true})}
             >Zmien szczegoly konta</Button>
-            <Button
-                variant="contained"
-                onClick={()=> navigate("/profile/commercials",{replace: true})}
-            >Zarzadzaj reklamami</Button>
-            <Button
-                variant="contained"
-                onClick={()=> navigate("/profile/carmodels",{replace: true})}
-            >Zarzadzaj modelami aut</Button>
+            {isAdmin &&
+             <>
+                <Button
+                    variant="contained"
+                    onClick={()=> navigate("/profile/commercials",{replace: true})}
+                >Zarzadzaj reklamami</Button>
+                <Button
+                    variant="contained"
+                    onClick={()=> navigate("/profile/carmodels",{replace: true})}
+                >Zarzadzaj modelami aut</Button>
+             </>
+            }
         </ButtonWrapper>
     )
 }

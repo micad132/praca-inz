@@ -9,7 +9,7 @@ import Select, {SelectChangeEvent} from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from 'react-toastify';
 import {useState} from "react";
-import {FormChangeEventHandler, MouseClickEventHandler} from "../../../utils/types";
+import {FormChangeEventHandler} from "../../../utils/types";
 import RegisterService from "../../../services/RegisterService";
 import styles from './Authorization.module.scss';
 import {
@@ -18,14 +18,14 @@ import {
     USER_TYPE_ROLES
 } from "../../../utils/types/AuthorizationTypes";
 import {
-    cityNameValidation, containsNumbers,
+    cityNameValidation,
+    containsNumbers,
     emailValidation,
     nameValidation,
-    passwordValidation, postalCodeValidation
+    passwordValidation,
+    postalCodeValidation
 } from "../../../services/ValidationService";
 import {useNavigate} from "react-router-dom";
-
-
 
 
 const initialValidationValues = {
@@ -69,6 +69,8 @@ const Register = () => {
               return USER_TYPE_ROLES.USER
           case 'MODERATOR':
               return USER_TYPE_ROLES.MODERATOR
+          case 'ADMIN':
+              return USER_TYPE_ROLES.ADMIN
           default:
               return USER_TYPE_ROLES.UNKNOWN
       }

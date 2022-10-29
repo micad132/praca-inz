@@ -76,6 +76,7 @@ export const fetchUpdatedUser = createAsyncThunk(
 )
 
 export const getLoggedUser = (state : any) => state.user.userRole;
+export const getLoggedUserRole = (state : any) => state.user.userRole.role;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
 
 const userSlice = createSlice({

@@ -5,6 +5,7 @@ import {useEffect} from "react";
 import {fetchImagesThunk, getAllImages} from "../../store/imageSlice";
 import {fetchCarModelsThunk, getAllCarModels} from "../../store/carModelSlice";
 import {fetchUserDetailsThunk, getLoggedUser} from "../../store/userSlice";
+import {loggedUserStyle} from "../../utils/GlobalFunctions";
 
 
 export interface PolandInfoType {
@@ -37,12 +38,17 @@ const Home = () => {
     }, [dispatch]);
     const userDetails = useAppSelector(getLoggedUser);
     console.log('USER', userDetails);
-    const loggedUser = userDetails ? `Jesteś zalogowany jako ${userDetails.role}` : '';
+    const loggedUser = userDetails ? `Jesteś zalogowany jako`  : '';
+
+
+
+
+
   return (
       <>
         <div className={styles.text_wrapper}>
             <h1>Witaj na portalu motoryzacyjnym!</h1>
-            <h2>{loggedUser}</h2>
+            <h2>{loggedUser}<span style={loggedUserStyle(userDetails.role)}> {userDetails.role}</span></h2>
         </div>
         <InfoWrapper title='Informacje z Polski' details={polandInfo}  />
         <InfoWrapper title='Informacje ze Świata' details={polandInfo} />

@@ -61,6 +61,7 @@ export const fetchCarModelById = createAsyncThunk(
 export const getAllCarModels = (state : RootState)  => state.carModels.carModels;
 export const getImagesError = (state : RootState) => state.carModels.error;
 export const getCarModelById = (state : RootState) => state.carModels.singleCarModel;
+export const getIsCarModelFetched = (state : RootState) => state.carModels.isLoaded;
 
 
 const carModelSlice = createSlice({

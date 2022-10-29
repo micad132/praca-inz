@@ -1,0 +1,55 @@
+
+.wrapper{
+
+
+  .singleCar{
+
+    display: flex;
+    border-bottom: 1px solid black;
+
+    .singleCarImageWrapper{
+      flex-basis: 50%;
+      padding: 15px;
+
+      h1{
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      .imageWrapper{
+
+        margin: 0 auto;
+        max-width: 700px;
+        img{
+          width: 100%;
+        }
+      }
+    }
+    .singleCarDetailsWrapper{
+      padding: 15px;
+      flex-basis: 50%;
+      border-left: 1px solid black;
+      font-size: 18px;
+
+      h3{
+        padding-top: 10px;
+      }
+
+      p:not(:nth-last-child(1)){
+        margin: 10px 0;
+        padding: 5px 0;
+        border-bottom: 1px solid black;
+      }
+
+      span{
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+@media (max-width: 1000px){
+  .singleCar{
+    flex-direction: column;
+  }
+}

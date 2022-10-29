@@ -8,7 +8,12 @@ export type CarModelType = {
     price: number,
     rating: number,
     description: string,
-    imageModels: ImageType[]
+    enginePower: number,
+    engineCapacity: number,
+    gearbox: string,
+    carBody: string,
+    productionCountry: string,
+    imageModel: ImageType
 
 }
 
@@ -17,6 +22,11 @@ const CarModelService = {
         const res = await axios.get(`${URL}/car/getAllCarModels`)
         return res.data;
 
+    },
+
+    getCarModelById: async (id: number) => {
+        const res = await axios.get(`${URL}/car/getCarModelById/${id}`)
+        return res.data;
     },
 
     addNewCommercial: async () => {

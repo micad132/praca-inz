@@ -1,10 +1,19 @@
+import styles from './SingleCarPage.module.scss';
+import {fetchingImagesURL} from "../../utils/GlobalVariables";
 
-const SingleCarImage = () => {
+interface Props {
+    name: string,
+    src: string
+}
+
+const SingleCarImage = ({name,src} : Props) => {
 
     return(
-        <section>
-            <h3>Jakies auto</h3>
-            <img src={'https://picsum.photos/600'} alt={'dummy_photo'}/>
+        <section className={styles.singleCarImageWrapper}>
+            <h1>{name}</h1>
+            <div className={styles.imageWrapper}>
+                <img src={`${fetchingImagesURL}/${src}`} alt={'dummy_photo'}/>
+            </div>
         </section>
     )
 }

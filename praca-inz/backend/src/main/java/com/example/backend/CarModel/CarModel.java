@@ -35,19 +35,39 @@ public class CarModel {
     @Column(name = "rating", nullable = false)
     private Double rating;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 500)
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "car_model_image_models",
-            joinColumns = @JoinColumn(name = "car_model_id"),
-            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
-    private List<ImageModel> imageModels = new ArrayList<>();
+
+    @Column(name = "engine_power")
+    private Double enginePower;
+
+    @Column(name = "engine_capacity")
+    private Double engineCapacity;
+
+    @Column(name = "gearbox")
+    private String gearbox;
+
+    @Column(name = "car_body")
+    private String carBody;
+
+    @Column(name = "production_country")
+    private String productionCountry;
+
+//    @ManyToMany
+//    @JoinTable(name = "car_model_image_models",
+//            joinColumns = @JoinColumn(name = "car_model_id"),
+//            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+//    private List<ImageModel> imageModels = new ArrayList<>();
 
 
 
     @OneToMany(mappedBy = "carModel", orphanRemoval = true)
     private List<ReviewModel> reviewModels = new ArrayList<>();
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_model_id")
+    private ImageModel imageModel;
 
 //    @OneToMany(mappedBy = "carModel", orphanRemoval = true)
 //    private List<ImageModel> imageModels = new ArrayList<>();

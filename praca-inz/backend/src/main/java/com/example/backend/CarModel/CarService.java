@@ -18,4 +18,8 @@ public class CarService {
     public List<CarModel> getAllCarModels(){
         return carModelRepository.findAll();
     }
+
+    public CarModel getCarModelById(Long carId){
+        return carModelRepository.findById(carId).orElseThrow(IllegalArgumentException::new);
+    }
 }

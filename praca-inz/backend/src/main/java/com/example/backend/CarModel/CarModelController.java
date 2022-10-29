@@ -22,6 +22,11 @@ public class CarModelController {
         return carService.getAllCarModels();
     }
 
+    @GetMapping("/getCarModelById/{id}")
+    public CarModel getCarModelById(@PathVariable Long id){
+        return carService.getCarModelById(id);
+    }
+
 }
 
 

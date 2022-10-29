@@ -50,7 +50,7 @@ const CommercialsList = ({commercials} : Props) => {
 
             <section className={styles.previewWrapper}>
                 {commercials.map(commercial =>
-                    <CommercialPreview key={commercial.id} id={commercial.id} imgSrc={`${fetchingImagesURL}/${commercial.carModel.imageModels[0].name}`} title={commercial.name} />
+                    <CommercialPreview key={commercial.id} id={commercial.id} imgSrc={`${fetchingImagesURL}/${commercial.carModel.imageModel.name}`} title={commercial.name} />
                 )}
             </section>
     )

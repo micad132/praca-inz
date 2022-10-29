@@ -1,12 +1,25 @@
+import styles from './SingleCarPage.module.scss';
+import {CarModelType} from "../../services/CarModelService";
 
-const SingleCarDetails = () => {
+
+interface Props {
+    carModel : CarModelType
+}
+
+const SingleCarDetails = ({carModel : {enginePower,engineCapacity,gearbox,carBody,price,rating,productionCountry,description}} : Props) => {
 
     return(
-        <div>
-            <p>Silnik: 47732</p>
-            <p>KM:7383</p>
-            <p>Costam: 388</p>
-        </div>
+        <section className={styles.singleCarDetailsWrapper}>
+            <h3>Szczegóły auta</h3>
+            <p><span>Moc silnika:</span> {enginePower}KM</p>
+            <p><span>Pojemność silnika:</span> {engineCapacity}L</p>
+            <p><span>Typ skrzyni biegów:</span> {gearbox}</p>
+            <p><span>Rodzaj nadwozia:</span> {carBody}</p>
+            <p><span>Cena auta:</span>{price}zł</p>
+            <p><span>Średnia ocena:</span> {rating}/10</p>
+            <p><span>Kraj produkcji:</span> {productionCountry}</p>
+            <p><span>Opis:</span>{description}</p>
+        </section>
     )
 }
 

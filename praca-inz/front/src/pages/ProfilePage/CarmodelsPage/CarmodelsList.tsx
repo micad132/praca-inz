@@ -8,8 +8,8 @@ interface Props {
 
 const CarmodelsList = ({carModels} : Props) => {
 
-    const carsList = carModels.map(({name}) =>
-         <SingleCarmodel title={name}/>
+    const carsList = carModels.map(({name, imageModel}) =>
+         <SingleCarmodel title={name} src={imageModel.name}/>
     )
     return(
         <div className={styles.previewWrapper}>

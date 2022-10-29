@@ -23,7 +23,7 @@ const Opinions = ({dummyOpinions}: Props) => {
     return(
         <div className={styles.opinionsWrapper}>
 
-            <h3>Opinie</h3>
+            <h2>Sekcja komentarzy: (3)</h2>
             {opinionsList}
         </div>
     )

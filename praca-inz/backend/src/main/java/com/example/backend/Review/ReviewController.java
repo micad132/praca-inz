@@ -22,5 +22,10 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
-
+    @DeleteMapping("/deleteReviews")
+    public void deleteReviews(){
+        reviewService.deleteReviews();
+    }
 }
+
+

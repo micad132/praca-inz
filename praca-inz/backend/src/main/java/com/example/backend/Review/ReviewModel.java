@@ -4,6 +4,7 @@ import com.example.backend.CarModel.CarModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
 import com.example.backend.User.UserModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,9 +35,17 @@ public class ReviewModel {
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
+
+    @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "car_model_id")
+    @JoinColumn(name = "car_model_id", nullable = false)
     private CarModel carModel;
+
+
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_model_id", nullable = false)
+    private UserModel userModel;
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_model_id")

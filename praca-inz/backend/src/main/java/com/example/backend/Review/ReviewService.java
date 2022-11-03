@@ -18,4 +18,8 @@ public class ReviewService {
     public void addReview(ReviewModel reviewModel){
         reviewRepository.save(reviewModel);
     }
+
+    public void deleteReviews(){
+        reviewRepository.deleteAll();
+    }
 }

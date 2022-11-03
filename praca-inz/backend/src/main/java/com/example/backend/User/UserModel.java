@@ -1,13 +1,17 @@
 package com.example.backend.User;
 
 import com.example.backend.Product.ProductModel;
+import com.example.backend.Review.ReviewModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 @AllArgsConstructor
@@ -41,5 +45,9 @@ public class UserModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "role", nullable = false)
     private UserRole role;
+
+
+    @OneToMany(mappedBy = "userModel", orphanRemoval = true)
+    private List<ReviewModel> reviewModels = new ArrayList<>();
 
 }

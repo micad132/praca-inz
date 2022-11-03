@@ -62,6 +62,7 @@ public class CarModel {
 
 
 
+
     @OneToMany(mappedBy = "carModel", orphanRemoval = true)
     private List<ReviewModel> reviewModels = new ArrayList<>();
 

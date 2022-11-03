@@ -47,6 +47,7 @@ public class UserModel {
     private UserRole role;
 
 
+    @JsonIgnore
     @OneToMany(mappedBy = "userModel", orphanRemoval = true)
     private List<ReviewModel> reviewModels = new ArrayList<>();
 

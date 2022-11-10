@@ -29,6 +29,7 @@ public class ImageModel {
     @Column(name = "type")
     private String type;
 
+    @JsonIgnore
     @Column(name = "image", unique = false, nullable = false, length = 100000)
     private byte[] image;
 

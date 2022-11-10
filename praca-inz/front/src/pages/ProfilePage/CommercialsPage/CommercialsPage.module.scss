@@ -45,3 +45,17 @@
     margin: 0 auto;
   }
 }
+
+.modalWrapper{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 150px;
+  width: 30%;
+  background-color: #fff;
+  border: 2px solid #000;
+  //box-shadow: 24px;
+  padding: 2px;
+  text-align: center;
+}

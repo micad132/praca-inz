@@ -13,6 +13,7 @@ import {getAllCarModels} from "../../../store/carModelSlice";
 import CommercialService from "../../../services/CommercialService";
 import {addCommercialThunk} from "../../../store/commercialSlice";
 
+
 const style = {
     position: 'absolute' as 'absolute',
     top: '50%',
@@ -56,7 +57,7 @@ const AddingCommercialModal = () => {
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
             >
-                <Box sx={style}>
+                <div className={styles.modalWrapper}>
                         <h3>Dodaj reklame dla dostępnego modelu auta</h3>
                     {carModels.length > 0 ? <form className={styles.addingCommercialForm}>
 
@@ -93,7 +94,7 @@ const AddingCommercialModal = () => {
                             </Button>
                         </form> : <h3 style={{color: 'red'}}>Nie ma dostępnych aut w bazie</h3> }
 
-                </Box>
+                </div>
             </Modal>
         </div>
     )

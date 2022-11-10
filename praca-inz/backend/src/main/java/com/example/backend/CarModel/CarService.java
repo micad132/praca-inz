@@ -22,4 +22,8 @@ public class CarService {
     public CarModel getCarModelById(Long carId){
         return carModelRepository.findById(carId).orElseThrow(IllegalArgumentException::new);
     }
+
+    public void deleteAllCarModels(){
+        carModelRepository.deleteAll();
+    }
 }

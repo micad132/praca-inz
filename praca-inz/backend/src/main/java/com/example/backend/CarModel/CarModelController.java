@@ -27,6 +27,11 @@ public class CarModelController {
         return carService.getCarModelById(id);
     }
 
+    @DeleteMapping("/deleteAllCarModels")
+    public void deleteAllCarModels(){
+        carService.deleteAllCarModels();
+    }
+
 }
 
 

@@ -43,5 +43,10 @@ public class ImageController {
         return imageService.getAllImages();
     }
 
+    @DeleteMapping("/deleteAllImages")
+    public void deleteAllImages(){
+        imageService.deleteAllImages();
+    }
+
 
 }

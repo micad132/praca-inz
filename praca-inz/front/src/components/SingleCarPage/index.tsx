@@ -36,9 +36,11 @@ const SingleCarPage = () => {
     const dispatch = useAppDispatch();
 
     const { carId } = useParams();
+    console.log(carId);
     useEffect(() => {
+       console.log('halo');
        dispatch(fetchCarModelById(Number(carId)));
-    }, [dispatch]);
+    }, [dispatch,carId]);
 
     const carModel = useAppSelector(getCarModelById);
     console.log( carId);

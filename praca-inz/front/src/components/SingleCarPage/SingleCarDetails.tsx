@@ -1,5 +1,6 @@
 import styles from './SingleCarPage.module.scss';
 import {CarModelType} from "../../services/CarModelService";
+import Rating from '@mui/material/Rating';
 
 
 interface Props {
@@ -16,7 +17,7 @@ const SingleCarDetails = ({carModel : {enginePower,engineCapacity,gearbox,carBod
             <p><span>Typ skrzyni biegów:</span> {gearbox}</p>
             <p><span>Rodzaj nadwozia:</span> {carBody}</p>
             <p><span>Cena auta:</span>{price}zł</p>
-            <p><span>Średnia ocena:</span> {rating}/10</p>
+            <p><span>Średnia ocena:</span> <Rating name="read-only" value={rating} precision={0.5} readOnly /></p>
             <p><span>Kraj produkcji:</span> {productionCountry}</p>
             <p><span>Opis:</span>{description}</p>
         </section>

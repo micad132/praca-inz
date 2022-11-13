@@ -3,10 +3,7 @@ package com.example.backend.CarModel;
 import com.example.backend.Image.ImageModel;
 import com.example.backend.Review.ReviewModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
@@ -18,6 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "car_model")
 public class CarModel {
     @Id

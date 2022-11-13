@@ -5,10 +5,7 @@ import com.example.backend.Post.PostModel;
 import com.example.backend.Product.ProductModel;
 import com.example.backend.User.UserModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -18,6 +15,7 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "review_model")
 public class ReviewModel {
     @Id
@@ -35,14 +33,10 @@ public class ReviewModel {
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "car_model_id", nullable = false)
     private CarModel carModel;
 
-
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_model_id", nullable = false)
     private UserModel userModel;

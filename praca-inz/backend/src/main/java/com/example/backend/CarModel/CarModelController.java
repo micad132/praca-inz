@@ -18,12 +18,12 @@ public class CarModelController {
     }
 
     @GetMapping("/getAllCarModels")
-    public List<CarModel> getAllCarModels(){
+    public List<CarModelDTO> getAllCarModels(){
         return carService.getAllCarModels();
     }
 
     @GetMapping("/getCarModelById/{id}")
-    public CarModel getCarModelById(@PathVariable Long id){
+    public CarModelDTO getCarModelById(@PathVariable Long id){
         return carService.getCarModelById(id);
     }
 

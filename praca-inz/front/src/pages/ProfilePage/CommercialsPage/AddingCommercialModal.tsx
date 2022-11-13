@@ -81,7 +81,7 @@ const AddingCommercialModal = () => {
                                 onChange={handleChange}
                                 className={styles.addingButtonFormElements}
                             >
-                                {carModels.map(car => <MenuItem  key={car.id} value={car.id ? car.id : ''}>{car.name}</MenuItem>)}
+                                {carModels.map(car => <MenuItem  key={car.carModelId} value={car.carModelId ? car.carModelId : ''}>{car.name}</MenuItem>)}
                             </Select>
                             <Button
                                 variant="contained"

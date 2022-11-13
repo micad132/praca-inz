@@ -7,6 +7,7 @@ import styles from './SingleCarPage.module.scss';
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {fetchCarModelById, getCarModelById} from "../../store/carModelSlice";
+import {fetchReviewsForCarModel, getReviewsForCarModel} from "../../store/reviewSlice";
 
 
 const dummyOpinions = [
@@ -40,9 +41,11 @@ const SingleCarPage = () => {
     useEffect(() => {
        console.log('halo');
        dispatch(fetchCarModelById(Number(carId)));
+       dispatch(fetchReviewsForCarModel(Number(carId)));
     }, [dispatch,carId]);
 
     const carModel = useAppSelector(getCarModelById);
+    const opinions = useAppSelector(getReviewsForCarModel);
     console.log( carId);
     console.log('CARMODEL WCZYTANY', carModel);
     return(
@@ -51,7 +54,7 @@ const SingleCarPage = () => {
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions dummyOpinions={dummyOpinions}/>
+            <Opinions opinions={opinions} carModelId={carId}/>
         </div>
     )
 }

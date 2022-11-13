@@ -3,7 +3,7 @@ import {URL} from '../utils/GlobalVariables';
 import {ImageType} from "./ImageService";
 
 export type CarModelType = {
-    id: number
+    carModelId: number
     name: string,
     price: number,
     rating: number,

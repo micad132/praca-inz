@@ -3,24 +3,48 @@ import {useState} from "react";
 import Button from "@mui/material/Button";
 import Rating from '@mui/material/Rating';
 import styles from "./Opinions.module.scss";
-import {useAppSelector} from "../../utils/types/hooks";
+import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUserRole} from "../../store/userSlice";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import {addingReviewForCarModel} from "../../store/reviewSlice";
+import { useParams} from "react-router-dom";
+import {toast} from "react-toastify";
 
 
-const AddingOpinion = () => {
+interface Props {
+    carModelId?: string
+}
 
+const AddingOpinion = ({carModelId} : Props) => {
+
+    const dispatch = useAppDispatch();
     const userRole = useAppSelector(getLoggedUserRole);
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const [ratingValue, setRatingValue] = useState<number | null>(1);
+    const [textAreaValue, setTextAreaValue] = useState<string>('');
+
 
     const submitForm = (e: any) => {
         e.preventDefault();
-        console.log(ratingValue);
+        const reviewModel = {
+            description: textAreaValue,
+            rate: ratingValue
+        }
+        dispatch(addingReviewForCarModel({ id: carModelId, review: reviewModel}))
+        toast.success('Komentarz dodany!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setIsOpen(false);
     }
 
     return(
@@ -48,6 +72,7 @@ const AddingOpinion = () => {
                         <p>Dodajesz opinie jako micad132</p>
                         <Rating  className={styles.rating} name="half-rating" defaultValue={1} precision={0.5} onChange={(e, newValue) => setRatingValue(newValue)} />
                         <TextareaAutosize
+                            onChange={(e : any) => setTextAreaValue(e.target.value)}
                             aria-label="minimum height"
                             minRows={3}
                             placeholder="Wprowadz tresc komentarza"

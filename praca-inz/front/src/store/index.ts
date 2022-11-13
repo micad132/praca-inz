@@ -4,6 +4,7 @@ import carModelReducer from './carModelSlice';
 import commercialReducer from './commercialSlice';
 import userReducer from './userSlice';
 import companyReducer from './companySlice';
+import reviewReducer from './reviewSlice';
 
 export const store = configureStore({
     reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
         carModels: carModelReducer,
         commercials: commercialReducer,
         user: userReducer,
-        companies: companyReducer
+        companies: companyReducer,
+        reviews: reviewReducer,
 
     }
 })

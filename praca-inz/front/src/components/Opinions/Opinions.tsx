@@ -4,30 +4,27 @@ import Button from "@mui/material/Button";
 import {useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUserRole} from "../../store/userSlice";
 import AddingOpinion from "./AddingOpinion";
+import {ReviewType} from "../../services/ReviewService";
 
-export type DummyOpinion = {
-    id: number,
-    nick: string,
-    rating: number,
-    description: string
-}
+
 
 interface Props {
-    dummyOpinions?: DummyOpinion[]
+    opinions?: ReviewType[],
+    carModelId?: string
 }
 
-const Opinions = ({dummyOpinions}: Props) => {
+const Opinions = ({opinions, carModelId}: Props) => {
 
-    const opinionsList = dummyOpinions
-        ? dummyOpinions
-            .map(opinion => <Opinion nick={opinion.nick} rating={opinion.rating} description={opinion.description} />)
+    const opinionsList = opinions
+        ? opinions
+            .map(opinion => <Opinion nick={opinion.nick} rating={opinion.rate} description={opinion.description} date={opinion.date} />)
         : <h4>Brak</h4>
 
     return(
         <div className={styles.opinionsWrapper}>
 
-            <h2>Sekcja komentarzy: (3)</h2>
-            <AddingOpinion />
+            <h2>Sekcja komentarzy: ({opinions?.length})</h2>
+            <AddingOpinion carModelId={carModelId} />
             {opinionsList}
         </div>
     )

@@ -15,6 +15,7 @@ const SingleCar = ({id,src,name,price,rating} : Props) => {
 
     console.log('RATING', rating);
     let navigate = useNavigate();
+    console.log('ID', id);
     return(
         <div className={styles.singleCar} onClick={()=> navigate(`/cars/${id}`)}>
             <img  src={`${fetchingImagesURL}/${src}`} alt={'dummy_car'}/>

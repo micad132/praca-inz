@@ -11,7 +11,7 @@ export interface CarModelState {
 }
 
 const initialCarModel : CarModelType = {
-    id: 1,
+    carModelId: 1,
     name: '',
     price: 0,
     rating: 0,

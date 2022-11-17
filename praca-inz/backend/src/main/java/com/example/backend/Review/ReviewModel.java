@@ -33,6 +33,8 @@ public class ReviewModel {
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
+
+
     @ManyToOne
     @JoinColumn(name = "car_model_id", nullable = false)
     private CarModel carModel;
@@ -40,6 +42,9 @@ public class ReviewModel {
     @ManyToOne
     @JoinColumn(name = "user_model_id", nullable = false)
     private UserModel userModel;
+
+    @Column(name = "is_vulgar")
+    private Boolean isVulgar;
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_model_id")

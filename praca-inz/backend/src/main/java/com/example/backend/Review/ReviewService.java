@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
 import java.time.Instant;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,8 +34,10 @@ public class ReviewService {
         reviewModel1.setUserModel(userWrapper.getUserModel());
         reviewModel1.setCarModel(carModel);
         reviewModel1.setDate(Timestamp.from(Instant.now()));
+        reviewModel1.setIsVulgar(false);
         reviewRepository.save(reviewModel1);
     }
+
 
     public void deleteReviews(){
         reviewRepository.deleteAll();
@@ -42,6 +45,10 @@ public class ReviewService {
 
     public List<ReviewModelDTO> getReviewsForCarModel(Long id){
         CarModel carModel = carModelRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Car model not found"));
-        return carModel.getReviewModels().stream().map(reviewMapper::mapEntityToDTO).collect(Collectors.toList());
+        return carModel.getReviewModels()
+                .stream()
+                .map(reviewMapper::mapEntityToDTO)
+                .sorted(Comparator.comparing(ReviewModelDTO::getDate))
+                .collect(Collectors.toList());
     }
 }

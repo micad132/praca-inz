@@ -19,6 +19,7 @@ public class ReviewMapper {
 //                .userModelId(reviewModel.getUserModel().getId())
                 .userNick(reviewModel.getUserModel().getName())
                 .description(reviewModel.getDescription())
+                .isVulgar(reviewModel.getIsVulgar())
                 .rate(reviewModel.getRate())
                 .date(reviewModel.getDate())
                 .build();

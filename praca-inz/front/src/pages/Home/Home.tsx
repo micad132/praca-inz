@@ -38,11 +38,7 @@ const Home = () => {
     }, [dispatch]);
     const userDetails = useAppSelector(getLoggedUser);
     console.log('USER', userDetails);
-    const loggedUser = userDetails ? `Jesteś zalogowany jako`  : '';
-
-
-
-
+    const loggedUser = userDetails ? `Jesteś zalogowany jako`  : 'Zaloguj sie aby w pełni skorzystać z portalu';
 
   return (
       <>

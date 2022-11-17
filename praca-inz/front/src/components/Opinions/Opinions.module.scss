@@ -36,8 +36,12 @@
       }
     }
 
+    .date{
+      font-weight: bold;
+    }
+
     .formattedDate{
-      display: block;
+      padding-top: 5px;
     }
   }
 
@@ -50,6 +54,12 @@
   .notLoggedText{
     color: red;
     padding: 5px 0;
+  }
+
+  .badCommentIcon{
+    cursor: pointer;
+    color: red;
+    transform: scale(1.5);
   }
 }
 

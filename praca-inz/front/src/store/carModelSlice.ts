@@ -74,8 +74,8 @@ const carModelSlice = createSlice({
                 state.isLoaded = false;
             })
             .addCase(fetchCarModelsThunk.fulfilled, (state, action) => {
-                state.isLoaded = true;
                 state.carModels = action.payload.data;
+                state.isLoaded = true;
                 // return action.payload.data;
             })
             .addCase(fetchCarModelsThunk.rejected, (state, action) => {

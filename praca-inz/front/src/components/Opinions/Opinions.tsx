@@ -15,9 +15,10 @@ interface Props {
 
 const Opinions = ({opinions, carModelId}: Props) => {
 
+    console.log(opinions);
     const opinionsList = opinions
         ? opinions
-            .map(opinion => <Opinion nick={opinion.nick} rating={opinion.rate} description={opinion.description} date={opinion.date} />)
+            .map(opinion => <Opinion nick={opinion.userNick} rating={opinion.rate} description={opinion.description} date={opinion.date} />)
         : <h4>Brak</h4>
 
     return(

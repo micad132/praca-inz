@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import {FormChangeEventHandler} from "../../../utils/types";
 import {emailValidation, passwordValidation} from "../../../services/ValidationService";
 import {LoginValidationValuesTypes, LoginValuesTypes} from "../../../utils/types/AuthorizationTypes";
+import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 
 
 
@@ -30,6 +31,12 @@ const Login = () => {
 
   //   const [isFormValid, setIsFormValid] = useState(true);
   let isFormValid = true;
+
+  const redirectToRegisterButtonStyles = {
+    minWidth: '100px',
+    maxWidth: '300px',
+  }
+
 
   const validateForm = (e : FormChangeEventHandler) => {
     e.preventDefault();
@@ -141,6 +148,19 @@ const Login = () => {
         >
           Zaloguj się
         </Button>
+        <div className={styles.registerContainer}>
+          <p className={styles.registerContainerText}>Nie masz konta?</p>
+          <Button
+              variant="contained"
+              type="submit"
+              sx={redirectToRegisterButtonStyles}
+              onClick={() => navigate('/register', { replace: true})}
+          >
+            Zarejestruj sie
+            <ArrowCircleRightOutlinedIcon />
+          </Button>
+        </div>
+
       </form>
     </AuthWrapper>
   );

@@ -61,14 +61,6 @@ const Header = () => {
                     >
                         Wyloguj się
                     </Button>}
-                    <Button
-                        className={styles.authButton}
-                        variant="contained"
-                        onClick={() => navigate("/register", {replace: true})}
-                    >
-                        Zarejestruj się
-                    </Button>
-
                 </nav>}
                 {/*ikonka z profilem*/}
                 {showHamburerMenu && <MenuIcon onClick={() => setShowMobileNav(!showMobileNav)}/>}

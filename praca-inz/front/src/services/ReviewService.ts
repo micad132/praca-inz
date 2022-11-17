@@ -5,7 +5,7 @@ export type ReviewType = {
     description: string,
     rate: number,
     date: string,
-    nick: string
+    userNick: string
 }
 
 export type AddingReviewType = {

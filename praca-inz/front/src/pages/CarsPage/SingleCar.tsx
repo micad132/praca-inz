@@ -18,7 +18,7 @@ const SingleCar = ({id,src,name,price,rating} : Props) => {
     console.log('ID', id);
     return(
         <div className={styles.singleCar} onClick={()=> navigate(`/cars/${id}`)}>
-            <img  src={`${fetchingImagesURL}/${src}`} alt={'dummy_car'}/>
+            <img  src={`${fetchingImagesURL}/${src}`} alt={'dummy_car'} loading={"lazy"}/>
             <p>{name}</p>
             <Rating name="read-only" value={rating} precision={0.5} readOnly />
             <p>{price}zł</p>

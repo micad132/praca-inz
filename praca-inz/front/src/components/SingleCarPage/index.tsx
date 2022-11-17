@@ -48,13 +48,20 @@ const SingleCarPage = () => {
     const opinions = useAppSelector(getReviewsForCarModel);
     console.log( carId);
     console.log('CARMODEL WCZYTANY', carModel);
+    console.log('OPINIE', opinions);
+
+    const sortedOpinions = opinions.map( opinion => {
+        return {...opinion, newDate: new  Date(opinion.date)}
+    }).sort((a,b) => b.newDate.getTime() - a.newDate.getTime());
+
+    console.log('POSORTOWANE', sortedOpinions);
     return(
         <div className={styles.wrapper}>
             <div className={styles.singleCar}>
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions opinions={opinions} carModelId={carId}/>
+            <Opinions opinions={sortedOpinions} carModelId={carId}/>
         </div>
     )
 }

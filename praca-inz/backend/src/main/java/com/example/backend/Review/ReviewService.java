@@ -38,6 +38,13 @@ public class ReviewService {
         reviewRepository.save(reviewModel1);
     }
 
+    public void updateReview(Long id, Boolean isVulgar){
+        ReviewModel reviewModel = reviewRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Not found"));
+        reviewModel.setIsVulgar(isVulgar);
+        reviewRepository.save(reviewModel);
+
+    }
+
 
     public void deleteReviews(){
         reviewRepository.deleteAll();

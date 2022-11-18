@@ -37,6 +37,10 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
+    @PutMapping("/updateReview/{id}")
+    public void updateComment(@PathVariable("id")Long id, @RequestParam Boolean isVulgar){
+        reviewService.updateReview(id,isVulgar);
+    }
 
     @DeleteMapping("/deleteReviews")
     public void deleteReviews(){

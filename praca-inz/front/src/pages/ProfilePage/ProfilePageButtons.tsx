@@ -28,6 +28,10 @@ const ProfilePageButtons = ({role} : Props) => {
                     variant="contained"
                     onClick={()=> navigate("/profile/carmodels",{replace: true})}
                 >Zarzadzaj modelami aut</Button>
+                 <Button
+                     variant="contained"
+                     onClick={()=> navigate("/profile/reviews",{replace: true})}
+                 >Zarzadzaj komentarzami</Button>
              </>
             }
         </ButtonWrapper>

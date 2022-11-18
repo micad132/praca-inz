@@ -16,7 +16,7 @@ export interface ReviewState {
 
 
 const initialState : ReviewState  = {
-    singleReview: {description: '', date: '', rate: 0, userNick: ''},
+    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false},
     allReviews: [],
     reviewsForCarModel: [],
     isLoaded: false,
@@ -57,6 +57,17 @@ export const addingReviewForCarModel = createAsyncThunk(
             const data = await ReviewService.getReviewsForCarModel(id);
             return { data };
         }catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const updatingReview = createAsyncThunk(
+    "review/updateReviw",
+    async ({id,isVulgar} : any) => {
+        try{
+            await ReviewService.updateReview(id,isVulgar);
+        } catch (e) {
             throw e;
         }
     }
@@ -103,6 +114,10 @@ const carModelSlice = createSlice({
             })
             .addCase(addingReviewForCarModel.rejected, (state, action) => {
                 state.error = action.error.message;
+            })
+            .addCase(updatingReview.pending, (state, action) => {
+            })
+            .addCase(updatingReview.fulfilled, (state, action) => {
             })
     }
 

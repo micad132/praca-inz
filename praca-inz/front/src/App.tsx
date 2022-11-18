@@ -9,6 +9,8 @@ import {useAppDispatch, useAppSelector} from "./utils/types/hooks";
 import {fetchCarModelsThunk, getAllCarModels} from "./store/carModelSlice";
 import {fetchUserDetailsThunk, getLoggedUser} from "./store/userSlice";
 import Footer from "./components/Footer/Footer";
+import {ToastContainer} from "react-toastify";
+import {fetchAllReviewsForCarModels} from "./store/reviewSlice";
 
 function App() {
 
@@ -33,6 +35,7 @@ function App() {
             <ScrollToTop smooth top={80}/>
         </Layout>
         <Commercials />
+        <ToastContainer />
 
 
     </div>

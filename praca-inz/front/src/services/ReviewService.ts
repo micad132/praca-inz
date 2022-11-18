@@ -2,10 +2,12 @@ import axios from 'axios';
 import {URL} from '../utils/GlobalVariables';
 
 export type ReviewType = {
+    reviewModelId: number
     description: string,
     rate: number,
     date: string,
-    userNick: string
+    userNick: string,
+    isVulgar: boolean
 }
 
 export type AddingReviewType = {
@@ -29,6 +31,15 @@ const ReviewService = {
             method: 'POST',
             url: `${URL}/review/${id}`,
             data: review,
+            headers: {
+            }
+        })
+    },
+
+    updateReview: async (id: number, isVulgar: boolean) => {
+        return axios({
+            method: 'PUT',
+            url: `${URL}/review/updateReview/${id}?isVulgar=${isVulgar}`,
             headers: {
             }
         })

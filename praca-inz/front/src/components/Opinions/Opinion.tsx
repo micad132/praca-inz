@@ -3,22 +3,28 @@ import Rating from "@mui/material/Rating";
 import moment from "moment";
 import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import {toast, ToastContainer} from "react-toastify";
+import {useAppDispatch} from "../../utils/types/hooks";
+import {updatingReview} from "../../store/reviewSlice";
 
 interface Props {
+    id: number
     nick: string,
     rating: number,
     description: string,
-    date: string
+    date: string,
+    isVulgar: boolean
 }
 
-const Opinion = ({nick,rating,description,date} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar} : Props) => {
 
     console.log(nick);
     const formattedDate = moment(date).format('MM/DD/YYYY');
     const formattedDateHours = moment(date).format('HH:mm');
+    const dispatch = useAppDispatch();
 
 
     const showAddingToListInfo = () => {
+        const isVulgarChanged = !isVulgar;
         toast.success('Dodano do listy niewłaściwych komentarzy!', {
             position: "top-left",
             autoClose: 5000,
@@ -28,6 +34,7 @@ const Opinion = ({nick,rating,description,date} : Props) => {
             draggable: true,
             progress: undefined,
         });
+        dispatch(updatingReview({id: id, isVulgar: isVulgarChanged}));
     }
 
     return(
@@ -50,7 +57,6 @@ const Opinion = ({nick,rating,description,date} : Props) => {
                 </div>
 
             </div>
-            <ToastContainer />
         </>
     )
 }

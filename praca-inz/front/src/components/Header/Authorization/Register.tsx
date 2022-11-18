@@ -271,7 +271,7 @@ const Register = () => {
               >
                   Zarejestruj się
               </Button>
-              <ToastContainer />
+
           </form>
       </AuthWrapper>
 

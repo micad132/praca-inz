@@ -15,6 +15,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Opinions from "../components/Opinions/Opinions";
 import CarmodelsPage from "../pages/ProfilePage/CarmodelsPage";
 import SingleCarPage from "../components/SingleCarPage";
+import ReviewPage from "../pages/ProfilePage/ReviewPage";
 
 const routes = (
   <Routes>
@@ -34,6 +35,7 @@ const routes = (
         <Route path="commercials" element={<CommercialsPage />} />
         <Route path="settings" element={<AccountSettings />} />
         <Route path="carmodels" element={<CarmodelsPage />} />
+        <Route path="reviews" element={<ReviewPage />} />
 
     </Route>
     <Route path="/failed" element={<ErrorPage />} />

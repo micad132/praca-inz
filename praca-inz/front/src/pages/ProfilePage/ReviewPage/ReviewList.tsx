@@ -3,6 +3,7 @@ import {fetchAllReviewsForCarModels, getAllReviewsForCarModel} from "../../../st
 import SingleReviewInProfilePage from "./SingleReviewInProfilePage";
 import SingleVulgarReview from "./SingleVulgarReview";
 import {useEffect} from "react";
+import Opinion from "../../../components/Opinions/Opinion";
 
 interface Props {
     isChecked: boolean
@@ -14,23 +15,32 @@ const ReviewList = ({isChecked} : Props) => {
 
     useEffect(() => {
         dispatch(fetchAllReviewsForCarModels())
-    }, [dispatch]);
-
-    dispatch(fetchAllReviewsForCarModels())
+    }, [isChecked]);
     const opinions = useAppSelector(getAllReviewsForCarModel);
 
-    const opinionsList = opinions.map((opinion) => <SingleReviewInProfilePage /> );
+    const sortedOpinions = opinions.map( opinion => {
+        return {...opinion, newDate: new  Date(opinion.date)}
+    }).sort((a,b) => b.newDate.getTime() - a.newDate.getTime());
+
+    const opinionsList = sortedOpinions.map((opinion) =>
+        <Opinion key={opinion.reviewModelId} nick={opinion.userNick}
+                                   rating={opinion.rate} description={opinion.description}
+                                   date={opinion.date} id={opinion.reviewModelId} isVulgar={opinion.isVulgar}
+                                   isProperScreen={false} isAdminPanel={false}
+        /> );
     const opinionsListFiltered = opinions.filter((opinion) => opinion.isVulgar);
-    const vulgarOpinionsList = opinionsListFiltered.map(() => <SingleVulgarReview />);
-    console.log('ISCHECKED', isChecked);
-    console.log(opinions);
-    console.log('VULGARNE', vulgarOpinionsList);
+    const vulgarOpinionsList = opinionsListFiltered.map((opinion) =>
+        <Opinion key={opinion.reviewModelId} nick={opinion.userNick}
+                 rating={opinion.rate} description={opinion.description}
+                 date={opinion.date} id={opinion.reviewModelId} isVulgar={opinion.isVulgar}
+                 isProperScreen={true} isAdminPanel={true}
+        /> );
 
 
     return (
-        <>
+        <div>
             {isChecked ? vulgarOpinionsList : opinionsList}
-        </>
+        </div>
     )
 
 }

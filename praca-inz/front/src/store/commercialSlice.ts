@@ -49,6 +49,7 @@ export const addCommercialThunk = createAsyncThunk(
     'commercial/addCommercial',
     async ({id,name} : any) => {
         try{
+            console.log('co jest 5');
             await CommercialService.addNewCommercial(id,name);
             const data = await CommercialService.getAllCommercials();
             return { data };

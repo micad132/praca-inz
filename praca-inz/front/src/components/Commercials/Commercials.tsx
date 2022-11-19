@@ -13,9 +13,8 @@ const Commercials = () => {
     }, [dispatch]);
 
     const commercials = useAppSelector(getAllCommercials);
-    commercials.forEach(commercial => console.log('SRC', commercial.carModel));
     const commercialList = commercials.map(commercial =>
-        <Commercial key={commercial.id} id={commercial.carModel.carModelId} src={commercial.carModel?.imageModel.name} header={commercial.name}/>
+        <Commercial key={commercial.id} id={commercial.carModelId} src={commercial.imageName} header={commercial.name}/>
     );
     return(
         <div className={styles.wrapper}>

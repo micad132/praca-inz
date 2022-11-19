@@ -43,6 +43,10 @@ const ReviewService = {
             headers: {
             }
         })
+    },
+
+    deleteReviewById: async (id: number) => {
+        return await axios.delete(`${URL}/review/deleteById/${id}`)
     }
 
 }

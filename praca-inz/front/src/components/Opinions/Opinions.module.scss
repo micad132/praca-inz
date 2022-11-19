@@ -1,9 +1,9 @@
 
-.opinionsWrapper{
+.opinionsWrapper {
   max-width: 1200px;
   margin: 30px auto 0 auto;
   text-align: center;
-
+}
 
   .opinion{
     margin: 20px auto;
@@ -56,12 +56,19 @@
     padding: 5px 0;
   }
 
+
   .badCommentIcon{
     cursor: pointer;
     color: red;
     transform: scale(1.5);
   }
-}
+
+  .deletingIcon{
+    cursor: pointer;
+    color: blue;
+    transform: scale(1.5);
+  }
+
 
 .modalWrapper{
   position: absolute;

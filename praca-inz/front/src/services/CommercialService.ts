@@ -6,7 +6,8 @@ export type CommercialType = {
     id: number
     name: string,
     description: string,
-    carModel: CarModelType,
+    carModelId: number,
+    imageName: string
 
 }
 

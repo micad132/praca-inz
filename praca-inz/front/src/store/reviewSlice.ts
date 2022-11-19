@@ -63,11 +63,24 @@ export const addingReviewForCarModel = createAsyncThunk(
 )
 
 export const updatingReview = createAsyncThunk(
-    "review/updateReviw",
+    "review/updateReview",
     async ({id,isVulgar} : any) => {
         try{
             await ReviewService.updateReview(id,isVulgar);
         } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const deleteReviewById = createAsyncThunk(
+    "review/deleteReview",
+    async (id : number) => {
+        try{
+            await ReviewService.deleteReviewById(id);
+            const data = await ReviewService.getAllReviewsForCarModels();
+            return { data };
+        }catch (e) {
             throw e;
         }
     }

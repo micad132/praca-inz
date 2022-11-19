@@ -20,7 +20,7 @@ const Opinions = ({opinions, carModelId}: Props) => {
         ? opinions
             .map(opinion =>
                 <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick} isVulgar={opinion.isVulgar}
-                         rating={opinion.rate} description={opinion.description} date={opinion.date} />)
+                         rating={opinion.rate} description={opinion.description} date={opinion.date} isAdminPanel={false} isProperScreen={true} />)
         : <h4>Brak</h4>
 
     return(

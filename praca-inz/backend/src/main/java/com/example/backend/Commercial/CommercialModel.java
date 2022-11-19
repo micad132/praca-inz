@@ -1,10 +1,7 @@
 package com.example.backend.Commercial;
 
 import com.example.backend.CarModel.CarModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -13,6 +10,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
+@Builder
 @Table(name = "commercial_model")
 public class CommercialModel {
     @Id

@@ -25,11 +25,11 @@ public class CommercialController {
     }
 
     @PostMapping("/{id}")
-    public void addCommercial(@RequestBody CommercialModel commercialModel, @PathVariable(value = "id") String id){
+    public void addCommercialForCarModel(@RequestBody CommercialModelDTO commercialModelDTO, @PathVariable(value = "id") String id){
 
 
 //        commercialService.addCommercial(commercialModel);
-          commercialService.addCommercialForCarModel(commercialModel,id);
+          commercialService.addCommercialForCarModel(commercialModelDTO,id);
     }
 
     @DeleteMapping("/delete/{carModelId}")
@@ -38,7 +38,7 @@ public class CommercialController {
     }
 
     @GetMapping("/getAllCommercials")
-    public List<CommercialModel> getAllCommercial(){
+    public List<CommercialModelDTO> getAllCommercial(){
         return commercialService.getAllCommercials();
     }
 }

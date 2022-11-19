@@ -50,6 +50,10 @@ public class ReviewService {
         reviewRepository.deleteAll();
     }
 
+    public void deleteReviewById(Long id) {
+        reviewRepository.deleteById(id);
+    }
+
     public List<ReviewModelDTO> getReviewsForCarModel(Long id){
         CarModel carModel = carModelRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Car model not found"));
         return carModel.getReviewModels()

@@ -46,6 +46,11 @@ public class ReviewController {
     public void deleteReviews(){
         reviewService.deleteReviews();
     }
+
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteReviewById(@PathVariable Long id){
+        reviewService.deleteReviewById(id);
+    }
 }
 
 

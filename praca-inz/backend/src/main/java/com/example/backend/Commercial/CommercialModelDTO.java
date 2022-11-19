@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 @Builder
-public class CommercialDTO {
+public class CommercialModelDTO {
     private Long commercialId;
     private String name;
     private String description;
-    private CarModelDTO carModelDTO;
+    private Long carModelId;
+    private String imageName;
 }

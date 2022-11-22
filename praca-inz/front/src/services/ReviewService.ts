@@ -7,7 +7,8 @@ export type ReviewType = {
     rate: number,
     date: string,
     userNick: string,
-    isVulgar: boolean
+    isVulgar: boolean,
+    carName: string
 }
 
 export type AddingReviewType = {

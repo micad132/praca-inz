@@ -10,6 +10,7 @@ import {fetchCarModelById, getCarModelById} from "../../store/carModelSlice";
 import {fetchReviewsForCarModel, getReviewsForCarModel} from "../../store/reviewSlice";
 
 
+
 const dummyOpinions = [
     {
         id: 1,
@@ -50,18 +51,14 @@ const SingleCarPage = () => {
     console.log('CARMODEL WCZYTANY', carModel);
     console.log('OPINIE', opinions);
 
-    const sortedOpinions = opinions.map( opinion => {
-        return {...opinion, newDate: new  Date(opinion.date)}
-    }).sort((a,b) => b.newDate.getTime() - a.newDate.getTime());
 
-    console.log('POSORTOWANE', sortedOpinions);
     return(
         <div className={styles.wrapper}>
             <div className={styles.singleCar}>
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions opinions={sortedOpinions} carModelId={carId}/>
+            <Opinions opinions={opinions} carModelId={carId} isAddingAvailable={true} headerTitle={'Sekcja komentarzy'}/>
         </div>
     )
 }

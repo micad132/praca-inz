@@ -21,6 +21,7 @@ public class ReviewMapper {
                 .description(reviewModel.getDescription())
                 .isVulgar(reviewModel.getIsVulgar())
                 .rate(reviewModel.getRate())
+                .carName(reviewModel.getCarModel().getName())
                 .date(reviewModel.getDate())
                 .build();
     }

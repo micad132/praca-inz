@@ -14,8 +14,7 @@ const ReviewPage = () => {
 
     return(
         <>
-            <h1>Lista wszystkich komentarzy</h1>
-            <FormControlLabel control={<Switch checked={checked} onChange={handleChange}/>} label="Pokaz tylko wulgarne komentarze" />
+            <FormControlLabel style={{marginTop: '15px'}} control={<Switch checked={checked} onChange={handleChange}/>} label="Pokaz tylko wulgarne komentarze" />
             <ReviewList isChecked={checked} />
         </>
 

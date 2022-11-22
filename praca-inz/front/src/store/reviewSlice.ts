@@ -16,7 +16,7 @@ export interface ReviewState {
 
 
 const initialState : ReviewState  = {
-    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false},
+    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, carName: ''},
     allReviews: [],
     reviewsForCarModel: [],
     isLoaded: false,

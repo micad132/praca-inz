@@ -17,12 +17,13 @@ import {toast} from "react-toastify";
 
 interface Props {
     carModelId?: string
+    userRole?: string
 }
 
-const AddingOpinion = ({carModelId} : Props) => {
+const AddingOpinion = ({carModelId, userRole} : Props) => {
 
     const dispatch = useAppDispatch();
-    const userRole = useAppSelector(getLoggedUserRole);
+
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const [ratingValue, setRatingValue] = useState<number | null>(1);
     const [textAreaValue, setTextAreaValue] = useState<string>('');

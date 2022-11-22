@@ -11,6 +11,7 @@ const ProfilePageButtons = ({role} : Props) => {
 
     let navigate = useNavigate();
     const isAdmin = role === 'ADMIN';
+    const isModerator = role === 'MODERATOR';
 
     return(
         <ButtonWrapper>
@@ -28,12 +29,16 @@ const ProfilePageButtons = ({role} : Props) => {
                     variant="contained"
                     onClick={()=> navigate("/profile/carmodels",{replace: true})}
                 >Zarzadzaj modelami aut</Button>
-                 <Button
-                     variant="contained"
-                     onClick={()=> navigate("/profile/reviews",{replace: true})}
-                 >Zarzadzaj komentarzami</Button>
-             </>
+
+
+             </>}
+            {isModerator &&
+                <Button
+                    variant="contained"
+                    onClick={()=> navigate("/profile/reviews",{replace: true})}
+                >Zarzadzaj komentarzami</Button>
             }
+
         </ButtonWrapper>
     )
 }

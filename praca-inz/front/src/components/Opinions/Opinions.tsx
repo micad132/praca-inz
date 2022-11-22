@@ -5,29 +5,62 @@ import {useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUserRole} from "../../store/userSlice";
 import AddingOpinion from "./AddingOpinion";
 import {ReviewType} from "../../services/ReviewService";
-
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import {useState} from "react";
 
 
 interface Props {
     opinions?: ReviewType[],
-    carModelId?: string
+    carModelId?: string,
+    isAddingAvailable?: boolean,
+    headerTitle?: string
 }
 
-const Opinions = ({opinions, carModelId}: Props) => {
+const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle}: Props) => {
 
+    const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
     console.log(opinions);
-    const opinionsList = opinions
-        ? opinions
+    const userRole = useAppSelector(getLoggedUserRole);
+
+    let sortedOpinionsAsc : ReviewType[] = [];
+    let sortedOpinionsDesc: ReviewType[] = [];
+
+    if(opinions){
+        sortedOpinionsAsc = opinions?.map( opinion => {
+            return {...opinion, newDate: new  Date(opinion.date)}
+        }).sort((a,b) => b.newDate.getTime() - a.newDate.getTime());
+
+        sortedOpinionsDesc = opinions?.map( opinion => {
+            return {...opinion, newDate: new  Date(opinion.date)}
+        }).sort((a,b) => a.newDate.getTime() - b.newDate.getTime());
+    }
+
+
+
+    const opinionsToMap = isAscSorted ? [...sortedOpinionsAsc] : [...sortedOpinionsDesc];
+
+    const opinionsList = opinionsToMap
+        ? opinionsToMap
             .map(opinion =>
                 <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick} isVulgar={opinion.isVulgar}
-                         rating={opinion.rate} description={opinion.description} date={opinion.date} isAdminPanel={false} isProperScreen={true} />)
+                         rating={opinion.rate} description={opinion.description} date={opinion.date} isAdminPanel={false} isProperScreen={true} userRole={userRole} carName={opinion.carName} />)
         : <h4>Brak</h4>
 
     return(
         <div className={styles.opinionsWrapper}>
 
-            <h2>Sekcja komentarzy: ({opinions?.length})</h2>
-            <AddingOpinion carModelId={carModelId} />
+            <h2>{headerTitle}: ({opinions?.length})</h2>
+            <div className={styles.opinionsSortingDiv}>
+                <h3>Sortowanie według daty</h3>
+                <div onClick={() => setIsAscSorted(!isAscSorted)}>
+                    {isAscSorted  ?
+                        <KeyboardArrowUpIcon  /> :
+                        <KeyboardArrowDownIcon />
+                    }
+                </div>
+            </div>
+            {isAddingAvailable && <AddingOpinion carModelId={carModelId} userRole={userRole} /> }
             {opinionsList}
         </div>
     )

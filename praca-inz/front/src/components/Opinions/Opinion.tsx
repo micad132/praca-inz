@@ -15,10 +15,12 @@ interface Props {
     date: string,
     isVulgar: boolean,
     isProperScreen: boolean,
-    isAdminPanel : boolean
+    isAdminPanel : boolean,
+    userRole?: string,
+    carName: string
 }
 
-const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, carName} : Props) => {
 
     console.log(nick);
     const formattedDate = moment(date).format('MM/DD/YYYY');
@@ -45,7 +47,9 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
         dispatch(deleteReviewById(id));
     }
 
-    const showIcon = isProperScreen || isAdminPanel;
+    console.log('ROLA', userRole);
+    const showIcon = (isProperScreen || isAdminPanel) && userRole;
+
 
     const showProperIcon = isAdminPanel ?
         <DeleteIcon className={styles.deletingIcon} onClick={deleteVulgarReview} /> :
@@ -56,6 +60,7 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
             <div className={styles.opinion}>
                 <div className={styles.opinionDetails}>
                     <h3>{nick}</h3>
+                    <h5>Dla {carName}</h5>
                     <p><span className={styles.boldFont}>Ocena:</span> <Rating name="read-only" value={rating} precision={0.5} readOnly /></p>
                     <div>
                         <p className={styles.date}>Data wystawienia:</p>

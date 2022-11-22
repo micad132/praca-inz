@@ -14,5 +14,6 @@ public class ReviewModelDTO {
     private Boolean isVulgar;
     private Timestamp date;
     private Long carModelId;
+    private String carName;
     private String userNick;
 }

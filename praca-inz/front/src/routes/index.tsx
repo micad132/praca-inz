@@ -3,8 +3,7 @@ import CarsPage from "../pages/CarsPage";
 import Login from "../components/Header/Authorization/Login";
 import Register from "../components/Header/Authorization/Register";
 import Home from "../pages/Home/Home";
-import PolandInfo from "../pages/PolandInfo";
-import WorldInfo from "../pages/WorldInfo";
+import NewsPage from "../pages/NewsPage";
 import PartsPage from "../pages/PartsPage";
 import DealersPage from "../pages/DealersPage";
 import ConfigurationPage from "../pages/ConfigurationPage";
@@ -16,6 +15,7 @@ import Opinions from "../components/Opinions/Opinions";
 import CarmodelsPage from "../pages/ProfilePage/CarmodelsPage";
 import SingleCarPage from "../components/SingleCarPage";
 import ReviewPage from "../pages/ProfilePage/ReviewPage";
+import SingleNewsPage from "../components/SingleNewsPage";
 
 const routes = (
   <Routes>
@@ -26,8 +26,10 @@ const routes = (
     </Route>
     <Route path="/login" element={<Login />} />
     <Route path="/register" element={<Register />} />
-    <Route path="/poland" element={<PolandInfo />} />
-    <Route path="/world" element={<WorldInfo />} />
+    <Route path="/news">
+        <Route index element={<NewsPage/>} />
+        <Route path=":postId" element={<SingleNewsPage />} />
+    </Route>
     <Route path="/parts" element={<PartsPage />} />
     <Route path="/dealers" element={<DealersPage />} />
     <Route path="/configurations" element={<ConfigurationPage />} />

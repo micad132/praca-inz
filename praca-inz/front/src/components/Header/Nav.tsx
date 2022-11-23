@@ -4,11 +4,8 @@ import styles from "./Nav.module.scss";
 const Nav = () => {
   return (
     <nav className={styles.nav}>
-      <Link className={styles.navLink} to="/poland">
-        Polska
-      </Link>
-      <Link className={styles.navLink} to="/world">
-        Świat
+      <Link className={styles.navLink} to="/news">
+        Aktualnosci
       </Link>
       <Link className={styles.navLink} to="/cars">
         Samochody

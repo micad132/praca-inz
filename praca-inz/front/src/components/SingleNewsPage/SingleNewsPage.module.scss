@@ -1,0 +1,59 @@
+
+.wrapper{
+
+  margin: 0 auto;
+  max-width: 1500px;
+  border: 2px solid blue;
+
+
+  .header{
+    text-align: center;
+    padding: 10px 0;
+    font-weight: bold;
+    font-size: 32px;
+  }
+
+  .imageDiv{
+    width: 100%;
+    min-height: 500px;
+    margin: 10px auto;
+    border: 2px solid blue;
+
+  }
+
+  .infoWrapper{
+    border: 2px solid green;
+    max-width: 1000px;
+    margin: 10px auto;
+
+    .description{
+      padding: 10px;
+      font-size: 18px;
+      text-align: justify;
+    }
+  }
+
+
+  .topInfoWrapper{
+    border: 2px solid pink;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    font-size: 18px;
+
+    .postAuthor{
+      font-weight: bold;
+    }
+
+    .date{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+}
+
+

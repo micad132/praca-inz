@@ -1,6 +1,6 @@
 import InfoWrapper from "../../components/InfoWrapper/InfoWrapper";
 import SingleNews from "../../components/SingleNews";
-import styles from './PolandInfo.module.scss';
+import styles from './NewsPage.module.scss';
 
 const dummyArr = [
     {
@@ -26,11 +26,11 @@ const PolandInfo = () => {
 
     return (
         <>
-            <h1 className={styles.title}>Informacje z Polski</h1>
-            <InfoWrapper title={'Najnowsze informacje'} details={dummyArr}/>
+            <h1 className={styles.title}>Motoryzacyjne aktualności</h1>
+            <InfoWrapper title={'Najnowsze informacje z Polski'} details={dummyArr}/>
             <SingleNews />
             <SingleNews />
-            <InfoWrapper title={'Najnowsze informacje'} details={dummyArr}/>
+            <InfoWrapper title={'Najnowsze informacje ze świata'} details={dummyArr}/>
         </>
     )
 }

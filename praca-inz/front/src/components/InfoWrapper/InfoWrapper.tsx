@@ -11,7 +11,7 @@ const InfoWrapper = ({title,details} : Props) => {
 
     let navigate = useNavigate();
     return(
-    <section className={styles.wrapper} onClick={() => navigate('/cars/1',{ replace: true})}>
+    <section className={styles.wrapper} onClick={() => navigate('/news/1',{ replace: true})}>
         <div className={styles.title}>
             <h2>{title}</h2>
         </div>

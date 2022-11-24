@@ -18,6 +18,7 @@ const Commercials = () => {
     );
     return(
         <div className={styles.wrapper}>
+            <h2>Panel reklam:</h2>
             {commercialList}
         </div>
 

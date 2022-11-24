@@ -46,6 +46,10 @@ public class ReviewModel {
     @Column(name = "is_vulgar")
     private Boolean isVulgar;
 
+    @ManyToOne
+    @JoinColumn(name = "post_model_id")
+    private PostModel postModel;
+
 //    @ManyToOne
 //    @JoinColumn(name = "product_model_id")
 //    private ProductModel productModel;

@@ -1,0 +1,45 @@
+
+.wrapper{
+  margin: 20px auto;
+  max-width: 1200px;
+  border-radius: 10px;
+  background-color: rgb(25, 103, 248);
+
+  h3{
+    color: #eee;
+    text-align: center;
+    padding: 15px 0 0 0;
+  }
+
+  .similarSingleNewsWrapper{
+    padding: 20px;
+    display: flex;
+    gap: 10px;
+
+    .singleNews{
+      padding: 5px;
+      border: 2px solid #fff;
+      border-radius: 5px;
+      background-color: #fff;
+      font-size: 17px;
+      cursor: pointer;
+      transition: all 300ms ease-in-out;
+
+      &:hover{
+        transform: scale(1.05);
+      }
+
+      .topInfo{
+        padding: 5px 2px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .title{
+        padding: 3px 0;
+        text-align: center;
+      }
+    }
+  }
+}

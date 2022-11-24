@@ -1,10 +1,9 @@
 package com.example.backend.Post;
 
 import com.example.backend.Image.ImageModel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.example.backend.Review.ReviewModel;
+import com.example.backend.User.UserModel;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -15,6 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 @Entity
 @Table(name = "post_model")
 public class PostModel {
@@ -30,20 +30,29 @@ public class PostModel {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @Column(name = "short_desc", nullable = false)
-    private String short_desc;
 
     @Column(name = "description", nullable = false, length = 1500)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "post_category_model_id")
-    private PostCategoryModel postCategoryModel;
 
-    @ManyToMany
-    @JoinTable(name = "post_model_image_models",
-            joinColumns = @JoinColumn(name = "post_model_id"),
-            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
-    private List<ImageModel> imageModels = new ArrayList<>();
+
+
+//    @ManyToMany
+//    @JoinTable(name = "post_model_image_models",
+//            joinColumns = @JoinColumn(name = "post_model_id"),
+//            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+//    private List<ImageModel> imageModels = new ArrayList<>();
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_model_id")
+    private UserModel userModel;
+
+    @OneToMany(mappedBy = "postModel", orphanRemoval = true)
+    private List<ReviewModel> reviewModels = new ArrayList<>();
+
+    @OneToOne(orphanRemoval = true)
+    @JoinColumn(name = "image_model_id")
+    private ImageModel imageModel;
 
 }

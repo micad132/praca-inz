@@ -1,8 +1,8 @@
-package com.example.backend.Product;
+package com.example.backend.Part;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProductRepository extends JpaRepository<ProductModel,Long> {
+public interface PartRepository extends JpaRepository<PartModel,Long> {
 }

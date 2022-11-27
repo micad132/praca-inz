@@ -1,6 +1,5 @@
 package com.example.backend.User;
 
-import com.example.backend.Product.ProductModel;
 import com.example.backend.Review.ReviewModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
@@ -10,9 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Set;
 
 @AllArgsConstructor
 @NoArgsConstructor

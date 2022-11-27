@@ -2,9 +2,7 @@ package com.example.backend.Review;
 
 import com.example.backend.CarModel.CarModel;
 import com.example.backend.Post.PostModel;
-import com.example.backend.Product.ProductModel;
 import com.example.backend.User.UserModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;

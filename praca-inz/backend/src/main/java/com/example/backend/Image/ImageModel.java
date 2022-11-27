@@ -1,9 +1,5 @@
 package com.example.backend.Image;
 
-import com.example.backend.CarModel.CarModel;
-import com.example.backend.Commercial.CommercialModel;
-import com.example.backend.Post.PostModel;
-import com.example.backend.Product.ProductModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

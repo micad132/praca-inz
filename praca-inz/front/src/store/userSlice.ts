@@ -1,6 +1,7 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import RegisterService from "../services/RegisterService";
 import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
+import {RootState} from "./index";
 
 const initialState = {
     userRole: {
@@ -78,6 +79,7 @@ export const fetchUpdatedUser = createAsyncThunk(
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserRole = (state : any) => state.user.userRole.role;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
+export const getLoggedUserNickname = (state : RootState) => state.user.userRole.name;
 
 const userSlice = createSlice({
     name: 'user',

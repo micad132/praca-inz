@@ -6,6 +6,7 @@ import userReducer from './userSlice';
 import companyReducer from './companySlice';
 import reviewReducer from './reviewSlice';
 import partReducer from './partSlice';
+import orderReducer from './orderSlice';
 
 export const store = configureStore({
     reducer: {
@@ -15,7 +16,8 @@ export const store = configureStore({
         user: userReducer,
         companies: companyReducer,
         reviews: reviewReducer,
-        parts: partReducer
+        parts: partReducer,
+        orders: orderReducer,
 
     }
 })

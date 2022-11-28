@@ -37,7 +37,7 @@ const PartsTable = ({rows} : Props) => {
         {
             field: 'col4',
             headerName: 'Dodaj',
-            renderCell: () => <AddingPartButton />,
+            renderCell: (params) => <AddingPartButton id={params.row.id} />,
         },
     ];
 

@@ -8,12 +8,16 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
+import {getLoggedUserNickname} from "../../store/userSlice";
+import {addOrderThunk, getPartId} from "../../store/orderSlice";
 
 
 const AddingPartToOrderModal = () => {
 
     const [amount,setAmount] = useState<string>('0');
     const isOpen = useAppSelector(getIsAddingModalOpen);
+    const userNick = useAppSelector(getLoggedUserNickname);
+    const partId = useAppSelector(getPartId);
     const dispatch = useAppDispatch();
 
 
@@ -24,6 +28,7 @@ const AddingPartToOrderModal = () => {
     const submitForm = (e : any) => {
         e.preventDefault();
         dispatch(changeModalVisibility(false));
+        dispatch(addOrderThunk(partId));
         console.log('dziala');
     }
 
@@ -43,7 +48,7 @@ const AddingPartToOrderModal = () => {
 
                 <div className={styles.modalWrapper}>
                     <form  onSubmit={(e) => submitForm(e)}>
-                        <p>Dodajesz zamowienie jako micad132</p>
+                        <p>Dodajesz zamowienie jako <span className={styles.userNick}>{userNick}</span></p>
                         <p>Opona:</p>
                         <FormControl size={'medium'}>
                             <InputLabel>Ilość</InputLabel>

@@ -13,11 +13,11 @@ const Nav = () => {
       <Link className={styles.navLink} to="/parts">
         Części
       </Link>
+      <Link className={styles.navLink} to="/configurations">
+        Zamówienia
+      </Link>
       <Link className={styles.navLink} to="/dealers">
         Dealerzy
-      </Link>
-      <Link className={styles.navLink} to="/configurations">
-        Konfiguracje
       </Link>
     </nav>
   );

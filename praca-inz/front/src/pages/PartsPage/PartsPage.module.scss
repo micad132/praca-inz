@@ -28,4 +28,17 @@
   //box-shadow: 24px;
   padding: 5px;
   text-align: center;
+
+
+  .userNick{
+    font-weight: bold;
+  }
+
+  form{
+    margin: 0 auto;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }

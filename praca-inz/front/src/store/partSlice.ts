@@ -3,10 +3,17 @@ import { RootState } from "./index";
 import PartService, { PartType } from "../services/PartService";
 
 
+export interface PartDetails {
+    partName: string,
+    partPrice: number
+}
+
 export interface PartState {
     parts: PartType[]
     isLoaded: boolean,
-    isShowModal: boolean,
+    isShowAddingPartToOrderModal: boolean,
+    isShowAddingPartToDatabase: boolean,
+    partDetails: PartDetails
     error: string | undefined
 }
 
@@ -17,7 +24,9 @@ const initialState : PartState = {
     parts: [],
     isLoaded: false,
     error: '',
-    isShowModal: false
+    isShowAddingPartToOrderModal: false,
+    isShowAddingPartToDatabase: false,
+    partDetails: { partName: '', partPrice: 1}
 }
 
 export const fetchPartsThunk = createAsyncThunk(
@@ -34,6 +43,19 @@ export const fetchPartsThunk = createAsyncThunk(
     }
 )
 
+export const addingPartThunk = createAsyncThunk(
+    "parts/addPart",
+    async (partData : PartDetails) => {
+        try {
+            await PartService.addPart(partData);
+            const data = await PartService.getAllParts();
+            return {data};
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 
 export const PartThunk = {
     fetchPartsThunk: fetchPartsThunk
@@ -41,7 +63,9 @@ export const PartThunk = {
 
 export const getAllParts = (state : RootState)  => state.parts.parts;
 export const getCommercialsError = (state : RootState) => state.parts.error;
-export const getIsAddingModalOpen = (state: RootState) => state.parts.isShowModal;
+export const getIsAddingModalOpen = (state: RootState) => state.parts.isShowAddingPartToOrderModal;
+export const getIsAddingPartToDatabaseModalOpen = (state : RootState) => state.parts.isShowAddingPartToDatabase;
+export const getPartDetails = (state : RootState) => state.parts.partDetails;
 
 
 const partSlice = createSlice({
@@ -49,8 +73,15 @@ const partSlice = createSlice({
     initialState,
     reducers: {
         changeModalVisibility(state, action: PayloadAction<boolean>) {
-            state.isShowModal = action.payload;
+            state.isShowAddingPartToOrderModal = action.payload;
+        },
+        changeAddingPartToDatabaseVisibility(state, action: PayloadAction<boolean>) {
+            state.isShowAddingPartToDatabase = action.payload;
+        },
+        setPartDetails(state,action: PayloadAction<PartDetails>) {
+            state.partDetails = action.payload;
         }
+
     },
     extraReducers(builder) {
         builder
@@ -66,10 +97,20 @@ const partSlice = createSlice({
                 state.isLoaded = false;
                 state.error = action.error.message;
             })
+            .addCase(addingPartThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(addingPartThunk.fulfilled, (state, action) => {
+                state.parts = action.payload.data;
+                state.isLoaded = true;
+            })
+            .addCase(addingPartThunk.rejected, (state, action) => {
+                state.error = action.error.message;
+            })
     }
 
 })
 
-export const { changeModalVisibility } = partSlice.actions;
+export const { changeModalVisibility, changeAddingPartToDatabaseVisibility, setPartDetails } = partSlice.actions;
 export default partSlice.reducer;
 

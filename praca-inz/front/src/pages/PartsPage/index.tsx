@@ -1,10 +1,11 @@
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {fetchPartsThunk, getAllParts, getIsAddingModalOpen} from "../../store/partSlice";
-import PartsTable from "./PartsTable";
+import PartsTable from "./PartTable/PartsTable";
 import styles from './PartsPage.module.scss';
 import Modal from '@mui/material/Modal';
-import AddingPartToOrderModal from "./AddingPartToOrderModal";
+import AddingPartToOrderModal from "./PartTable/AddingPartToOrderModal";
+import AddingPart from "./AddingPart";
 
 const PartsPage = () => {
 
@@ -28,8 +29,9 @@ const PartsPage = () => {
     console.log('ISOPEN', isOpen);
     return(
         <div className={styles.wrapper}>
-            <h1>Dostępne części na portalu</h1>
-            <h3>Kliknij przycisk aby dodać czesc do zamowienia</h3>
+
+
+            <AddingPart partsLength={parts?.length}/>
             <PartsTable rows={rows}/>
             <AddingPartToOrderModal />
 

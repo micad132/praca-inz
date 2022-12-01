@@ -1,6 +1,6 @@
 import {DataGrid, GridColDef, GridRowsProp} from '@mui/x-data-grid';
 import Button from '@mui/material/Button';
-import styles from './PartsPage.module.scss';
+import styles from '../PartsPage.module.scss';
 import AddingPartButton from "./AddingPartButton";
 
 const rows: GridRowsProp = [
@@ -37,12 +37,14 @@ const PartsTable = ({rows} : Props) => {
         {
             field: 'col4',
             headerName: 'Dodaj',
-            renderCell: (params) => <AddingPartButton id={params.row.id} />,
+            renderCell: (params) => <AddingPartButton id={params.row.id} partName={params.row.col2} partPrice={params.row.col3} />,
         },
     ];
 
     return(
         <section className={styles.tableWrapper}>
+            <h1>Dostępne części na portalu</h1>
+            <h3>Kliknij przycisk aby dodać czesc do zamowienia</h3>
             <DataGrid rows={rows} columns={columns} />
         </section>
     )

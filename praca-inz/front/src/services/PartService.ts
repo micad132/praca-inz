@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {URL} from '../utils/GlobalVariables';
+import { URL } from '../utils/GlobalVariables';
+import { PartDetails } from "../store/partSlice";
 
 
 export type PartType = {
@@ -13,6 +14,16 @@ const PartService = {
         const res = await axios.get(`${URL}/part/getAllParts`)
         return res.data;
     },
+
+    addPart: async (partData : PartDetails ) => {
+        return axios({
+            method: 'POST',
+            url: `${URL}/part/addPart`,
+            data: partData,
+            headers: {
+            }
+        })
+    }
 
 }
 

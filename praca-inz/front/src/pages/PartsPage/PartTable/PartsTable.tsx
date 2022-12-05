@@ -22,30 +22,37 @@ const PartsTable = ({rows} : Props) => {
         {
             field: 'col1',
             headerName: 'ID',
-            width: 150
+            maxWidth: 200,
+
         },
         {
             field: 'col2',
             headerName: 'Nazwa',
-            width: 150
+            maxWidth: 200,
         },
         {
             field: 'col3',
             headerName: 'Cena',
-            width: 150
+            maxWidth: 200,
         },
         {
             field: 'col4',
             headerName: 'Dodaj',
+            maxWidth: 200,
             renderCell: (params) => <AddingPartButton id={params.row.id} partName={params.row.col2} partPrice={params.row.col3} />,
         },
     ];
 
+    const tableStyles = {
+        maxWidth: '1000px',
+        margin: '0 auto',
+    }
+
     return(
         <section className={styles.tableWrapper}>
-            <h1>Dostępne części na portalu</h1>
+            <h1>Dostępne części na portalu ({rows.length})</h1>
             <h3>Kliknij przycisk aby dodać czesc do zamowienia</h3>
-            <DataGrid rows={rows} columns={columns} />
+            <DataGrid rows={rows} columns={columns} sx={tableStyles} />
         </section>
     )
 }

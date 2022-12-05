@@ -1,11 +1,13 @@
 import axios from 'axios';
 import {URL} from '../utils/GlobalVariables';
+import {PartType} from "./PartService";
 
 
 export type OrderType = {
     orderId: number,
     orderDate: string,
     userNick: string,
+    partModelDTO: PartType
 }
 
 const OrderService = {

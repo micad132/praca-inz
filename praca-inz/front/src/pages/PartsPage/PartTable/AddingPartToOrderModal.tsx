@@ -44,7 +44,7 @@ const AddingPartToOrderModal = () => {
 
     return (
 
-        <div style={{width: '300px', height: '300px'}}>
+        <div style={{width: '300px', height: '300px', marginTop: '50px'}}>
             <Modal
                 open={isOpen}
                 onClose={() => dispatch(changeModalVisibility(false))}

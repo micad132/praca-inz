@@ -30,11 +30,9 @@ const PartsPage = () => {
     return(
         <div className={styles.wrapper}>
 
-
-            <AddingPart partsLength={parts?.length}/>
             <PartsTable rows={rows}/>
+            <AddingPart partsLength={parts?.length}/>
             <AddingPartToOrderModal />
-
         </div>
     )
 }

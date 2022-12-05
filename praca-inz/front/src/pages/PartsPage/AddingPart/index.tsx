@@ -1,6 +1,6 @@
 import AddingPartModal from "./AddingPartModal";
 import AddingPartInfo from "./AddingPartInfo";
-
+import styles from '../PartsPage.module.scss';
 
 interface Props {
     partsLength: number;
@@ -9,10 +9,10 @@ interface Props {
 const AddingPart = ({partsLength} : Props) => {
 
     return(
-        <>
-            <AddingPartInfo partsLength={partsLength} />
+        <div className={styles.addingPartWrapper}>
+            <AddingPartInfo />
             <AddingPartModal />
-        </>
+        </div>
     )
 }
 

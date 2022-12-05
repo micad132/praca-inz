@@ -1,0 +1,65 @@
+
+.wrapper{
+  border: 2px solid red;
+  max-width: 1400px;
+  margin: 20px auto 0 auto;
+
+  h1{
+    text-align: center;
+  }
+
+  .singleOrderWrapper{
+    padding: 10px 0;
+    border: 2px solid black;
+    max-width: 800px;
+    margin: 20px auto;
+    position: relative;
+
+    span{
+      font-weight: bold;
+    }
+
+    h3{
+      text-align: center;
+    }
+
+
+    .bookmarkIcon{
+      position: absolute;
+      top: 30px;
+      left: 30px;
+      transform: scale(2);
+    }
+
+    .deletingIcon{
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      transform: scale(1.5);
+    }
+    .orderMainInfo{
+      text-align: center;
+    }
+
+    .orderPartInfo{
+      max-width: 400px;
+      margin: 20px auto;
+      background-color: rgb(25, 103, 248);
+      color: #fff;
+      border-radius: 5px;
+      padding: 3px;
+
+      .partName{
+        text-align: center;
+      }
+
+      .partDetails{
+        margin: 0 auto;
+        max-width: 200px;
+        display: flex;
+        justify-content: space-evenly;
+        padding: 3px;
+      }
+    }
+  }
+}

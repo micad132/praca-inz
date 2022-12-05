@@ -4,6 +4,7 @@ import Commercial from "./Commercial";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {fetchCommercialsThunk, getAllCommercials,} from "../../store/commercialSlice";
 import {useEffect} from "react";
+import Button from "@mui/material/Button";
 
 const Commercials = () => {
 
@@ -16,10 +17,17 @@ const Commercials = () => {
     const commercialList = commercials.map(commercial =>
         <Commercial key={commercial.id} id={commercial.carModelId} src={commercial.imageName} header={commercial.name}/>
     );
+    const commercialsContent = commercials.length > 0
+        ? commercialList
+        : <div>
+            <h3>Nie ma reklam</h3>
+            <Button variant="contained">Kliknij aby dodac</Button>
+          </div>
+
     return(
         <div className={styles.wrapper}>
             <h2>Panel reklam:</h2>
-            {commercialList}
+            {commercialsContent}
         </div>
 
     )

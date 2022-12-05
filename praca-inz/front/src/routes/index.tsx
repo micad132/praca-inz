@@ -6,7 +6,7 @@ import Home from "../pages/Home/Home";
 import NewsPage from "../pages/NewsPage";
 import PartsPage from "../pages/PartsPage";
 import DealersPage from "../pages/DealersPage";
-import ConfigurationPage from "../pages/ConfigurationPage";
+import ConfigurationPage from "../pages/OrdersPage";
 import ProfilePage from "../pages/ProfilePage";
 import CommercialsPage from "../pages/ProfilePage/CommercialsPage";
 import AccountSettings from "../pages/ProfilePage/AccountSettings";

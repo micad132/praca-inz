@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -16,6 +17,8 @@ public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder encoder;
+
+    private final UserMapper userMapper;
 
     public void registerUser(UserModel userModel){
         userModel.setPassword(encoder.encode(userModel.getPassword()));
@@ -37,8 +40,19 @@ public class UserService implements UserDetailsService {
 
     }
 
+    public void updateUserRole(Long id, String role){
+        UserModel userModel = userRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Error"));
+        userModel.setRole(UserRole.valueOf(role));
+        userRepository.save(userModel);
+    }
+
     public List<UserModel> getAllUsers(){
         return userRepository.findAll();
+    }
+
+    public List<UserDTO> getAllUsersDTO() {
+        List <UserModel> userModels = userRepository.findAll();
+        return userModels.stream().map(userMapper::mapEntityToDTO).collect(Collectors.toList());
     }
 
     public void deleteUserById(Long id){
@@ -51,12 +65,12 @@ public class UserService implements UserDetailsService {
     }
 
     public UserDTO convertUserToUserDTO(UserModel userModel){
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(userModel.getId());
-        userDTO.setName(userModel.getName());
-        userDTO.setCityName(userModel.getCityName());
-        userDTO.setPostalCode(userModel.getPostalCode());
-        return userDTO;
+//        UserDTO userDTO = new UserDTO();
+//        userDTO.setId(userModel.getId());
+//        userDTO.setName(userModel.getName());
+//        userDTO.setCityName(userModel.getCityName());
+//        userDTO.setPostalCode(userModel.getPostalCode());
+        return userMapper.mapEntityToDTO(userModel);
     }
 
     public UserModel getUserById(Long id){

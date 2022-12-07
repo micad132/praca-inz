@@ -3,6 +3,30 @@ import {RegisterValuesTypes} from "../utils/types/AuthorizationTypes";
 import {URL} from "../utils/GlobalVariables";
 import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
 
+
+export type UserDTOType = {
+    id: number,
+    name: string,
+    cityName: string,
+    postalCode: string,
+    userRole: string
+}
+
+export type UserType = {
+    id: number,
+    name: string,
+    email: string,
+    password: string,
+    cityName: string,
+    postalCode: string,
+    role: string
+}
+
+export type UpdateUserRoleType = {
+    id: number,
+    role: string
+}
+
 const RegisterService = {
 
     addUser: async (user : RegisterValuesTypes) => {
@@ -16,11 +40,15 @@ const RegisterService = {
         })
     },
 
-    getUsers: async () => {
+    getAllUsers: async () => {
         const res = await axios.get(`${URL}/user/getAllUsers`)
         return res.data;
     },
 
+    getAllUsersDTO: async () => {
+        const res = await axios.get(`${URL}/user/getAllUsersDTO`)
+        return res.data;
+    },
     getLoggedUser: async () => {
         const res = await axios.get(`${URL}/user/getLoggedUser`)
         return res.data;
@@ -44,6 +72,12 @@ const RegisterService = {
         });
     },
 
+    updateUserRole: async ({id,role} : UpdateUserRoleType)  => {
+        await axios({
+            method: 'put',
+            url: `${URL}/user/updateUserRole/${id}/${role}`
+        });
+    },
     getUpdatedUser: async () => {
         const res = await axios.get(`${URL}/user/getUserById`)
         return res.data;

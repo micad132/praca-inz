@@ -62,6 +62,11 @@ public class UserController {
         return userService.getAllUsers();
     }
 
+    @GetMapping("/getAllUsersDTO")
+    public List<UserDTO> getAllUsersDTO() {
+        return userService.getAllUsersDTO();
+    }
+
     @GetMapping("/getUserById")
     public UserModel getUserById(Authentication authentication){
         UserModel loggedUser = Optional.ofNullable(authentication)
@@ -74,5 +79,10 @@ public class UserController {
             return new UserModel();
         }
         return userService.getUserById(loggedUser.getId());
+    }
+
+    @PutMapping("/updateUserRole/{id}/{role}")
+    public void updateUserRole(@PathVariable("id") Long id ,@PathVariable("role") String role){
+            userService.updateUserRole(id,role);
     }
 }

@@ -1,9 +1,26 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
-import RegisterService from "../services/RegisterService";
+import RegisterService, {UpdateUserRoleType, UserDTOType, UserType} from "../services/RegisterService";
 import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
 import {RootState} from "./index";
 
-const initialState = {
+
+interface UserInitialStateType {
+    userDetailsDTO: UserDTOType,
+    allUsersDetailsDTO: UserDTOType[],
+    userRole: UserType,
+    isLoaded: boolean
+}
+
+const initialState : UserInitialStateType = {
+
+    userDetailsDTO: {
+        id: 1,
+        name: '',
+        cityName: '',
+        postalCode: '',
+        userRole: 'USER'
+    },
+    allUsersDetailsDTO: [],
     userRole: {
         id: 1,
         name: '',
@@ -12,12 +29,6 @@ const initialState = {
         cityName: '',
         postalCode: '',
         role: 'USER'
-    },
-    userDetailsDTO: {
-        id: 1,
-        name: '',
-        cityName: '',
-        postalCode: '',
     },
     isLoaded: false
 }
@@ -76,10 +87,37 @@ export const fetchUpdatedUser = createAsyncThunk(
 }
 )
 
+
+export const fetchAllUsersDTOThunk = createAsyncThunk(
+    'user/getAllUsers',
+    async () => {
+        try {
+            const data = await RegisterService.getAllUsersDTO();
+            return { data }
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const updateUserRoleThunk = createAsyncThunk(
+    'user/updateUserRole',
+    async (newData : UpdateUserRoleType) => {
+        try {
+            await RegisterService.updateUserRole(newData);
+            const data = await RegisterService.getAllUsersDTO();
+            return { data }
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserRole = (state : any) => state.user.userRole.role;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
 export const getLoggedUserNickname = (state : RootState) => state.user.userRole.name;
+export const getAllUsers = (state: RootState) => state.user.allUsersDetailsDTO;
 
 const userSlice = createSlice({
     name: 'user',
@@ -121,6 +159,15 @@ const userSlice = createSlice({
             .addCase(updateUserDetailsThunk.rejected, (state, action) => {
                 state.isLoaded = false;
                 state.userDetailsDTO = initialState.userDetailsDTO;
+            })
+            .addCase(fetchAllUsersDTOThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(fetchAllUsersDTOThunk.fulfilled, (state, action) => {
+                state.allUsersDetailsDTO = action.payload.data;
+                state.isLoaded = true;
+            })
+            .addCase(fetchAllUsersDTOThunk.rejected, (state, action) => {
             })
     }
 

@@ -33,10 +33,16 @@ const ProfilePageButtons = ({role} : Props) => {
 
              </>}
             {isModerator &&
-                <Button
+                <ButtonWrapper>
+                    <Button
+                        variant="contained"
+                        onClick={()=> navigate("/profile/reviews",{replace: true})}
+                    >Zarzadzaj komentarzami</Button>
+                    <Button
                     variant="contained"
-                    onClick={()=> navigate("/profile/reviews",{replace: true})}
-                >Zarzadzaj komentarzami</Button>
+                    onClick={()=> navigate("/profile/users",{replace: true})}
+                    >Zarzadzaj uzytkownikami</Button>
+                </ButtonWrapper>
             }
 
         </ButtonWrapper>

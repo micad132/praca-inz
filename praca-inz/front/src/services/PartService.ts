@@ -4,7 +4,7 @@ import { PartDetails } from "../store/partSlice";
 
 
 export type PartType = {
-    partId: string,
+    partId: number,
     partName: string,
     partPrice: number
 }
@@ -15,6 +15,10 @@ const PartService = {
         return res.data;
     },
 
+    deletePart: async (id : number) => {
+        return await  axios.delete(`${URL}/part/deletePart/${id}`)
+    },
+
     addPart: async (partData : PartDetails ) => {
         return axios({
             method: 'POST',
@@ -22,6 +26,14 @@ const PartService = {
             data: partData,
             headers: {
             }
+        })
+    },
+
+    updatePart: async (newData: PartType) => {
+        return axios({
+            method: 'PUT',
+            url: `${URL}/part/updatePart`,
+            data: newData,
         })
     }
 

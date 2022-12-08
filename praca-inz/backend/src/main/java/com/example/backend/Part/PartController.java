@@ -19,6 +19,17 @@ public class PartController {
         return ResponseEntity.ok("Successfully added");
     }
 
+    @DeleteMapping("/deletePart/{id}")
+    public void deletePart(@PathVariable ("id") Long id){
+        partService.deletePart(id);
+    }
+
+    @PutMapping("/updatePart")
+    public ResponseEntity<String> updatePart(@RequestBody PartModelDTO partModelDTO){
+        partService.updatePart(partModelDTO);
+        return ResponseEntity.ok("Successfully updated!");
+    }
+
     @GetMapping("/getAllParts")
     public ResponseEntity<List<PartModelDTO>> getAllParts(){
         return ResponseEntity.ok(partService.getAllParts());

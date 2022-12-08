@@ -56,6 +56,31 @@ export const addingPartThunk = createAsyncThunk(
     }
 )
 
+export const deletingPartThunk = createAsyncThunk(
+    'parts/deletePart',
+    async (id : number) => {
+        try {
+            await PartService.deletePart(id);
+            const data = await PartService.getAllParts();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const updatePartThunk = createAsyncThunk(
+    'part/updatePart',
+    async (newData : PartType ) => {
+        try {
+            await PartService.updatePart(newData);
+            const data = await PartService.getAllParts();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
 
 export const PartThunk = {
     fetchPartsThunk: fetchPartsThunk
@@ -106,6 +131,18 @@ const partSlice = createSlice({
             })
             .addCase(addingPartThunk.rejected, (state, action) => {
                 state.error = action.error.message;
+            })
+            .addCase(deletingPartThunk.pending, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(deletingPartThunk.fulfilled, (state, action) => {
+                state.parts = action.payload.data;
+            })
+            .addCase(deletingPartThunk.rejected, (state, action) => {
+                state.isLoaded = false;
+            })
+            .addCase(updatePartThunk.fulfilled, (state, action) => {
+                state.parts = action.payload.data;
             })
     }
 

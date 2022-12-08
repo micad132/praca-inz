@@ -4,7 +4,7 @@ import {fetchPartsThunk, getAllParts, getIsAddingModalOpen} from "../../store/pa
 import PartsTable from "./PartTable/PartsTable";
 import styles from './PartsPage.module.scss';
 import Modal from '@mui/material/Modal';
-import AddingPartToOrderModal from "./PartTable/AddingPartToOrderModal";
+import PartActionModal from "./PartTable/PartActionModal";
 import AddingPart from "./AddingPart";
 
 const PartsPage = () => {
@@ -32,7 +32,6 @@ const PartsPage = () => {
 
             <PartsTable rows={rows}/>
             <AddingPart partsLength={parts?.length}/>
-            <AddingPartToOrderModal />
         </div>
     )
 }

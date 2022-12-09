@@ -11,6 +11,7 @@ import InputLabel from '@mui/material/InputLabel';
 import {getLoggedUserNickname} from "../../../store/userSlice";
 import {addOrderThunk, getPartId} from "../../../store/orderSlice";
 import TextField from "@mui/material/TextField";
+import {toast} from "react-toastify";
 
 interface AddingPartType {
     partName: string,
@@ -58,13 +59,26 @@ const PartActionModal = ({isShow,setIsShowModal, partDetails, isAddingAction} : 
     const submitForm = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // dispatch(changeModalVisibility(false));
+        let toastMsg = '';
         if(isAddingAction){
-            dispatch(addOrderThunk(id));
+            toastMsg = 'Dodano zamowienie'
+            const data = {partId: id, partAmount: Number(amount)}
+            dispatch(addOrderThunk(data));
         } else {
+            toastMsg = 'Edytowano czesc'
             const data = {partId: id, partName: partValues.partName, partPrice: partValues.partPrice};
             dispatch(updatePartThunk(data));
         }
-
+        toast.success(toastMsg, {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setIsShowModal(false);
         console.log('dziala');
     }
 

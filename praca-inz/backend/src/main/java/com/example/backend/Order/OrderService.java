@@ -22,13 +22,15 @@ public class OrderService {
 
     private final OrderMapper orderMapper;
 
-    public void addOrder(Long id, UserWrapper userWrapper){
+    public void addOrder(Long id, UserWrapper userWrapper, Integer partAmount){
 
         PartModel partModel = partRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("error"));
         OrderModel orderModel = new OrderModel();
         orderModel.setPartModel(partModel);
         orderModel.setOrderDate(Timestamp.from(Instant.now()));
         orderModel.setUserModel(userWrapper.getUserModel());
+        orderModel.setPartAmount(partAmount);
+        orderModel.setTotalPrice(partAmount * partModel.getPrice());
         orderRepository.save(orderModel);
     }
 
@@ -36,5 +38,10 @@ public class OrderService {
 
         List<OrderModel> orderModels = orderRepository.findAll();
         return orderModels.stream().map(orderMapper::mapEntityToDTO).collect(Collectors.toList());
+    }
+
+    public void deleteOrder(Long id){
+        OrderModel orderModel = orderRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Not found"));
+        orderRepository.delete(orderModel);
     }
 }

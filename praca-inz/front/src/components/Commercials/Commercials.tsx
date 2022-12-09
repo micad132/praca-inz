@@ -15,7 +15,7 @@ const Commercials = () => {
 
     const commercials = useAppSelector(getAllCommercials);
     const commercialList = commercials.map(commercial =>
-        <Commercial key={commercial.id} id={commercial.carModelId} src={commercial.imageName} header={commercial.name}/>
+        <Commercial key={commercial.commercialId} id={commercial.carModelId} src={commercial.imageName} header={commercial.name}/>
     );
     const commercialsContent = commercials.length > 0
         ? commercialList

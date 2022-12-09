@@ -31,12 +31,21 @@
       transform: scale(2);
     }
 
-    .deletingIcon{
+    .icons{
       position: absolute;
       top: 30px;
       right: 30px;
-      transform: scale(1.5);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-width: 70px;
+
+      > * {
+        transform: scale(1.5);
+        cursor: pointer;
+      }
     }
+
     .orderMainInfo{
       text-align: center;
     }

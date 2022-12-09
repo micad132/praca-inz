@@ -1,7 +1,7 @@
 import {createSlice, createAsyncThunk, PayloadAction} from "@reduxjs/toolkit";
 import { RootState } from "./index";
 import PartService, { PartType } from "../services/PartService";
-import OrderService, {OrderType} from "../services/OrderService";
+import OrderService, {AddingOrderType, OrderType} from "../services/OrderService";
 
 
 export interface PartState {
@@ -37,9 +37,22 @@ export const fetchOrdersThunk = createAsyncThunk(
 
 export const addOrderThunk = createAsyncThunk(
     "orders/addOrder",
-    async (id : number) => {
+    async (data: AddingOrderType) => {
         try{
-            await OrderService.addOrder(id);
+            await OrderService.addOrder(data);
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const deletingOrderThunk = createAsyncThunk(
+    "orders/deleteOrder",
+    async (id: number) => {
+        try {
+            await OrderService.deleteOrder(id);
+            const data = await OrderService.getAllOrders();
+            return { data }
         } catch (e) {
             throw e;
         }
@@ -76,6 +89,9 @@ const orderSlice = createSlice({
             .addCase(fetchOrdersThunk.rejected, (state, action) => {
                 state.isLoaded = false;
                 state.error = action.error.message;
+            })
+            .addCase(deletingOrderThunk.fulfilled, (state, action) => {
+                state.orders = action.payload.data;
             })
     }
 

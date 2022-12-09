@@ -12,6 +12,7 @@ import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
 import {getAllCarModels} from "../../../store/carModelSlice";
 import CommercialService from "../../../services/CommercialService";
 import {addCommercialThunk} from "../../../store/commercialSlice";
+import {toast} from "react-toastify";
 
 
 const style = {
@@ -45,6 +46,15 @@ const AddingCommercialModal = () => {
     const addCommercial = async (e : any) => {
         e.preventDefault();
         dispatch(addCommercialThunk({id: idForCommercial, name: commercialName}));
+        toast.success('Dodano reklame!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         setIsOpen(false);
     }
 

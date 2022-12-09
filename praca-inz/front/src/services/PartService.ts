@@ -6,7 +6,7 @@ import { PartDetails } from "../store/partSlice";
 export type PartType = {
     partId: number,
     partName: string,
-    partPrice: number
+    partPrice: number,
 }
 
 const PartService = {

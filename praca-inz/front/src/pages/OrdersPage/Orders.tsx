@@ -13,7 +13,9 @@ const Orders = ({orders} : Props) => {
     const ordersMapped = orders.map( order => (
         <SingleOrder
             id={order.orderId} key={order.orderId} orderDate={order.orderDate}
-            userNick={order.userNick} partName={order.partModelDTO.partName} partPrice={order.partModelDTO.partPrice}
+            userNick={order.userNick} partName={order.partModelDTO.partName}
+            partPrice={order.partModelDTO.partPrice} partAmount={order.partAmount}
+            totalPrice={order.totalPrice}
         />
     ));
 

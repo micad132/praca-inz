@@ -13,6 +13,8 @@ public class OrderDTO {
     private Long orderId;
     private Timestamp orderDate;
     private String userNick;
+    private Integer partAmount;
+    private Double totalPrice;
     private PartModelDTO partModelDTO;
 
 }

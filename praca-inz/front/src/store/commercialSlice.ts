@@ -36,6 +36,7 @@ export const deleteCommercialThunk = createAsyncThunk(
     "commercial/deleteCommercial",
     async (commercialId : number) => {
         try{
+            console.log('COMMERCIAL ID');
             await CommercialService.deleteCommercial(commercialId);
             const data = await CommercialService.getAllCommercials();
             return { data };

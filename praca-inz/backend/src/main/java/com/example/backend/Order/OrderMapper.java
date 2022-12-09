@@ -14,6 +14,7 @@ public class OrderMapper {
         return OrderModel.builder()
                 .id(orderDTO.getOrderId())
                 .orderDate(orderDTO.getOrderDate())
+                .partAmount(orderDTO.getPartAmount())
                 .partModel(partMapper.mapDTOToEntity(orderDTO.getPartModelDTO()))
                 .build();
     }
@@ -24,6 +25,8 @@ public class OrderMapper {
                 .orderDate(orderModel.getOrderDate())
                 .partModelDTO(partMapper.mapEntityToDTO(orderModel.getPartModel()))
                 .userNick(orderModel.getUserModel().getName())
+                .partAmount(orderModel.getPartAmount())
+                .totalPrice(orderModel.getTotalPrice())
                 .build();
     }
 }

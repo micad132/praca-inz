@@ -35,4 +35,10 @@ public class OrderModel {
     @JoinColumn(name = "part_model_id")
     private PartModel partModel;
 
+    @Column(name = "part_amount", nullable = false)
+    private Integer partAmount;
+
+    @Column(name = "total_price")
+    private Double totalPrice;
+
 }

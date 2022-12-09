@@ -46,11 +46,12 @@ interface Props  {
 const CommercialsList = ({commercials} : Props) => {
 
 
+    console.log('COMMERCIALS',commercials);
     return(
 
             <section className={styles.previewWrapper}>
                 {commercials.map(commercial =>
-                    <CommercialPreview key={commercial.id} id={commercial.id} imgSrc={`${fetchingImagesURL}/${commercial.imageName}`} title={commercial.name} />
+                    <CommercialPreview key={commercial.commercialId} commercialId={commercial.commercialId} imgSrc={`${fetchingImagesURL}/${commercial.imageName}`} title={commercial.name} />
                 )}
             </section>
     )

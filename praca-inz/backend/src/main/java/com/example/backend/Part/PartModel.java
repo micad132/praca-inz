@@ -30,5 +30,4 @@ public class PartModel {
     @Column(name = "price", nullable = false)
     private Double price;
 
-
 }

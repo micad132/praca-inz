@@ -18,21 +18,27 @@ public class OrderController {
 
     private OrderService orderService;
 
-    @PostMapping("/addOrder/{id}")
-    public ResponseEntity<String> addOrder(@PathVariable Long id, Authentication authentication){
+    @PostMapping("/addOrder/{id}/{partAmount}")
+    public ResponseEntity<String> addOrder(@PathVariable Long id, Authentication authentication, @PathVariable ("partAmount") Integer partAmount){
 
         UserWrapper loggedUser = Optional.ofNullable(authentication)
                 .filter(f -> f.getPrincipal() instanceof UserWrapper)
                 .map(Authentication::getPrincipal)
                 .map(UserWrapper.class::cast)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request"));
-        orderService.addOrder(id, loggedUser);
+        orderService.addOrder(id, loggedUser,partAmount);
         return ResponseEntity.ok("Successfully added");
     }
 
     @GetMapping("/getAllOrders")
     public ResponseEntity<List<OrderDTO>> getAllOrders(){
         return ResponseEntity.ok(orderService.getAllOrders());
+    }
+
+    @DeleteMapping("/deleteOrder/{id}")
+    public ResponseEntity<String> deleteOrder(@PathVariable ("id") Long id){
+        orderService.deleteOrder(id);
+        return ResponseEntity.ok("Successfully deleted");
     }
 
 }

@@ -5,7 +5,7 @@ import PartService, { PartType } from "../services/PartService";
 
 export interface PartDetails {
     partName: string,
-    partPrice: number
+    partPrice: number,
 }
 
 export interface PartState {

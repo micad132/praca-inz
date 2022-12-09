@@ -3,7 +3,7 @@ import {URL} from '../utils/GlobalVariables';
 import {CarModelType} from "./CarModelService";
 
 export type CommercialType = {
-    id: number
+    commercialId: number
     name: string,
     description: string,
     carModelId: number,

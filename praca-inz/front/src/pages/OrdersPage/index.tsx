@@ -8,12 +8,13 @@ const ConfigurationPage = () => {
 
 
     const dispatch = useAppDispatch();
-    const orders = useAppSelector(getAllOrders);
-    console.log('ZAMOWIENIA', orders);
+
     useEffect(() => {
         dispatch(fetchOrdersThunk());
     }, [dispatch]);
 
+    const orders = useAppSelector(getAllOrders);
+    console.log('ZAMOWIENIA', orders);
     return(
         <div className={styles.wrapper}>
             <h1>Wszystkie zamowienia ({orders?.length})</h1>

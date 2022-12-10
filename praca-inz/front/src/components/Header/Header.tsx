@@ -5,10 +5,12 @@ import Button from "@mui/material/Button";
 import {useNavigate} from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
+import HelpIcon from '@mui/icons-material/Help';
 import {useState, useRef} from 'react';
 import {useClickAway} from 'react-use';
 import {useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUser} from "../../store/userSlice";
+import HelpModal from "./HelpModal";
 
 const Header = () => {
     let navigate = useNavigate();
@@ -16,6 +18,7 @@ const Header = () => {
     const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
     const [showHamburerMenu, setShowHamburgerMenu] = useState<boolean>(false);
     const [showAuthorInfo, setShowAuthorInfo] = useState<boolean>(false);
+    const [isShowHelpModal, setIsShowHelpModal] = useState<boolean>(false);
 
     const mobileNavRef = useRef(null);
 
@@ -47,20 +50,23 @@ const Header = () => {
                 </h3>}
 
                 {!showHamburerMenu && <nav className={styles.auth}>
-                    {!loggedUser ? <Button
+                    {!loggedUser
+                        ? <Button
                         className={styles.authButton}
                         variant="contained"
                         onClick={() => navigate("/login", {replace: true})}
-                    >
+                        >
                         Zaloguj się
-                    </Button> :
-                    <Button
-                        className={styles.authButton}
-                        variant="contained"
-                        onClick={() => window.location.replace("http://localhost:8080/logout")}
-                    >
-                        Wyloguj się
-                    </Button>}
+                        </Button>
+                        :
+                        <Button
+                            className={styles.authButton}
+                            variant="contained"
+                            onClick={() => window.location.replace("http://localhost:8080/logout")}
+                        >
+                            Wyloguj się
+                        </Button>
+                    }
                 </nav>}
                 {/*ikonka z profilem*/}
                 {showHamburerMenu && <MenuIcon onClick={() => setShowMobileNav(!showMobileNav)}/>}
@@ -87,14 +93,17 @@ const Header = () => {
                     </Button>
 
                 </nav>
-                {loggedUser && <AccountCircleIcon
+                {loggedUser &&
+                    <AccountCircleIcon
                     className={styles.icon}
                     onClick={() => navigate("/profile", {replace: true})}
 
-                />}
-
+                    />
+                }
+                <HelpIcon className={styles.icon} onClick={() => setIsShowHelpModal(true)}/>
             </div>
             <Nav/>
+            <HelpModal isShowHelpModal={isShowHelpModal} setIsShowHelpModal={setIsShowHelpModal}/>
         </header>
     );
 };

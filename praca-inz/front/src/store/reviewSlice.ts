@@ -66,6 +66,7 @@ export const updatingReview = createAsyncThunk(
     "review/updateReview",
     async ({id,isVulgar} : any) => {
         try{
+            console.log('Z REDUXA', isVulgar);
             await ReviewService.updateReview(id,isVulgar);
         } catch (e) {
             throw e;

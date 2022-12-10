@@ -18,30 +18,40 @@ const ProfilePageButtons = ({role} : Props) => {
             <Button
                 variant="contained"
                 onClick={()=> navigate("/profile/settings",{replace: true})}
-            >Zmien szczegoly konta</Button>
-            {isAdmin &&
+            >
+                Zmien szczegoly konta
+            </Button>
+            {isModerator &&
              <>
-                <Button
-                    variant="contained"
-                    onClick={()=> navigate("/profile/commercials",{replace: true})}
-                >Zarzadzaj reklamami</Button>
+                 <Button
+                     variant="contained"
+                     onClick={()=> navigate("/profile/users",{replace: true})}
+                 >
+                     Zarzadzaj uzytkownikami
+                 </Button>
                 <Button
                     variant="contained"
                     onClick={()=> navigate("/profile/carmodels",{replace: true})}
-                >Zarzadzaj modelami aut</Button>
+                >
+                    Zarzadzaj modelami aut
+                </Button>
 
 
              </>}
-            {isModerator &&
+            {isAdmin &&
                 <ButtonWrapper>
                     <Button
                         variant="contained"
                         onClick={()=> navigate("/profile/reviews",{replace: true})}
-                    >Zarzadzaj komentarzami</Button>
+                    >
+                        Zarzadzaj komentarzami
+                    </Button>
                     <Button
-                    variant="contained"
-                    onClick={()=> navigate("/profile/users",{replace: true})}
-                    >Zarzadzaj uzytkownikami</Button>
+                        variant="contained"
+                        onClick={()=> navigate("/profile/commercials",{replace: true})}
+                    >
+                        Zarzadzaj reklamami
+                    </Button>
                 </ButtonWrapper>
             }
 

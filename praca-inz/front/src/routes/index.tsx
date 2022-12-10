@@ -42,7 +42,7 @@ const routes = (
         <Route path="users" element={<ManageUsersPage />} />
     </Route>
     <Route path="/failed" element={<ErrorPage />} />
-    <Route path="/opinions" element={<Opinions />} />
+    <Route path="/opinions" element={<Opinions isAdminPanel={false}/>} />
   </Routes>
 );
 

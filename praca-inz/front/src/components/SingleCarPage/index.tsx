@@ -58,7 +58,8 @@ const SingleCarPage = () => {
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions opinions={opinions} carModelId={carId} isAddingAvailable={true} headerTitle={'Sekcja komentarzy'}/>
+            <Opinions opinions={opinions} carModelId={carId} isAddingAvailable={true}
+                      headerTitle={'Sekcja komentarzy'} isAdminPanel={false}/>
         </div>
     )
 }

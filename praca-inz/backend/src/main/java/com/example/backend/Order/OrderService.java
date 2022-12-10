@@ -34,6 +34,17 @@ public class OrderService {
         orderRepository.save(orderModel);
     }
 
+    public void editOrder(Long orderId, UserWrapper userWrapper, Integer partAmount, Long partId){
+        OrderModel orderModel = orderRepository.findById(orderId).orElseThrow(() -> new UsernameNotFoundException("not found"));
+        PartModel partModel = partRepository.findById(partId).orElseThrow(() -> new UsernameNotFoundException("error"));
+        orderModel.setPartModel(partModel);
+        orderModel.setUserModel(userWrapper.getUserModel());
+        orderModel.setPartAmount(partAmount);
+        orderModel.setOrderDate(Timestamp.from(Instant.now()));
+        orderModel.setTotalPrice(partAmount * partModel.getPrice());
+        orderRepository.save(orderModel);
+    }
+
     public List<OrderDTO> getAllOrders(){
 
         List<OrderModel> orderModels = orderRepository.findAll();

@@ -14,10 +14,11 @@ interface Props {
     opinions?: ReviewType[],
     carModelId?: string,
     isAddingAvailable?: boolean,
-    headerTitle?: string
+    headerTitle?: string,
+    isAdminPanel: boolean,
 }
 
-const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle}: Props) => {
+const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel}: Props) => {
 
     const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
     console.log(opinions);
@@ -43,8 +44,10 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle}: Props)
     const opinionsList = opinionsToMap
         ? opinionsToMap
             .map(opinion =>
-                <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick} isVulgar={opinion.isVulgar}
-                         rating={opinion.rate} description={opinion.description} date={opinion.date} isAdminPanel={false} isProperScreen={true} userRole={userRole} carName={opinion.carName} />)
+                <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick}
+                         isVulgar={opinion.isVulgar} rating={opinion.rate} description={opinion.description}
+                         date={opinion.date} isAdminPanel={isAdminPanel} isProperScreen={true}
+                         userRole={userRole} carName={opinion.carName} />)
         : <h4>Brak</h4>
 
     return(

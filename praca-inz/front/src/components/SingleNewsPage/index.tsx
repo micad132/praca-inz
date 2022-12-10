@@ -10,7 +10,7 @@ const SingleNewsPage = () => {
             <h1 className={styles.header}>Benzyna coraz droższa</h1>
             <SingleNewsPageInfo />
             <SimilarNews />
-            <Opinions headerTitle={'Lista komentarzy'} />
+            <Opinions headerTitle={'Lista komentarzy'} isAdminPanel={false} />
             {/*<OtherNews />*/}
         </section>
     )

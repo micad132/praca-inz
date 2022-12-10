@@ -13,13 +13,14 @@
   max-width: 300px;
 }
 
-  .opinion{
-    margin: 20px auto;
-    max-width: 800px;
-    border: 1px solid black;
-    border-radius: 5px;
-    display: flex;
-    padding: 20px;
+
+.iconsDiv{
+  padding: 5px;
+  min-width: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
     .opinionDetails{
       font-size: 17px;
@@ -51,7 +52,7 @@
     .formattedDate{
       padding-top: 5px;
     }
-  }
+
 
   .addingOpinionButton{
     width: 50%;
@@ -73,7 +74,7 @@
 
   .deletingIcon{
     cursor: pointer;
-    color: blue;
+    color: black;
     transform: scale(1.5);
   }
 

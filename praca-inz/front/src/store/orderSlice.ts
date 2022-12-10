@@ -8,7 +8,7 @@ export interface PartState {
     orders: OrderType[],
     partId: number,
     isLoaded: boolean,
-    error: string | undefined
+    error: string | undefined,
 }
 
 
@@ -59,11 +59,26 @@ export const deletingOrderThunk = createAsyncThunk(
     }
 )
 
+export const editingOrderThunk = createAsyncThunk(
+    'orders/editOrder',
+    async (newData : any) => {
+        try{
+            console.log('NEWDATA', newData);
+            await OrderService.editOrder(newData);
+            const data = await  OrderService.getAllOrders();
+            return { data }
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 
 
 export const getAllOrders = (state : RootState)  => state.orders.orders;
 export const getOrdersError = (state : RootState) => state.orders.error;
 export const getPartId = (state : RootState) => state.orders.partId;
+
 
 
 
@@ -74,7 +89,7 @@ const orderSlice = createSlice({
 
         setPartId(state, action: PayloadAction<number>) {
             state.partId = action.payload;
-        }
+        },
     },
     extraReducers(builder) {
         builder
@@ -91,6 +106,9 @@ const orderSlice = createSlice({
                 state.error = action.error.message;
             })
             .addCase(deletingOrderThunk.fulfilled, (state, action) => {
+                state.orders = action.payload.data;
+            })
+            .addCase(editingOrderThunk.fulfilled, (state, action) => {
                 state.orders = action.payload.data;
             })
     }

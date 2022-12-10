@@ -17,6 +17,12 @@ export type AddingOrderType = {
     partAmount: number
 }
 
+export type OrderEditType = {
+    orderId: number,
+    partAmount: string,
+    partId: number,
+}
+
 const OrderService = {
     getAllOrders: async () => {
         const res = await axios.get(`${URL}/order/getAllOrders`)
@@ -35,6 +41,14 @@ const OrderService = {
 
     deleteOrder: async (id: number) => {
         return await axios.delete(`${URL}/order/deleteOrder/${id}`)
+    },
+
+    editOrder: async (newData : OrderEditType) => {
+        const {orderId, partAmount, partId} = newData;
+        return axios({
+            method: 'put',
+            url: `${URL}/order/editOrder/${orderId}/${partAmount}/${partId}`
+        })
     }
 
 }

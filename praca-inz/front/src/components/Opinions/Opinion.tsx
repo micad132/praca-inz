@@ -6,6 +6,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import {toast} from "react-toastify";
 import {useAppDispatch} from "../../utils/types/hooks";
 import {deleteReviewById, updatingReview} from "../../store/reviewSlice";
+import {useState} from "react";
 
 interface Props {
     id: number
@@ -17,20 +18,31 @@ interface Props {
     isProperScreen: boolean,
     isAdminPanel : boolean,
     userRole?: string,
-    carName: string
+    carName: string,
 }
 
 const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, carName} : Props) => {
 
+    const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(isVulgar);
     console.log(nick);
+    console.log('PRZYCHODZI DO KOMPONENTU', isVulgar);
     const formattedDate = moment(date).format('MM/DD/YYYY');
     const formattedDateHours = moment(date).format('HH:mm');
     const dispatch = useAppDispatch();
 
 
     const showAddingToListInfo = () => {
-        const isVulgarChanged = !isVulgar;
-        toast.success('Dodano do listy niewłaściwych komentarzy!', {
+         const isVulgarChanged = !isVulgar;
+         console.log('ZMIANA NA', isVulgarChanged);
+        // console.log(isVulgarChanged);
+        // console.log('PRZED ZMIANA', isOpinionVulgar);
+        setIsOpinionVulgar((prevState) => !prevState);
+        // console.log('PO ZMIANIE', isOpinionVulgar);
+        // let isOpinionVulgar = !isVulgar;
+        const toastMsg = !isOpinionVulgar
+            ? 'Dodano do listy niewłaściwych komentarzy'
+            : 'Usunieto z listy niewlasciwych komentarzy';
+        toast.success(toastMsg, {
             position: "top-left",
             autoClose: 5000,
             hideProgressBar: false,
@@ -39,11 +51,20 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
             draggable: true,
             progress: undefined,
         });
-        dispatch(updatingReview({id: id, isVulgar: isVulgarChanged}));
+        console.log('PRZED WYSLANIEM', !isOpinionVulgar);
+        dispatch(updatingReview({id: id, isVulgar: !isOpinionVulgar}));
     }
 
     const deleteVulgarReview = () => {
-        console.log('siema');
+        toast.success('Usunieto reklame!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         dispatch(deleteReviewById(id));
     }
 
@@ -51,13 +72,34 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
     const showIcon = (isProperScreen || isAdminPanel) && userRole;
 
 
-    const showProperIcon = isAdminPanel ?
-        <DeleteIcon className={styles.deletingIcon} onClick={deleteVulgarReview} /> :
-        <PriorityHighIcon className={styles.badCommentIcon} onClick={showAddingToListInfo}/>
+    const opinionStyle = isOpinionVulgar
+        ? {
+            margin: '20px auto',
+            maxWidth: '800px',
+            border: '2px solid red',
+            borderRadius: '5px',
+            display: 'flex',
+            padding: '20px',
+        }
+        : {
+            margin: '20px auto',
+            maxWidth: '800px',
+            border: '1px solid black',
+            borderRadius: '5px',
+            display: 'flex',
+            padding: '20px',
+        }
+
+    const showProperIcon = isAdminPanel
+        ? <div className={styles.iconsDiv}>
+            <PriorityHighIcon className={styles.badCommentIcon} onClick={showAddingToListInfo}/>
+            <DeleteIcon className={styles.deletingIcon} onClick={deleteVulgarReview} />
+          </div>
+        : <PriorityHighIcon className={styles.badCommentIcon} onClick={showAddingToListInfo}/>
 
     return(
 
-            <div className={styles.opinion}>
+            <div style={opinionStyle}>
                 <div className={styles.opinionDetails}>
                     <h3>{nick}</h3>
                     <h5>Dla {carName}</h5>
@@ -71,9 +113,11 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
                 <div className={styles.opinionText}>
                     <p>{description}</p>
                 </div>
-                {showIcon && <div>
+                {showIcon &&
+                  <div>
                     {showProperIcon}
-                </div>}
+                  </div>
+                }
 
             </div>
     )

@@ -41,4 +41,17 @@ public class OrderController {
         return ResponseEntity.ok("Successfully deleted");
     }
 
+    @PutMapping("/editOrder/{orderId}/{partAmount}/{partId}")
+    public ResponseEntity<String> editOrder(@PathVariable ("orderId") Long orderId, Authentication authentication, @PathVariable ("partAmount") Integer partAmount,
+                                            @PathVariable ("partId") Long partId){
+
+        UserWrapper loggedUser = Optional.ofNullable(authentication)
+                .filter(f -> f.getPrincipal() instanceof UserWrapper)
+                .map(Authentication::getPrincipal)
+                .map(UserWrapper.class::cast)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request"));
+        orderService.editOrder(orderId,loggedUser,partAmount,partId);
+        return ResponseEntity.ok("Successfully edited!");
+    }
+
 }

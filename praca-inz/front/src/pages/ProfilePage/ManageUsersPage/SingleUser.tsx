@@ -7,6 +7,7 @@ import { useState } from "react";
 import styles from './ManageUsersPage.module.scss';
 import {useAppDispatch} from "../../../utils/types/hooks";
 import {updateUserRoleThunk} from "../../../store/userSlice";
+import {toast} from "react-toastify";
 
 interface Props {
     id: number,
@@ -30,7 +31,17 @@ const SingleUser = ({id,name,cityName,postalCode,userRole} : Props) => {
     const changeUserRole = () => {
         const data = {id,role}
         dispatch(updateUserRoleThunk(data))
+        toast.success('Rola zmieniona!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
         setIsShowButton(false);
+
     }
 
     return(

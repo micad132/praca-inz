@@ -1,6 +1,9 @@
 package com.example.backend.CarModel;
 
+import com.example.backend.Image.ImageModel;
+import com.example.backend.Image.ImageRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,9 +15,14 @@ public class CarService {
 
     private final CarModelRepository carModelRepository;
 
+    private final ImageRepository imageRepository;
+
     private final CarModelMapper carModelMapper;
 
-    public void addCarModel(CarModel carModel){
+    public void addCarModel(CarModelDTORequest carModelDTORequest){
+        ImageModel imageModel = imageRepository.findById(carModelDTORequest.imageId).orElseThrow(() -> new UsernameNotFoundException("not found"));
+        CarModel carModel = carModelMapper.mapDTORequestToEntity(carModelDTORequest);
+        carModel.setImageModel(imageModel);
         carModelRepository.save(carModel);
     }
 
@@ -31,5 +39,9 @@ public class CarService {
 
     public void deleteAllCarModels(){
         carModelRepository.deleteAll();
+    }
+
+    public void deleteCarModelById(Long id){
+        carModelRepository.deleteById(id);
     }
 }

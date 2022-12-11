@@ -14,7 +14,18 @@ export type CarModelType = {
     carBody: string,
     productionCountry: string,
     imageModel: ImageType
+}
 
+export type CarModelToAddType = {
+    name: string,
+    price: number,
+    rating: number | null,
+    description: string,
+    enginePower: number,
+    engineCapacity: number,
+    gearbox: string,
+    carBody: string,
+    productionCountry: string,
 }
 
 const CarModelService = {
@@ -31,6 +42,17 @@ const CarModelService = {
 
     addNewCommercial: async () => {
 
+    },
+
+    addCarModel: async (data : any) => {
+        console.log('DANE REDUX', data);
+        return axios({
+            method: 'POST',
+            url: `${URL}/car`,
+            data: data,
+            headers: {
+            }
+        })
     }
 }
 

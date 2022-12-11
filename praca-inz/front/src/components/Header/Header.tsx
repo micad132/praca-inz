@@ -100,7 +100,7 @@ const Header = () => {
 
                     />
                 }
-                <HelpIcon className={styles.icon} onClick={() => setIsShowHelpModal(true)}/>
+                <HelpIcon className={styles.icon} onClick={() => navigate("/help", { replace: true})}/>
             </div>
             <Nav/>
             <HelpModal isShowHelpModal={isShowHelpModal} setIsShowHelpModal={setIsShowHelpModal}/>

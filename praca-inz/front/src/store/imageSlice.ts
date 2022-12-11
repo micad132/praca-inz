@@ -6,13 +6,15 @@ import {RootState} from "./index";
 export interface ImageState {
     images: ImageType[],
     isLoaded: boolean,
-    error: string | undefined
+    error: string | undefined,
+    imageId: number,
 }
 
 const initialState : ImageState  = {
     images: [],
     isLoaded: false,
-    error: ''
+    error: '',
+    imageId: 1,
 }
 
 export const fetchImagesThunk = createAsyncThunk(
@@ -30,13 +32,28 @@ export const fetchImagesThunk = createAsyncThunk(
     }
 )
 
+export const addingImageThunk = createAsyncThunk(
+    'images/uploadImage',
+    async (newData : any) => {
+        try{
+            const imageData = await ImageService.addImage(newData);
+            console.log('DANE', imageData);
+            return { imageData };
+
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 
 export const getAllImages = (state : RootState)  => state.images.images;
 export const getImagesError = (state : RootState) => state.images.error;
+export const getImageToAddId = (state : RootState) => state.images.imageId;
 
 
 const imageSlice = createSlice({
-    name: 'images',
+    name: 'imagess',
     initialState,
     reducers: {},
     extraReducers(builder) {
@@ -52,6 +69,9 @@ const imageSlice = createSlice({
             .addCase(fetchImagesThunk.rejected, (state, action) => {
                 state.isLoaded = false;
                 state.error = action.error.message;
+            })
+            .addCase(addingImageThunk.fulfilled, (state, action) => {
+                state.images = action.payload.imageData;
             })
     }
 

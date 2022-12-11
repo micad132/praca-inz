@@ -1,6 +1,7 @@
 package com.example.backend.CarModel;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -13,8 +14,10 @@ public class CarModelController {
     private final CarService carService;
 
     @PostMapping
-    public void addCarModel(@RequestBody CarModel carModel){
-        carService.addCarModel(carModel);
+    public ResponseEntity<String> addCarModel(@RequestBody CarModelDTORequest carModelDTORequest){
+
+        carService.addCarModel(carModelDTORequest);
+        return ResponseEntity.ok("Successfully added");
     }
 
     @GetMapping("/getAllCarModels")
@@ -30,6 +33,12 @@ public class CarModelController {
     @DeleteMapping("/deleteAllCarModels")
     public void deleteAllCarModels(){
         carService.deleteAllCarModels();
+    }
+
+    @DeleteMapping("/deleteCarModelById/{id}")
+    public ResponseEntity<String> deleteCarModelById(@PathVariable ("id") Long id){
+        carService.deleteCarModelById(id);
+        return ResponseEntity.ok("Successfully deleted");
     }
 
 }

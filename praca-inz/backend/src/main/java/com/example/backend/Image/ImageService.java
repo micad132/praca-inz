@@ -18,12 +18,13 @@ public class ImageService {
         imageRepository.save(imageModel);
     }
 
-    public void addImage(MultipartFile file) throws IOException {
-        imageRepository.save(ImageModel.builder()
-                .name(file.getOriginalFilename())
-                .type(file.getContentType())
-                .image(ImageUtility.compressImage(file.getBytes())).build());
-    }
+//    public void addImage(ImageModel imageModel) throws IOException {
+////        imageRepository.save(ImageModel.builder()
+////                .name(file.getOriginalFilename())
+////                .type(file.getContentType())
+////                .image(ImageUtility.compressImage(file.getBytes())).build());
+//        imageRepository.save(imageModel);
+//    }
 
     public Optional<ImageModel> getImageByName(String name){
         return imageRepository.findByName(name);
@@ -35,5 +36,9 @@ public class ImageService {
 
     public void deleteAllImages(){
         imageRepository.deleteAll();
+    }
+
+    public void deleteImageById(Long id){
+        imageRepository.deleteById(id);
     }
 }

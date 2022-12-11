@@ -34,4 +34,18 @@ public class CarModelMapper {
                 .imageModel(carModel.getImageModel())
                 .build();
     }
+
+    public CarModel mapDTORequestToEntity(CarModelDTORequest carModelDTORequest){
+        return CarModel.builder()
+                .carBody(carModelDTORequest.getCarBody())
+                .description(carModelDTORequest.getDescription())
+                .engineCapacity(carModelDTORequest.getEngineCapacity())
+                .enginePower(carModelDTORequest.getEnginePower())
+                .gearbox(carModelDTORequest.getGearbox())
+                .name(carModelDTORequest.getName())
+                .price(carModelDTORequest.getPrice())
+                .productionCountry(carModelDTORequest.getProductionCountry())
+                .rating(carModelDTORequest.getRating())
+                .build();
+    }
 }

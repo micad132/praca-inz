@@ -17,6 +17,7 @@ import SingleCarPage from "../components/SingleCarPage";
 import ReviewPage from "../pages/ProfilePage/ReviewPage";
 import SingleNewsPage from "../components/SingleNewsPage";
 import ManageUsersPage from "../pages/ProfilePage/ManageUsersPage";
+import HelpPage from "../pages/HelpPage";
 
 const routes = (
   <Routes>
@@ -43,6 +44,7 @@ const routes = (
     </Route>
     <Route path="/failed" element={<ErrorPage />} />
     <Route path="/opinions" element={<Opinions isAdminPanel={false}/>} />
+    <Route path="/help" element={<HelpPage />} />
   </Routes>
 );
 

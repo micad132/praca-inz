@@ -17,14 +17,21 @@ public class ImageController {
 
     private final ImageService imageService;
 
+    private final ImageMapper imageMapper;
+
     @PostMapping
     public void addImage(@RequestBody ImageModel imageModel){
         imageService.addImage(imageModel);
     }
 
     @PostMapping("/upload/image")
-    public void addImage(@RequestParam("image") MultipartFile file) throws IOException {
-        imageService.addImage(file);
+    public ImageDTO addImage(@RequestParam("image") MultipartFile file) throws IOException {
+        ImageModel imageModel = new ImageModel();
+        imageModel.setName(file.getOriginalFilename());
+        imageModel.setType(file.getContentType());
+        imageModel.setImage(ImageUtility.compressImage(file.getBytes()));
+        imageService.addImage(imageModel);
+        return imageMapper.mapImageModelToDTO(imageModel);
     }
 
     @GetMapping(path = {"/get/image/{name}"})
@@ -46,6 +53,11 @@ public class ImageController {
     @DeleteMapping("/deleteAllImages")
     public void deleteAllImages(){
         imageService.deleteAllImages();
+    }
+
+    @DeleteMapping("/deleteImage/{id}")
+    public void deleteImageById(@PathVariable ("id") Long id){
+        imageService.deleteImageById(id);
     }
 
 

@@ -16,8 +16,13 @@ const ImageService = {
 
     },
 
-    addNewCommercial: async () => {
-
+    addImage: async (image : any) => {
+       const res =  await axios({
+            method: 'POST',
+            url: `${URL}/image/upload/image`,
+            data: image,
+        })
+        return res.data;
     }
 }
 

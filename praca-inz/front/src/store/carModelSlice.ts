@@ -58,6 +58,19 @@ export const fetchCarModelById = createAsyncThunk(
     }
 )
 
+export const addingCarModelThunk = createAsyncThunk(
+    'cars/addCarModel',
+    async (newData : any) => {
+        try{
+            await CarModelService.addCarModel(newData);
+            const data = await CarModelService.getAllCarModels();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const getAllCarModels = (state : RootState)  => state.carModels.carModels;
 export const getImagesError = (state : RootState) => state.carModels.error;
 export const getCarModelById = (state : RootState) => state.carModels.singleCarModel;
@@ -91,6 +104,12 @@ const carModelSlice = createSlice({
             })
             .addCase(fetchCarModelById.rejected, (state, action) => {
                 state.error = action.error.message;
+            })
+            .addCase(addingCarModelThunk.rejected, (state, action) => {
+
+            })
+            .addCase(addingCarModelThunk.fulfilled, (state, action) => {
+                state.carModels = action.payload.data;
             })
     }
 

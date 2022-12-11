@@ -15,8 +15,10 @@ const CarsPage = () => {
 
 
     return <section>
-        {isCarsLoaded ?
-        <CarList cars={cars}/> : <h1>huj</h1>}
+        {isCarsLoaded
+            ? <CarList cars={cars}/>
+            : <h1>Not loaded yet</h1>
+        }
     </section>
 };
 

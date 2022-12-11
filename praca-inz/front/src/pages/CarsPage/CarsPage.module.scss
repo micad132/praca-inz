@@ -32,3 +32,24 @@
     transform: scale(1.02);
   }
 }
+
+.addingCarModalForm{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+
+  .rating{
+    width: max-content;
+    margin: 0 auto;
+  }
+
+  .textArea{
+    padding: 12px 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    resize: none;
+  }
+}

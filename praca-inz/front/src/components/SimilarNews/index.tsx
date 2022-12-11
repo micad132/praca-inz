@@ -35,7 +35,7 @@ const SimilarNews = () => {
 
     return(
         <section className={styles.wrapper}>
-            <h3>Podobne Posty</h3>
+            <h3>Podobne posty tej samej kategorii</h3>
             <div className={styles.similarSingleNewsWrapper}>
                 {similarSingleNews}
             </div>

@@ -37,7 +37,23 @@ const Home = () => {
         dispatch(fetchUserDetailsThunk())
     }, [dispatch]);
     const userDetails = useAppSelector(getLoggedUser);
+    const carModels = useAppSelector(getAllCarModels);
     console.log('USER', userDetails);
+    console.log('AUTA HOMEPAGE', carModels);
+
+    const bestRatedCarModels = [...carModels]
+        .sort((a,b) => b.rating - a.rating)
+        .slice(0,3);
+
+    const carsToDisplay = bestRatedCarModels.map(car =>
+        (
+            {
+                title: car.name,
+                src: car.imageModel.name
+            }
+        ))
+
+    console.log(bestRatedCarModels);
     const loggedUser = userDetails ? `Jesteś zalogowany jako`  : 'Zaloguj sie aby w pełni skorzystać z portalu';
 
   return (
@@ -48,7 +64,7 @@ const Home = () => {
         </div>
         <InfoWrapper title='Informacje z Polski' details={polandInfo}  />
         <InfoWrapper title='Informacje ze Świata' details={polandInfo} />
-        <InfoWrapper title='Najnowsze samochody' details={polandInfo} />
+        <InfoWrapper title='Najlepiej oceniane samochody' details={carsToDisplay} />
       </>
   );
 };

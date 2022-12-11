@@ -1,6 +1,7 @@
 import styles from './InfoWrapper.module.scss';
 import {PolandInfoType} from "../../pages/Home/Home";
 import {useNavigate} from "react-router-dom";
+import {fetchingImagesURL} from "../../utils/GlobalVariables";
 
 interface Props {
     title: string,
@@ -18,7 +19,7 @@ const InfoWrapper = ({title,details} : Props) => {
         <div className={styles.content}>
             {details.map( detail =>
                 <div className={styles.content__details}>
-                    <img src={detail.src}/>
+                    <img src={`${fetchingImagesURL}/${detail.src}`} alt={'best rated car'}/>
                     <h3>{detail.title}</h3>
                 </div>)}
         </div>

@@ -14,8 +14,6 @@
   .content{
     display: flex;
     justify-content: space-evenly;
-
-
     }
 
     .content__details{
@@ -24,10 +22,8 @@
       flex-direction: column;
       align-items: center;
       cursor: pointer;
-
-
-
-
+      flex-basis: 33%;
+      max-width: 500px;
 
         h3{
         padding: 5px 0;

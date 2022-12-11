@@ -55,4 +55,8 @@ public class PostModel {
     @JoinColumn(name = "image_model_id")
     private ImageModel imageModel;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "post_categories")
+    private PostCategories postCategories;
+
 }

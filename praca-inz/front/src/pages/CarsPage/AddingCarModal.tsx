@@ -16,6 +16,13 @@ import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {addingImageThunk, getImageToAddId} from "../../store/imageSlice";
 import ImageService from "../../services/ImageService";
 import {addingCarModelThunk} from "../../store/carModelSlice";
+import {toast} from "react-toastify";
+import {
+    carDescriptionValidation, carEngineCapacityValidation, carEnginePowerValidation,
+    carNameValidation, carPriceValidation,
+    initialValidationValues,
+    InitialValidationValuesType
+} from "../../services/ValidationServices/AddingCarModelValidation";
 
 
 interface Props {
@@ -35,12 +42,16 @@ const initialState = {
     productionCountry: '',
 }
 
+
+
 const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
 
     const dispatch = useAppDispatch();
     let imageId = 1;
     const [carModelValues,setCarModelValues] = useState<CarModelToAddType>(initialState);
+    const [isCarModelValuesIncorrect, setIsCarModelValuesIncorrect] = useState<InitialValidationValuesType>(initialValidationValues)
     const [selectedFile,setSelectedFile] = useState(null);
+    let isAddingCarModelInvalid = false;
     const addingImage = (e : any) => {
         console.log('WBILO');
         const formData = new FormData();
@@ -48,15 +59,136 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
         dispatch(addingImageThunk(formData))
     }
 
+    const validateValues = () => {
+
+        if (!carNameValidation(carModelValues.name)) {
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        name: true
+                    }
+                )
+            )
+        }
+
+        if (!carPriceValidation(carModelValues.price)) {
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        price: true
+                    }
+                )
+            )
+        }
+        if (!carDescriptionValidation(carModelValues.description)) {
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        description: true
+                    }
+                )
+            )
+            if (!carEnginePowerValidation(carModelValues.enginePower)) {
+                isAddingCarModelInvalid = true;
+                setIsCarModelValuesIncorrect((prevState) =>
+                    (
+                        {
+                            ...prevState,
+                            enginePower: true
+                        }
+                    )
+                )
+            }
+        }
+        if (!carEngineCapacityValidation(carModelValues.engineCapacity)) {
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        engineCapacity: true
+                    }
+                )
+            )
+        }
+        if (!carModelValues.gearbox || !carModelValues.carBody || !carModelValues.productionCountry) {
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        gearbox: true
+                    }
+                )
+            )
+        }
+        if(!carModelValues.carBody){
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        carBody: true
+                    }
+                )
+            )
+        }
+        if(!carModelValues.productionCountry){
+            isAddingCarModelInvalid = true;
+            setIsCarModelValuesIncorrect((prevState) =>
+                (
+                    {
+                        ...prevState,
+                        productionCountry: true
+                    }
+                )
+            )
+        }
+    }
+
     const submitForm = (e : any) => {
 
         e.preventDefault();
         console.log('JOL');
         console.log('imageId', imageId);
-        const data = {...carModelValues, imageId};
-        dispatch(addingCarModelThunk(data));
+
+        validateValues();
+        if(!isAddingCarModelInvalid){
+            const data = {...carModelValues, imageId};
+            toast.success('Dodano model auta', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            // dispatch(addingCarModelThunk(data));
+            setCarModelValues(initialState);
+        } else{
+            toast.error('Niepoprawne dane', {
+                position: "top-left",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+        }
+        setIsCarModelValuesIncorrect(initialValidationValues);
+
         // formData.append("file", selectedFile);
     }
+
+
 
     return(
         <Modal
@@ -75,6 +207,8 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                             id="outlined-basic"
                             label="Wprowadz nazwe auta"
                             variant="outlined"
+                            helperText="Przynajmniej 4 znaki"
+                            error={isCarModelValuesIncorrect.name}
                             onChange={ (e) => setCarModelValues((prevState) => ({
                                 ...prevState,
                                 name: e.target.value,
@@ -84,6 +218,8 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                             id="outlined-basic"
                             label="Wprowadz cene auta"
                             variant="outlined"
+                            helperText="Wieksza niz 0"
+                            error={isCarModelValuesIncorrect.price}
                             onChange={ (e) => setCarModelValues((prevState) => ({
                                 ...prevState,
                                 price: Number(e.target.value),
@@ -110,6 +246,8 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                             id="outlined-basic"
                             label="Wprowadz moc silnika"
                             variant="outlined"
+                            error={isCarModelValuesIncorrect.enginePower}
+                            helperText="Wieksza niz 0, mniejsza niz 1000"
                             onChange={ (e) => setCarModelValues((prevState) => ({
                                 ...prevState,
                                 enginePower: Number(e.target.value),
@@ -119,6 +257,8 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                             id="outlined-basic"
                             label="Wprowadz pojemnosc silnika"
                             variant="outlined"
+                            error={isCarModelValuesIncorrect.engineCapacity}
+                            helperText="Wieksza niz 0, mniejsza niz 10.0"
                             onChange={ (e) => setCarModelValues((prevState) => ({
                                 ...prevState,
                                 engineCapacity: Number(e.target.value),
@@ -130,6 +270,7 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                                 labelId="gearbox"
                                 id="gearbox"
                                 value={carModelValues.gearbox}
+                                error={isCarModelValuesIncorrect.gearbox}
                                 label="Skrzynia biegow"
                                 onChange={(e) => setCarModelValues((prevState) =>({
                                     ...prevState,
@@ -146,6 +287,7 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                                 labelId="carbody"
                                 id="carbody"
                                 value={carModelValues.carBody}
+                                error={isCarModelValuesIncorrect.carBody}
                                 label="Zawieszenie"
                                 onChange={(e) => setCarModelValues((prevState) =>({
                                     ...prevState,
@@ -165,6 +307,7 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                                 labelId="productioncountry"
                                 id="productioncountry"
                                 value={carModelValues.productionCountry}
+                                error={isCarModelValuesIncorrect.productionCountry}
                                 label="Kraj produkcji"
                                 onChange={(e) => setCarModelValues((prevState) =>({
                                     ...prevState,
@@ -181,16 +324,16 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                         <Button variant="contained" component="label">
                             Dodaj zdjecie
                             <input hidden accept="image/*" multiple type="file" onChange={(e) => {
-                                const formData = new FormData();
-                                // @ts-ignore
-                                console.log(e.target.files[0]);
-                                // @ts-ignore
-                                formData.append("image",e.target.files[0])
-
-                                // dispatch(addingImageThunk(formData))
-                                ImageService.addImage(formData).then((image) => {
-                                    imageId = image.id;
-                                })
+                                // const formData = new FormData();
+                                // // @ts-ignore
+                                // console.log(e.target.files[0]);
+                                // // @ts-ignore
+                                // formData.append("image",e.target.files[0])
+                                //
+                                // // dispatch(addingImageThunk(formData))
+                                // ImageService.addImage(formData).then((image) => {
+                                //     imageId = image.id;
+                                // })
                             }} />
                             <CameraAltIcon />
                         </Button>

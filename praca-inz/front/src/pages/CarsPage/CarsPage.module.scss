@@ -5,6 +5,7 @@
   text-align: center;
 
   h1{
+    font-size: 30px;
     padding-top: 20px;
   }
 
@@ -12,6 +13,13 @@
     color: red;
   }
 
+  .roleError{
+    color: red;
+  }
+
+  .addingWrapper{
+    margin: 10px 0;
+  }
 }
 
 .singleCar{

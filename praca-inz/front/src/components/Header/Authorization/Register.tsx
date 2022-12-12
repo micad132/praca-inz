@@ -24,7 +24,7 @@ import {
     nameValidation,
     passwordValidation,
     postalCodeValidation
-} from "../../../services/ValidationService";
+} from "../../../services/ValidationServices/AuthorizationValidation";
 import {useNavigate} from "react-router-dom";
 
 

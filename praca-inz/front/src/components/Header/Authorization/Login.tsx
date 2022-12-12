@@ -5,7 +5,7 @@ import { useState } from "react";
 import AuthWrapper from '../../../pages/Authorization/AuthWrapper';
 import { useNavigate } from "react-router-dom";
 import {FormChangeEventHandler} from "../../../utils/types";
-import {emailValidation, passwordValidation} from "../../../services/ValidationService";
+import {emailValidation, passwordValidation} from "../../../services/ValidationServices/AuthorizationValidation";
 import {LoginValidationValuesTypes, LoginValuesTypes} from "../../../utils/types/AuthorizationTypes";
 import ArrowCircleRightOutlinedIcon from '@mui/icons-material/ArrowCircleRightOutlined';
 

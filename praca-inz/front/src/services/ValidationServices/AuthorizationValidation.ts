@@ -1,5 +1,5 @@
 
-import {emailRegex, postalCodeRegex} from "../utils/regex";
+import {emailRegex, postalCodeRegex} from "../../utils/regex"
 
 const emailValidation = (value : string) : boolean => {
     return emailRegex.test(value);

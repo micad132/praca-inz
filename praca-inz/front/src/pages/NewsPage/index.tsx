@@ -1,6 +1,9 @@
 import InfoWrapper from "../../components/InfoWrapper/InfoWrapper";
 import SingleNews from "../../components/SingleNews";
 import styles from './NewsPage.module.scss';
+import AddingNews from "./AddingNews";
+import {useAppSelector} from "../../utils/types/hooks";
+import {getLoggedUserRole} from "../../store/userSlice";
 
 const dummyArr = [
     {
@@ -24,9 +27,14 @@ const dummyArr = [
 
 const PolandInfo = () => {
 
+    const userRole = useAppSelector(getLoggedUserRole);
     return (
         <>
             <h1 className={styles.title}>Motoryzacyjne aktualności</h1>
+            {userRole === 'ADMIN'
+                ? <AddingNews />
+                : <h2>Musisz miec uprawnienia admina aby dodac post</h2>
+            }
             <InfoWrapper title={'Najnowsze informacje z Polski'} details={dummyArr}/>
             <SingleNews />
             <SingleNews />

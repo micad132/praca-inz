@@ -154,6 +154,7 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
 
     const submitForm = (e : any) => {
 
+        setIsCarModelValuesIncorrect(initialValidationValues);
         e.preventDefault();
         console.log('JOL');
         console.log('imageId', imageId);
@@ -183,7 +184,7 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                 progress: undefined,
             });
         }
-        setIsCarModelValuesIncorrect(initialValidationValues);
+
 
         // formData.append("file", selectedFile);
     }

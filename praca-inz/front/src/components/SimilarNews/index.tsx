@@ -1,41 +1,27 @@
 import styles from './SimilarNews.module.scss';
 import SimilarSingleNews from "./SimilarSingleNews";
 
+type SimilarNewsType = {
+    postId: number,
+    title: string,
+    author: string,
+    date: string,
+    imageSrc: string,
+    postCategory: string,
+}
 
-const dummySimilarNews = [
-    {
-        id: 1,
-        title: 'pierwszy similar',
-        date: '23.11.2022 10:20',
-        author: 'micad132'
-    },
-    {
-        id: 2,
-        title: 'drugi similar',
-        date: '23.11.2022 17:50',
-        author: 'kimek132'
-    },
-    {
-        id: 3,
-        title: 'trzeci similar',
-        date: '23.11.2022 27:27',
-        author: 'r3pix'
-    },
-    {
-        id: 4,
-        title: 'czwarty similar',
-        date: '23.11.2022 10:20',
-        author: 'noscanx'
-    },
-]
+interface Props {
+    similarNews : SimilarNewsType[]
+}
 
-const SimilarNews = () => {
+const SimilarNews = ({similarNews} : Props) => {
 
-    const similarSingleNews = dummySimilarNews.map(({title,date,author}) => <SimilarSingleNews title={title} date={date}  author={author} />);
+    const similarSingleNews = similarNews.map(({postId, title,date,author, imageSrc, postCategory}) =>
+        <SimilarSingleNews postId={postId} title={title} date={date}  author={author} imageSrc={imageSrc}/>);
 
     return(
         <section className={styles.wrapper}>
-            <h3>Podobne posty tej samej kategorii</h3>
+            <h3>Podobne posty tej samej kategorii ({similarNews[0]?.postCategory})</h3>
             <div className={styles.similarSingleNewsWrapper}>
                 {similarSingleNews}
             </div>

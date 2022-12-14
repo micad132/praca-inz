@@ -1,26 +1,39 @@
 import styles from './SimilarNews.module.scss';
+import moment from "moment";
+import {fetchingImagesURL} from "../../utils/GlobalVariables";
+import {useNavigate} from "react-router-dom";
 
 
 interface Props {
+    postId: number,
     title: string,
     date: string,
-    author: string
+    author: string,
+    imageSrc: string,
 }
 
-const SimilarSingleNews = ({title,date,author} : Props) => {
+const SimilarSingleNews = ({postId,title,date,author,imageSrc} : Props) => {
 
 
-
-
+    const navigate = useNavigate();
+    const formattedDate = moment(date).format('MM/DD/YYYY');
+    const formattedDateHours = moment(date).format('HH:mm');
     return(
-        <div className={styles.singleNews}>
+        <div className={styles.singleNews} onClick={() => navigate(`/news/${postId}`)}>
 
             <div className={styles.topInfo}>
                 <p className={styles.author}>{author}</p>
-                <p className={styles.date}>{date}</p>
+                <div>
+                    <p className={styles.date}>{formattedDate}</p>
+                    <p className={styles.date}>{formattedDateHours}</p>
+                </div>
             </div>
-            <img src={'https://picsum.photos/600'} />
-            <p className={styles.title}>{title}</p>
+            <div className={styles.imageDiv}>
+                <div className={styles.img}>
+                    <img src={`${fetchingImagesURL}/${imageSrc}`} alt={'similar_news'} />
+                </div>
+                <p className={styles.title}>{title}</p>
+            </div>
         </div>
     )
 }

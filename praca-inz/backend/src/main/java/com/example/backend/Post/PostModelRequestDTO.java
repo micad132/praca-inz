@@ -10,5 +10,6 @@ public class PostModelRequestDTO {
     Long imageId;
     String description;
     String title;
+    String postCategory;
 
 }

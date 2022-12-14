@@ -34,16 +34,6 @@ public class PostModel {
     @Column(name = "description", nullable = false, length = 1500)
     private String description;
 
-
-
-
-//    @ManyToMany
-//    @JoinTable(name = "post_model_image_models",
-//            joinColumns = @JoinColumn(name = "post_model_id"),
-//            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
-//    private List<ImageModel> imageModels = new ArrayList<>();
-
-
     @ManyToOne
     @JoinColumn(name = "user_model_id")
     private UserModel userModel;
@@ -58,5 +48,11 @@ public class PostModel {
     @Enumerated(EnumType.STRING)
     @Column(name = "post_categories")
     private PostCategories postCategories;
+
+    //    @ManyToMany
+//    @JoinTable(name = "post_model_image_models",
+//            joinColumns = @JoinColumn(name = "post_model_id"),
+//            inverseJoinColumns = @JoinColumn(name = "image_models_id"))
+//    private List<ImageModel> imageModels = new ArrayList<>();
 
 }

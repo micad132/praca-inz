@@ -27,10 +27,19 @@ public class PostMapper {
                 .title(postModel.getTitle())
                 .description(postModel.getDescription())
                 .date(postModel.getDate())
+                .postCategory(postModel.getPostCategories().toString())
                 .author(postModel.getUserModel().getName())
                 .reviewModels(postModel.getReviewModels().stream().map(reviewMapper::mapEntityToDTO).collect(Collectors.toList()))
 //                .imageSrc(postModel.getImageModel().getName())
                 .imageModel(postModel.getImageModel())
+                .build();
+    }
+
+    public PostModel mapDTORequestToEntity(PostModelRequestDTO postModelRequestDTO){
+        return PostModel.builder()
+                .description(postModelRequestDTO.getDescription())
+                .title(postModelRequestDTO.getTitle())
+                .postCategories(PostCategories.valueOf(postModelRequestDTO.getPostCategory()))
                 .build();
     }
 }

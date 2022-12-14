@@ -6,40 +6,57 @@ import {fetchImagesThunk, getAllImages} from "../../store/imageSlice";
 import {fetchCarModelsThunk, getAllCarModels} from "../../store/carModelSlice";
 import {fetchUserDetailsThunk, getLoggedUser} from "../../store/userSlice";
 import {loggedUserStyle} from "../../utils/GlobalFunctions";
+import {fetchAlNewsThunk, getAllNews} from "../../store/newsSlice";
 
 
-export interface PolandInfoType {
+export interface NewsPreview {
+    id: number,
     title: string,
     src: string
 }
-
-const polandInfo: PolandInfoType[] = [
-
-    {
-        title: 'Paliwo drozeje',
-        src: 'https://picsum.photos/400'
-    },
-    {
-        title: 'Brak miejsc parkingowych',
-        src: 'https://picsum.photos/400'
-    },
-    {
-        title: 'Elektryki przejmują kontrole',
-        src: 'https://picsum.photos/400'
-    }
-
-]
 
 
 const Home = () => {
   const dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(fetchUserDetailsThunk())
+        dispatch(fetchAlNewsThunk());
     }, [dispatch]);
     const userDetails = useAppSelector(getLoggedUser);
     const carModels = useAppSelector(getAllCarModels);
-    console.log('USER', userDetails);
-    console.log('AUTA HOMEPAGE', carModels);
+    const allNews = useAppSelector(getAllNews);
+    console.log('WIADOMOSCI', allNews);
+
+
+    const polandNewsToDisplay = [...allNews]
+        .filter(news => news.postCategory === 'POLAND')
+        .map( news => (
+            {
+                id: news.postId,
+                title: news.title,
+                src: news.imageModel.name
+            }
+        ))
+
+    const europeNewsToDisplay = [...allNews]
+        .filter(news => news.postCategory === 'EUROPE')
+        .map( news => (
+            {
+                id: news.postId,
+                title: news.title,
+                src: news.imageModel.name
+            }
+        ))
+
+    const worldNewsToDisplay = [...allNews]
+        .filter(news => news.postCategory === 'WORLD')
+        .map( news => (
+            {
+                id: news.postId,
+                title: news.title,
+                src: news.imageModel.name
+            }
+        ))
 
     const bestRatedCarModels = [...carModels]
         .sort((a,b) => b.rating - a.rating)
@@ -48,6 +65,7 @@ const Home = () => {
     const carsToDisplay = bestRatedCarModels.map(car =>
         (
             {
+                id: car.carModelId,
                 title: car.name,
                 src: car.imageModel.name
             }
@@ -62,9 +80,10 @@ const Home = () => {
             <h1>Witaj na portalu motoryzacyjnym!</h1>
             <h2>{loggedUser}<span style={loggedUserStyle(userDetails.role)}>{userDetails.role}</span></h2>
         </div>
-        <InfoWrapper title='Informacje z Polski' details={polandInfo}  />
-        <InfoWrapper title='Informacje ze Świata' details={polandInfo} />
-        <InfoWrapper title='Najlepiej oceniane samochody' details={carsToDisplay} />
+        <InfoWrapper title='Informacje z Polski' details={polandNewsToDisplay} about={'news'} />
+        <InfoWrapper title='Informacje z Europy' details={europeNewsToDisplay} about={'news'}/>
+        <InfoWrapper title='Informacje ze Świata' details={worldNewsToDisplay} about={'news'}/>
+        <InfoWrapper title='Najlepiej oceniane samochody' details={carsToDisplay} about={'cars'}/>
       </>
   );
 };

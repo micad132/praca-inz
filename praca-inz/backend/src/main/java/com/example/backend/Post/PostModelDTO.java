@@ -19,6 +19,7 @@ public class PostModelDTO {
     private String author;
     private Timestamp date;
     private String description;
+    private String postCategory;
 //    private String imageSrc;
     private ImageModel imageModel;
     private List<ReviewModelDTO> reviewModels;

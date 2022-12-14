@@ -7,19 +7,23 @@ import {getLoggedUserRole} from "../../store/userSlice";
 
 const dummyArr = [
     {
+        id: 1,
         title: 'lorem ipsum1',
         src: 'https://picsum.photos/400'
     },
     {
-        title: 'lorem ipsum2',
+        id: 1,
+        title: 'lorem ipsum1',
         src: 'https://picsum.photos/400'
     },
     {
-        title: 'lorem ipsum3',
+        id: 1,
+        title: 'lorem ipsum1',
         src: 'https://picsum.photos/400'
     },
     {
-        title: 'lorem ipsum4',
+        id: 1,
+        title: 'lorem ipsum1',
         src: 'https://picsum.photos/400'
     },
 
@@ -31,9 +35,9 @@ const PolandInfo = () => {
     return (
         <>
             <h1 className={styles.title}>Motoryzacyjne aktualności</h1>
-            {userRole === 'ADMIN'
+            {userRole === 'USER'
                 ? <AddingNews />
-                : <h2>Musisz miec uprawnienia admina aby dodac post</h2>
+                : <h2>Musisz miec role USER aby dodac post</h2>
             }
             <InfoWrapper title={'Najnowsze informacje z Polski'} details={dummyArr}/>
             <SingleNews />

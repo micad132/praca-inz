@@ -99,6 +99,10 @@
     flex-direction:  column;
     gap: 10px;
 
+    p{
+      font-weight: bold;
+    }
+
     .rating{
       width: max-content;
       margin: 0 auto;

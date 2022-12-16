@@ -42,9 +42,9 @@ const ReviewList = ({isChecked} : Props) => {
         <div>
             {isChecked
                 ? <Opinions  opinions={opinionsListFiltered} isAddingAvailable={false}
-                             headerTitle={'Lista wszystkich komentarzy'} isAdminPanel={true} />
+                             headerTitle={'Lista wszystkich komentarzy'} isAdminPanel={true} isCarModelScreen={false} />
                 : <Opinions  opinions={sortedOpinions} isAddingAvailable={false}
-                             headerTitle={'Lista wszystkich komentarzy'} isAdminPanel={true}  />
+                             headerTitle={'Lista wszystkich komentarzy'} isAdminPanel={true} isCarModelScreen={false} />
             }
 
         </div>

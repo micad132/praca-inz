@@ -2,7 +2,6 @@
 .wrapper{
   margin: 20px auto;
   max-width: 1200px;
-  border-radius: 10px;
   background-color: rgb(25, 103, 248);
 
   h3{
@@ -45,11 +44,9 @@
       .imageDiv{
         padding: 0 0 5px 0;
         height: 80%;
-        border: 2px solid purple;
 
         .img{
           height: 90%;
-          border: 2px solid red;
 
           img{
             height: 100%;

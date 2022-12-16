@@ -11,6 +11,16 @@ export type ReviewType = {
     carName: string
 }
 
+export type ReviewForNewsType = {
+    reviewModelId: number
+    description: string,
+    rate: number,
+    date: string,
+    userNick: string,
+    isVulgar: boolean,
+    postTitle: string
+}
+
 export type AddingReviewType = {
     description: string,
     rate: number
@@ -27,6 +37,11 @@ const ReviewService = {
         return res.data;
     },
 
+    getReviewsForNews: async (id: number) => {
+        const res = await axios.get(`${URL}/review/${id}`)
+        return res.data;
+    },
+
     addReviewForCarModel: async (review : AddingReviewType ,id : number) => {
         return axios({
             method: 'POST',
@@ -34,6 +49,15 @@ const ReviewService = {
             data: review,
             headers: {
             }
+        })
+    },
+
+    addReviewForNews: async (review : AddingReviewType, id: number) => {
+        console.log('HALOHALO');
+        return axios({
+            method: 'POST',
+            url: `${URL}/review/addReviewForNews/${id}`,
+            data: review,
         })
     },
 

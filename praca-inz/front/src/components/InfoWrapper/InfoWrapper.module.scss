@@ -1,6 +1,5 @@
 
 .wrapper{
-  border: 2px solid blue;
   margin-top: 20px;
 
 
@@ -14,19 +13,23 @@
   .content{
     display: flex;
     justify-content: space-evenly;
+    padding: 5px 0;
     }
 
     .content__details{
-      border: 2px solid red;
+      height: 350px;
+      max-height: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
       cursor: pointer;
       flex-basis: 33%;
       max-width: 500px;
+      border: 1px solid black;
 
       img{
-        height: 100%;
+        width: 100%;
+        height: 90%;
       }
 
 

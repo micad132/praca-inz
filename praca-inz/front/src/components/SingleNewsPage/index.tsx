@@ -41,7 +41,7 @@ const SingleNewsPage = () => {
             <h1 className={styles.header}>{postData.title}</h1>
             <SingleNewsPageInfo  singleNewsData={postData}/>
             <SimilarNews similarNews={similarNews}/>
-            <Opinions headerTitle={'Lista komentarzy'} isAdminPanel={false} />
+            <Opinions headerTitle={'Lista komentarzy'} isAdminPanel={false} isAddingAvailable={true} isCarModelScreen={false} postId={postData.postId} />
             {/*<OtherNews />*/}
         </section>
     )

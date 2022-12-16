@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {RootState} from "./index";
-import ReviewService, {AddingReviewType, ReviewType} from "../services/ReviewService";
+import ReviewService, {AddingReviewType, ReviewForNewsType, ReviewType} from "../services/ReviewService";
 
 
 
@@ -9,6 +9,7 @@ export interface ReviewState {
     singleReview: ReviewType
     allReviews: ReviewType[],
     reviewsForCarModel : ReviewType[],
+    reviewsForNews: ReviewForNewsType[],
     isLoaded: boolean,
     error: string | undefined
 }
@@ -19,6 +20,7 @@ const initialState : ReviewState  = {
     singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, carName: ''},
     allReviews: [],
     reviewsForCarModel: [],
+    reviewsForNews: [],
     isLoaded: false,
     error: ''
 }
@@ -62,6 +64,20 @@ export const addingReviewForCarModel = createAsyncThunk(
     }
 )
 
+export const addingReviewForNews = createAsyncThunk(
+    "review/addingReviewForNews",
+    async ({ id, review} : any) => {
+        try{
+            console.log('ID,REVIEW', id, review);
+            await ReviewService.addReviewForNews(review,id);
+            const data = await ReviewService.getReviewsForNews(id);
+            return { data };
+        }catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const updatingReview = createAsyncThunk(
     "review/updateReview",
     async ({id,isVulgar} : any) => {
@@ -89,6 +105,7 @@ export const deleteReviewById = createAsyncThunk(
 
 export const getAllReviewsForCarModel = (state : RootState)  => state.reviews.allReviews;
 export const getReviewsForCarModel = (state : RootState) => state.reviews.reviewsForCarModel;
+export const getReviewsForNews = (state: RootState) => state.reviews.reviewsForNews;
 
 
 const carModelSlice = createSlice({
@@ -132,6 +149,9 @@ const carModelSlice = createSlice({
             .addCase(updatingReview.pending, (state, action) => {
             })
             .addCase(updatingReview.fulfilled, (state, action) => {
+            })
+            .addCase(addingReviewForNews.fulfilled, (state, action) => {
+                state.reviewsForNews = action.payload.data;
             })
     }
 

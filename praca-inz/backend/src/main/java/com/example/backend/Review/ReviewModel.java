@@ -34,7 +34,7 @@ public class ReviewModel {
 
 
     @ManyToOne
-    @JoinColumn(name = "car_model_id", nullable = false)
+    @JoinColumn(name = "car_model_id")
     private CarModel carModel;
 
     @ManyToOne

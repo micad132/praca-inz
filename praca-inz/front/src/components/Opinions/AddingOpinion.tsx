@@ -10,17 +10,19 @@ import TextareaAutosize from '@mui/material/TextareaAutosize';
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import {addingReviewForCarModel} from "../../store/reviewSlice";
+import {addingReviewForCarModel, addingReviewForNews} from "../../store/reviewSlice";
 import { useParams} from "react-router-dom";
 import {toast} from "react-toastify";
 
 
 interface Props {
-    carModelId?: string
-    userRole?: string
+    carModelId?: string,
+    postId?: number,
+    userRole?: string,
+    isCarModelScreen: boolean,
 }
 
-const AddingOpinion = ({carModelId, userRole} : Props) => {
+const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props) => {
 
     const dispatch = useAppDispatch();
 
@@ -35,7 +37,12 @@ const AddingOpinion = ({carModelId, userRole} : Props) => {
             description: textAreaValue,
             rate: ratingValue
         }
-        dispatch(addingReviewForCarModel({ id: carModelId, review: reviewModel}))
+        if(isCarModelScreen){
+            dispatch(addingReviewForCarModel({ id: carModelId, review: reviewModel}))
+        } else if(!isCarModelScreen) {
+            console.log('EJEJ', postId);
+            dispatch(addingReviewForNews({id: postId, review: reviewModel}))
+        }
         toast.success('Komentarz dodany!', {
             position: "top-left",
             autoClose: 5000,

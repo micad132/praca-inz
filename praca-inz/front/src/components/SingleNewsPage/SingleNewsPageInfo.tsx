@@ -16,7 +16,7 @@ const SingleNewsPageInfo = ({singleNewsData} : Props) => {
         <div className={styles.infoWrapper}>
             <SingleNewsPageTopInfo dataTopInfo={dataTopInfo}/>
             <div className={styles.imageDiv}>
-                <img src={`${fetchingImagesURL}/${name}`} alt={'news_photo'} />
+                <img className={styles.img} src={`${fetchingImagesURL}/${name}`} alt={'news_photo'} />
             </div>
             <p className={styles.description}>{description}</p>
         </div>

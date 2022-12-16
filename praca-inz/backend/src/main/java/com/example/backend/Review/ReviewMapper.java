@@ -25,4 +25,17 @@ public class ReviewMapper {
                 .date(reviewModel.getDate())
                 .build();
     }
+
+    public ReviewModelForNewsDTO mapEntityToReviewDTO(ReviewModel reviewModel){
+        return ReviewModelForNewsDTO.builder()
+                .reviewModelId(reviewModel.getId())
+                .postId(reviewModel.getPostModel().getId())
+                .userNick(reviewModel.getUserModel().getName())
+                .description(reviewModel.getDescription())
+                .isVulgar(reviewModel.getIsVulgar())
+                .rate(reviewModel.getRate())
+                .postTitle(reviewModel.getPostModel().getTitle())
+                .date(reviewModel.getDate())
+                .build();
+    }
 }

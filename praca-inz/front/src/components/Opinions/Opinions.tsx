@@ -13,12 +13,14 @@ import {useState} from "react";
 interface Props {
     opinions?: ReviewType[],
     carModelId?: string,
+    postId?: number,
     isAddingAvailable?: boolean,
     headerTitle?: string,
     isAdminPanel: boolean,
+    isCarModelScreen: boolean,
 }
 
-const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel}: Props) => {
+const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel,isCarModelScreen, postId}: Props) => {
 
     const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
     console.log(opinions);
@@ -50,6 +52,12 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
                          userRole={userRole} carName={opinion.carName} />)
         : <h4>Brak</h4>
 
+
+    const properAddingOpinion = isCarModelScreen
+        ? <AddingOpinion carModelId={carModelId} userRole={userRole} isCarModelScreen={true} />
+        : <AddingOpinion postId={postId} userRole={userRole} isCarModelScreen={false} />;
+
+
     return(
         <div className={styles.opinionsWrapper}>
 
@@ -63,7 +71,7 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
                     }
                 </div>
             </div>
-            {isAddingAvailable && <AddingOpinion carModelId={carModelId} userRole={userRole} /> }
+            {isAddingAvailable && properAddingOpinion }
             {opinionsList}
         </div>
     )

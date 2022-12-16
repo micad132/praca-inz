@@ -59,7 +59,7 @@ const SingleCarPage = () => {
                 <SingleCarDetails carModel={carModel}/>
             </div>
             <Opinions opinions={opinions} carModelId={carId} isAddingAvailable={true}
-                      headerTitle={'Sekcja komentarzy'} isAdminPanel={false}/>
+                      headerTitle={'Sekcja komentarzy'} isAdminPanel={false} isCarModelScreen={true}/>
         </div>
     )
 }

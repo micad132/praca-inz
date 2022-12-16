@@ -43,7 +43,7 @@ const routes = (
         <Route path="users" element={<ManageUsersPage />} />
     </Route>
     <Route path="/failed" element={<ErrorPage />} />
-    <Route path="/opinions" element={<Opinions isAdminPanel={false}/>} />
+    <Route path="/opinions" element={<Opinions isAdminPanel={false} isCarModelScreen={false}/>} />
     <Route path="/help" element={<HelpPage />} />
   </Routes>
 );

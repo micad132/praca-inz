@@ -1,6 +1,7 @@
 package com.example.backend.Post;
 
-import com.example.backend.Review.ReviewMapper;
+import com.example.backend.Post.ResponseDTO.PostModelDTO;
+import com.example.backend.Review.CarModelReview.ReviewMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

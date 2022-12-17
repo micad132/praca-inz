@@ -1,10 +1,8 @@
 package com.example.backend.CarModel;
 
 import com.example.backend.Image.ImageModel;
-import com.example.backend.Review.ReviewModel;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.example.backend.Review.CarModelReview.ReviewModel;
 import lombok.*;
-import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;

@@ -7,15 +7,5 @@ h
 8front/src/components/Commercials/Commercials.module.scss,8\6\867fc0484af21cd6f2cb55d85acc6b554d36483f
 Z
 *front/src/pages/OrdersPage/SingleOrder.tsx,2\c\2cb55be07c15670ade3f22b5c9be4b939362987d
-U
-%front/src/pages/OrdersPage/Orders.tsx,f\3\f3af6500c3c7f877229b253af0b01740f09640d3
-a
-1front/src/pages/OrdersPage/OrdersPage.module.scss,e\d\ed7b0244b828742d5e5c434bc4b845309d771ff9
-C
-front/src/index.css,a\7\a73e0f7f13aa3e020658668becc432a362fb2a88
-A
-front/src/App.css,4\c\4cc3cc3e3ab989f2a34690b2ce81ff33c22f8ba6
-c
-3front/src/components/Header/Authorization/Login.tsx,2\8\2896205931dedc75428ff240b0fec6c8e14a3864
 T
 $front/src/pages/OrdersPage/index.tsx,9\7\976ae6bb6e9044b146e02f039c7706f424243ef0

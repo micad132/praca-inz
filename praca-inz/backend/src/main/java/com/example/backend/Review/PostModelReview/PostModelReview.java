@@ -1,6 +1,5 @@
-package com.example.backend.Review;
+package com.example.backend.Review.PostModelReview;
 
-import com.example.backend.CarModel.CarModel;
 import com.example.backend.Post.PostModel;
 import com.example.backend.User.UserModel;
 import lombok.*;
@@ -8,17 +7,18 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 @Builder
-@Table(name = "review_model")
-public class ReviewModel {
+@Table(name = "post_model_review")
+public class PostModelReview {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "review_model_seq")
-    @SequenceGenerator(name = "review_model_seq", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "post_model_review_seq")
+    @SequenceGenerator(name = "post_model_review_seq")
     @Column(name = "id", nullable = false)
     private Long id;
 
@@ -31,12 +31,6 @@ public class ReviewModel {
     @Column(name = "date", nullable = false)
     private Timestamp date;
 
-
-
-    @ManyToOne
-    @JoinColumn(name = "car_model_id")
-    private CarModel carModel;
-
     @ManyToOne
     @JoinColumn(name = "user_model_id", nullable = false)
     private UserModel userModel;
@@ -47,21 +41,5 @@ public class ReviewModel {
     @ManyToOne
     @JoinColumn(name = "post_model_id")
     private PostModel postModel;
-
-//    @ManyToOne
-//    @JoinColumn(name = "product_model_id")
-//    private ProductModel productModel;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "car_model_id")
-//    private CarModel carModel;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "post_model_id")
-//    private PostModel postModel;
-//
-//    @ManyToOne
-//    @JoinColumn(name = "user_model_id")
-//    private UserModel userModel;
 
 }

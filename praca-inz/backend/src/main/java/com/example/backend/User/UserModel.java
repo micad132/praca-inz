@@ -1,6 +1,6 @@
 package com.example.backend.User;
 
-import com.example.backend.Review.ReviewModel;
+import com.example.backend.Review.CarModelReview.ReviewModel;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 

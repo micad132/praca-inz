@@ -1,8 +1,7 @@
 package com.example.backend.CarModel;
 
 import com.example.backend.Image.ImageModel;
-import com.example.backend.Review.ReviewModel;
-import com.example.backend.Review.ReviewModelDTO;
+import com.example.backend.Review.CarModelReview.ReviewModelDTO;
 import lombok.Builder;
 import lombok.Data;
 

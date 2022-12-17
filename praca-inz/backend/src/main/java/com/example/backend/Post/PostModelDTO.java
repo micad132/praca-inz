@@ -1,7 +1,7 @@
 package com.example.backend.Post;
 
 import com.example.backend.Image.ImageModel;
-import com.example.backend.Review.ReviewModelDTO;
+import com.example.backend.Review.CarModelReview.ReviewModelDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,14 +14,15 @@ import java.util.List;
 @Builder
 public class PostModelDTO {
 
-    private Long postId;
-    private String title;
-    private String author;
-    private Timestamp date;
-    private String description;
-    private String postCategory;
-//    private String imageSrc;
-    private ImageModel imageModel;
-    private List<ReviewModelDTO> reviewModels;
+    Long postId;
+    String title;
+    String author;
+    Timestamp date;
+    String description;
+    String postCategory;
+    //    private String imageSrc;
+    ImageModel imageModel;
+    List<ReviewModelDTO> reviewModels;
 
 }
+

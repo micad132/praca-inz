@@ -1,5 +1,6 @@
 package com.example.backend.Post;
 
+import com.example.backend.Post.ResponseDTO.PostModelDTO;
 import com.example.backend.User.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

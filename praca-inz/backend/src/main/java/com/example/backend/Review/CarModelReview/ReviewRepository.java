@@ -1,5 +1,6 @@
-package com.example.backend.Review;
+package com.example.backend.Review.CarModelReview;
 
+import com.example.backend.Review.CarModelReview.ReviewModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

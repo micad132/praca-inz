@@ -1,4 +1,4 @@
-package com.example.backend.Review;
+package com.example.backend.Review.CarModelReview;
 
 import lombok.Builder;
 import lombok.Data;

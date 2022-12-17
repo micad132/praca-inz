@@ -1,5 +1,6 @@
-package com.example.backend.Review;
+package com.example.backend.Review.CarModelReview;
 
+import com.example.backend.Review.PostModelReview.ReviewModelForNewsDTO;
 import com.example.backend.User.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +20,7 @@ public class ReviewController {
     private final ReviewService reviewService;
 
     @PostMapping("/{id}")
-    public void addReview(@PathVariable Long id,@RequestBody ReviewModelDTO reviewModel, Authentication authentication){
+    public void addReview(@PathVariable Long id, @RequestBody ReviewModelDTO reviewModel, Authentication authentication){
         UserWrapper loggedUser = Optional.ofNullable(authentication)
                 .filter(f -> f.getPrincipal() instanceof UserWrapper)
                 .map(Authentication::getPrincipal)
@@ -28,16 +29,16 @@ public class ReviewController {
         reviewService.addReview(id,reviewModel,loggedUser);
     }
 
-    @PostMapping("/addReviewForNews/{id}")
-    public ResponseEntity<String> addReviewForNews(@PathVariable Long id, @RequestBody ReviewModelDTO reviewModelDTO, Authentication authentication){
-        UserWrapper loggedUser = Optional.ofNullable(authentication)
-                .filter(f -> f.getPrincipal() instanceof UserWrapper)
-                .map(Authentication::getPrincipal)
-                .map(UserWrapper.class::cast)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request"));
-        reviewService.addReviewForNews(id,reviewModelDTO,loggedUser);
-        return ResponseEntity.ok("Successfully added!");
-    }
+//    @PostMapping("/addReviewForNews/{id}")
+//    public ResponseEntity<String> addReviewForNews(@PathVariable Long id, @RequestBody ReviewModelDTO reviewModelDTO, Authentication authentication){
+//        UserWrapper loggedUser = Optional.ofNullable(authentication)
+//                .filter(f -> f.getPrincipal() instanceof UserWrapper)
+//                .map(Authentication::getPrincipal)
+//                .map(UserWrapper.class::cast)
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Bad request"));
+//        reviewService.addReviewForNews(id,reviewModelDTO,loggedUser);
+//        return ResponseEntity.ok("Successfully added!");
+//    }
 
     @GetMapping("/{id}")
     public List<ReviewModelDTO> getReviewById (@PathVariable Long id){
@@ -49,10 +50,10 @@ public class ReviewController {
         return reviewService.getAllReviews();
     }
 
-    @GetMapping("/getAllNewsReviews")
-    public List<ReviewModelForNewsDTO> getAllNewsReviews(){
-        return reviewService.getAllNewsReviews();
-    }
+//    @GetMapping("/getAllNewsReviews")
+//    public List<ReviewModelForNewsDTO> getAllNewsReviews(){
+//        return reviewService.getAllNewsReviews();
+//    }
 
     @PutMapping("/updateReview/{id}")
     public void updateComment(@PathVariable("id")Long id, @RequestParam Boolean isVulgar){

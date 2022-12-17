@@ -1,9 +1,10 @@
-package com.example.backend.Review;
+package com.example.backend.Review.CarModelReview;
 
 import com.example.backend.CarModel.CarModel;
 import com.example.backend.CarModel.CarModelRepository;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Post.PostRepository;
+import com.example.backend.Review.PostModelReview.ReviewModelForNewsDTO;
 import com.example.backend.User.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -20,7 +21,7 @@ import java.util.stream.Collectors;
 public class ReviewService {
 
     private final ReviewRepository reviewRepository;
-    
+
     private final CarModelRepository carModelRepository;
 
     private final PostRepository postRepository;

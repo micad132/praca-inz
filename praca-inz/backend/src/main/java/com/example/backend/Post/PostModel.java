@@ -1,7 +1,8 @@
 package com.example.backend.Post;
 
 import com.example.backend.Image.ImageModel;
-import com.example.backend.Review.ReviewModel;
+import com.example.backend.Review.CarModelReview.ReviewModel;
+import com.example.backend.Review.PostModelReview.PostModelReview;
 import com.example.backend.User.UserModel;
 import lombok.*;
 
@@ -38,8 +39,7 @@ public class PostModel {
     @JoinColumn(name = "user_model_id")
     private UserModel userModel;
 
-    @OneToMany(mappedBy = "postModel", orphanRemoval = true)
-    private List<ReviewModel> reviewModels = new ArrayList<>();
+
 
     @OneToOne(orphanRemoval = true)
     @JoinColumn(name = "image_model_id")
@@ -49,7 +49,10 @@ public class PostModel {
     @Column(name = "post_categories")
     private PostCategories postCategories;
 
-    //    @ManyToMany
+    @OneToMany(mappedBy = "postModel", orphanRemoval = true)
+    private List<PostModelReview> postModelReviews = new ArrayList<>();
+
+//    @ManyToMany
 //    @JoinTable(name = "post_model_image_models",
 //            joinColumns = @JoinColumn(name = "post_model_id"),
 //            inverseJoinColumns = @JoinColumn(name = "image_models_id"))

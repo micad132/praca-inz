@@ -18,10 +18,10 @@ interface Props {
     isProperScreen: boolean,
     isAdminPanel : boolean,
     userRole?: string,
-    carName: string,
+    reviewHeader: string,
 }
 
-const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, carName} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader} : Props) => {
 
     const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(isVulgar);
     console.log(nick);
@@ -97,12 +97,13 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
           </div>
         : <PriorityHighIcon className={styles.badCommentIcon} onClick={showAddingToListInfo}/>
 
+
     return(
 
             <div style={opinionStyle}>
                 <div className={styles.opinionDetails}>
                     <h3>{nick}</h3>
-                    <h5>Dla {carName}</h5>
+                    <h5>Dla ,,{reviewHeader}"</h5>
                     <p><span className={styles.boldFont}>Ocena:</span> <Rating name="read-only" value={rating} precision={0.5} readOnly /></p>
                     <div>
                         <p className={styles.date}>Data wystawienia:</p>

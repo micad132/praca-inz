@@ -8,18 +8,18 @@ export type ReviewType = {
     date: string,
     userNick: string,
     isVulgar: boolean,
-    carName: string
+    reviewHeader: string
 }
 
-export type ReviewForNewsType = {
-    reviewModelId: number
-    description: string,
-    rate: number,
-    date: string,
-    userNick: string,
-    isVulgar: boolean,
-    postTitle: string
-}
+// export type ReviewForNewsType = {
+//     reviewModelId: number
+//     description: string,
+//     rate: number,
+//     date: string,
+//     userNick: string,
+//     isVulgar: boolean,
+//     postTitle: string
+// }
 
 export type AddingReviewType = {
     description: string,
@@ -37,10 +37,7 @@ const ReviewService = {
         return res.data;
     },
 
-    getReviewsForNews: async (id: number) => {
-        const res = await axios.get(`${URL}/review/${id}`)
-        return res.data;
-    },
+
 
     addReviewForCarModel: async (review : AddingReviewType ,id : number) => {
         return axios({
@@ -53,12 +50,18 @@ const ReviewService = {
     },
 
     addReviewForNews: async (review : AddingReviewType, id: number) => {
-        console.log('HALOHALO');
+
         return axios({
             method: 'POST',
-            url: `${URL}/review/addReviewForNews/${id}`,
+            url: `${URL}/postreview/addPostReview/${id}`,
             data: review,
         })
+    },
+
+    getReviewsForNews: async (id: number) => {
+        const res = await axios.get(`${URL}/postreview/getPostReviews/${id}`);
+        console.log('HUJ', res);
+        return res.data;
     },
 
     updateReview: async (id: number, isVulgar: boolean) => {

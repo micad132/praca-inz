@@ -2,7 +2,7 @@ package com.example.backend.Post;
 
 import com.example.backend.Image.ImageModel;
 import com.example.backend.Image.ImageRepository;
-import com.example.backend.Post.ResponseDTO.PostModelDTO;
+import com.example.backend.Post.PostModelDTO;
 import com.example.backend.User.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

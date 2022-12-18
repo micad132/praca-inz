@@ -1,15 +1,15 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import {RootState} from "./index";
-import ReviewService, {AddingReviewType, ReviewForNewsType, ReviewType} from "../services/ReviewService";
+import ReviewService, {AddingReviewType, ReviewType} from "../services/ReviewService";
 
 
 
 
 export interface ReviewState {
-    singleReview: ReviewType
+    singleReview: ReviewType,
     allReviews: ReviewType[],
     reviewsForCarModel : ReviewType[],
-    reviewsForNews: ReviewForNewsType[],
+    reviewsForNews: ReviewType[],
     isLoaded: boolean,
     error: string | undefined
 }
@@ -17,7 +17,7 @@ export interface ReviewState {
 
 
 const initialState : ReviewState  = {
-    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, carName: ''},
+    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, reviewHeader: ''},
     allReviews: [],
     reviewsForCarModel: [],
     reviewsForNews: [],
@@ -59,6 +59,18 @@ export const addingReviewForCarModel = createAsyncThunk(
             const data = await ReviewService.getReviewsForCarModel(id);
             return { data };
         }catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const fetchingReviewsForNews = createAsyncThunk(
+    "review/getReviewsForNews",
+    async (id : number) => {
+        try{
+            const data = await ReviewService.getReviewsForNews(id);
+            return { data };
+        } catch (e) {
             throw e;
         }
     }
@@ -151,6 +163,9 @@ const carModelSlice = createSlice({
             .addCase(updatingReview.fulfilled, (state, action) => {
             })
             .addCase(addingReviewForNews.fulfilled, (state, action) => {
+                state.reviewsForNews = action.payload.data;
+            })
+            .addCase(fetchingReviewsForNews.fulfilled, (state, action) => {
                 state.reviewsForNews = action.payload.data;
             })
     }

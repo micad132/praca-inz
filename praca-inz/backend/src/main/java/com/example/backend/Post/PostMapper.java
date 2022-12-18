@@ -1,6 +1,6 @@
 package com.example.backend.Post;
 
-import com.example.backend.Post.ResponseDTO.PostModelDTO;
+import com.example.backend.Post.PostModelDTO;
 import com.example.backend.Review.CarModelReview.ReviewMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -30,7 +30,7 @@ public class PostMapper {
                 .date(postModel.getDate())
                 .postCategory(postModel.getPostCategories().toString())
                 .author(postModel.getUserModel().getName())
-                .reviewModels(postModel.getReviewModels().stream().map(reviewMapper::mapEntityToDTO).collect(Collectors.toList()))
+//                .reviewModels(postModel.getPostModelReviews().stream().map(reviewMapper::mapEntityToDTO).collect(Collectors.toList()))
 //                .imageSrc(postModel.getImageModel().getName())
                 .imageModel(postModel.getImageModel())
                 .build();

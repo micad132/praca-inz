@@ -4,7 +4,6 @@ import com.example.backend.CarModel.CarModel;
 import com.example.backend.CarModel.CarModelRepository;
 import com.example.backend.Post.PostModel;
 import com.example.backend.Post.PostRepository;
-import com.example.backend.Review.PostModelReview.ReviewModelForNewsDTO;
 import com.example.backend.User.UserWrapper;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,9 +31,9 @@ public class ReviewService {
         return reviewRepository.findAll().stream().map(reviewMapper::mapEntityToDTO).collect(Collectors.toList());
     }
 
-    public List<ReviewModelForNewsDTO> getAllNewsReviews(){
-        return reviewRepository.findAll().stream().map(reviewMapper::mapEntityToReviewDTO).collect(Collectors.toList());
-    }
+//    public List<ReviewModelForNewsDTO> getAllNewsReviews(){
+//        return reviewRepository.findAll().stream().map(reviewMapper::mapEntityToReviewDTO).collect(Collectors.toList());
+//    }
 
     public void addReview(Long id , ReviewModelDTO reviewModelDTO, UserWrapper userWrapper){
 
@@ -47,16 +46,16 @@ public class ReviewService {
         reviewRepository.save(reviewModel1);
     }
 
-    public void addReviewForNews(Long id , ReviewModelDTO reviewModelDTO, UserWrapper userWrapper){
-
-        PostModel postModel = postRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Not found"));
-        ReviewModel reviewModel1 = reviewMapper.mapDTOToEntity(reviewModelDTO);
-        reviewModel1.setUserModel(userWrapper.getUserModel());
-        reviewModel1.setPostModel(postModel);
-        reviewModel1.setDate(Timestamp.from(Instant.now()));
-        reviewModel1.setIsVulgar(false);
-        reviewRepository.save(reviewModel1);
-    }
+//    public void addReviewForNews(Long id , ReviewModelDTO reviewModelDTO, UserWrapper userWrapper){
+//
+//        PostModel postModel = postRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Not found"));
+//        ReviewModel reviewModel1 = reviewMapper.mapDTOToEntity(reviewModelDTO);
+//        reviewModel1.setUserModel(userWrapper.getUserModel());
+//        reviewModel1.setPostModel(postModel);
+//        reviewModel1.setDate(Timestamp.from(Instant.now()));
+//        reviewModel1.setIsVulgar(false);
+//        reviewRepository.save(reviewModel1);
+//    }
 
     public void updateReview(Long id, Boolean isVulgar){
         ReviewModel reviewModel = reviewRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("Not found"));

@@ -1,8 +1,5 @@
 package com.example.backend.Review.CarModelReview;
 
-import com.example.backend.Review.CarModelReview.ReviewModel;
-import com.example.backend.Review.CarModelReview.ReviewModelDTO;
-import com.example.backend.Review.PostModelReview.ReviewModelForNewsDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +21,7 @@ public class ReviewMapper {
                 .description(reviewModel.getDescription())
                 .isVulgar(reviewModel.getIsVulgar())
                 .rate(reviewModel.getRate())
-                .carName(reviewModel.getCarModel().getName())
+                .reviewHeader(reviewModel.getCarModel().getName())
                 .date(reviewModel.getDate())
                 .build();
     }

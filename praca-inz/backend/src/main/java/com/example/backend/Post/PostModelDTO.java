@@ -2,6 +2,7 @@ package com.example.backend.Post;
 
 import com.example.backend.Image.ImageModel;
 import com.example.backend.Review.CarModelReview.ReviewModelDTO;
+import com.example.backend.Review.PostModelReview.PostModelReviewDTO;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,7 +23,8 @@ public class PostModelDTO {
     String postCategory;
     //    private String imageSrc;
     ImageModel imageModel;
-    List<ReviewModelDTO> reviewModels;
+//    List<ReviewModelDTO> reviewModels;
+    List<PostModelReviewDTO> reviewModels;
 
 }
 

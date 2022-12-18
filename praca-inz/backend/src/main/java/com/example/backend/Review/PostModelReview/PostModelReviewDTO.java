@@ -7,13 +7,15 @@ import java.sql.Timestamp;
 
 @Data
 @Builder
-public class ReviewModelForNewsDTO {
-    private Long reviewModelId;
+public class PostModelReviewDTO {
+
+    private Long postModelReviewId;
     private String description;
     private Double rate;
     private Boolean isVulgar;
     private Timestamp date;
-    private Long postId;
-    private String postTitle;
     private String userNick;
+    private String reviewHeader;
+    private Long postId;
+
 }

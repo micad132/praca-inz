@@ -49,13 +49,13 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
                 <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick}
                          isVulgar={opinion.isVulgar} rating={opinion.rate} description={opinion.description}
                          date={opinion.date} isAdminPanel={isAdminPanel} isProperScreen={true}
-                         userRole={userRole} carName={opinion.carName} />)
+                         userRole={userRole} reviewHeader={opinion.reviewHeader} />)
         : <h4>Brak</h4>
 
 
     const properAddingOpinion = isCarModelScreen
         ? <AddingOpinion carModelId={carModelId} userRole={userRole} isCarModelScreen={true} />
-        : <AddingOpinion postId={postId} userRole={userRole} isCarModelScreen={false} />;
+        : <AddingOpinion postId={postId} userRole={userRole}  isCarModelScreen={false} />;
 
 
     return(

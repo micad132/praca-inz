@@ -1,4 +1,3 @@
-import styles from "../../components/Header/HelpModal/HelpModal.module.scss";
 import Button from "@mui/material/Button";
 import Modal from "@mui/material/Modal";
 import ModalWrapper from "../../components/Wrappers/ModalWrapper";
@@ -10,6 +9,9 @@ import MenuItem from "@mui/material/MenuItem";
 import {OrderEditType} from "../../services/OrderService";
 import {editingOrderThunk} from "../../store/orderSlice";
 import {toast} from "react-toastify";
+import styles from './OrdersPage.module.scss';
+import InputLabel from "@mui/material/InputLabel";
+import FormControl from "@mui/material/FormControl";
 
 interface Props {
     isModalShow: boolean,
@@ -21,7 +23,7 @@ interface Props {
 const EditingOrder = ({isModalShow, setIsModalShow, orderId, partName} : Props) => {
 
     const [newPartName,setNewPartName] = useState<string>(partName);
-    const [amount,setAmount] = useState<string>('0');
+    const [amount,setAmount] = useState<string>('1');
 
 
     const dispatch = useAppDispatch();
@@ -65,31 +67,39 @@ const EditingOrder = ({isModalShow, setIsModalShow, orderId, partName} : Props) 
 
             <div>
                 <ModalWrapper>
-                    <h3>Edytujesz zamowienie numer: 2</h3>
-                    <p>Wybierz czesc na ktora ma byc zamowienie</p>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={newPartName}
-                        onChange={(e) => setNewPartName(e.target.value)}
-                    >
-                        {mappedSelectValues}
-                    </Select>
-                    <Select
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                    >
-                        {mappedSelectAmountValues}
-                    </Select>
-                    <Button
-                        variant={"contained"}
-                        onClick={editOrder}
+                    <div className={styles.editingModelWrapper}>
+                        <h3>Edytujesz zamowienie numer: 2</h3>
+                        <p>Wybierz czesc na ktora ma byc zamowienie</p>
+                        <FormControl fullWidth>
+                            <InputLabel id="partName">Nazwa czesci</InputLabel>
+                            <Select
+                                labelId="partName"
+                                id="partName"
+                                value={newPartName}
+                                onChange={(e) => setNewPartName(e.target.value)}
+                            >
+                                {mappedSelectValues}
+                            </Select>
+                        </FormControl>
+                        <FormControl fullWidth>
+                            <InputLabel id="partAmount">Ilosc</InputLabel>
+                            <Select
+                                labelId="partAmount"
+                                id="partAmount"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                            >
+                                {mappedSelectAmountValues}
+                            </Select>
+                        </FormControl>
+                        <Button
+                            variant={"contained"}
+                            onClick={editOrder}
 
-                    >
-                        Edytuj
-                    </Button>
+                        >
+                            Edytuj
+                        </Button>
+                    </div>
                 </ModalWrapper>
             </div>
         </Modal>

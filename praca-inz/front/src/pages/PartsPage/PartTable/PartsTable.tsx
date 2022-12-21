@@ -62,7 +62,7 @@ const PartsTable = ({rows} : Props) => {
     return(
         <section className={styles.tableWrapper}>
             <h1>Dostępne części na portalu ({rows.length})</h1>
-            <h3>Kliknij przycisk aby dodać czesc do zamowienia</h3>
+            <h3>Kliknij przycisk ,,Dodaj" aby dodać czesc do zamowienia</h3>
             <DataGrid rows={rows} columns={columns} sx={tableStyles} />
         </section>
     )

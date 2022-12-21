@@ -5,6 +5,7 @@ import {fetchOrdersThunk, getAllOrders} from "../../store/orderSlice";
 import {OrderType} from "../../services/OrderService";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import SortingWrapper from "../../components/Wrappers/SortingWrapper";
 
 interface Props {
     orders: OrderType[]
@@ -18,7 +19,20 @@ const Orders = ({orders} : Props) => {
     let ordersSortedAsc : OrderType[] = [];
     let ordersSortedDesc: OrderType[] = [];
 
-    const ordersMapped = orders.map( order => (
+
+    if(orders){
+       ordersSortedAsc = orders?.map( order => {
+            return {...order, newDate: new  Date(order.orderDate)}
+        }).sort((a,b) => b.newDate.getTime() - a.newDate.getTime());
+
+        ordersSortedDesc = orders?.map( order => {
+            return {...order, newDate: new  Date(order.orderDate)}
+        }).sort((a,b) => a.newDate.getTime() - b.newDate.getTime());
+    }
+
+    const ordersSorted = isAscSorted ? [...ordersSortedAsc] : [...ordersSortedDesc];
+
+    const ordersMapped = ordersSorted.map( order => (
         <SingleOrder
             id={order.orderId} key={order.orderId} orderDate={order.orderDate}
             userNick={order.userNick} partName={order.partModelDTO.partName}
@@ -29,12 +43,7 @@ const Orders = ({orders} : Props) => {
 
     return(
         <div>
-            <div onClick={() => setIsAscSorted(!isAscSorted)}>
-                {isAscSorted  ?
-                    <KeyboardArrowUpIcon  /> :
-                    <KeyboardArrowDownIcon />
-                }
-            </div>
+            <SortingWrapper isAscSorted={isAscSorted} setIsAscSorted={setIsAscSorted} />
             {ordersMapped}
         </div>
     )

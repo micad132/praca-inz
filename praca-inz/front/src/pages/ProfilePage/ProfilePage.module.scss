@@ -2,7 +2,8 @@
 .wrapper{
   margin: 30px auto 0 auto;
   width: 70%;
-  border: 2px solid red;
+  border: 2px solid #000;
+  border-radius: 5px;
   text-align: center;
 
   & > * {
@@ -12,7 +13,6 @@
   .buttonWrapper{
     display: flex;
     margin: 0 auto;
-    border: 2px solid blue;
     width: 60%;
     justify-content: space-evenly;
     align-items: center;

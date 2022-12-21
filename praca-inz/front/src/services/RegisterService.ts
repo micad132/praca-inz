@@ -81,6 +81,10 @@ const RegisterService = {
     getUpdatedUser: async () => {
         const res = await axios.get(`${URL}/user/getUserById`)
         return res.data;
+    },
+
+    deleteUser: async (id : number) => {
+        await axios.delete(`${URL}/user/deleteUserById/${id}`)
     }
 }
 

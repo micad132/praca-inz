@@ -5,7 +5,7 @@ const Nav = () => {
   return (
     <nav className={styles.nav}>
       <Link className={styles.navLink} to="/news">
-        Aktualnosci
+        Posty
       </Link>
       <Link className={styles.navLink} to="/cars">
         Samochody

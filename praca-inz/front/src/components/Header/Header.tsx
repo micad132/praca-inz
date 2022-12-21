@@ -11,6 +11,7 @@ import {useClickAway} from 'react-use';
 import {useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUser} from "../../store/userSlice";
 import HelpModal from "./HelpModal";
+import logo from "../../assets/logo.jpg";
 
 const Header = () => {
     let navigate = useNavigate();
@@ -43,7 +44,7 @@ const Header = () => {
         <header className={styles.header}>
             <div className={styles.headerDiv}>
                 <Link to="/" style={{textDecoration: 'none'}}>
-                    <h1 className={styles.logo}>motoPortal</h1>
+                    <img src={logo} alt={'logo'} />
                 </Link>
                 {showAuthorInfo && <h3>
                     Motoryzacyjny portal społecznościowy

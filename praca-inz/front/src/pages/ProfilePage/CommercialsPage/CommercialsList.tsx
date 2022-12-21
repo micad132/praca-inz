@@ -45,8 +45,6 @@ interface Props  {
 
 const CommercialsList = ({commercials} : Props) => {
 
-
-    console.log('COMMERCIALS',commercials);
     return(
 
             <section className={styles.previewWrapper}>

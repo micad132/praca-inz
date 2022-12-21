@@ -113,6 +113,19 @@ export const updateUserRoleThunk = createAsyncThunk(
     }
 )
 
+export const deletingUserThunk = createAsyncThunk(
+    'user/deleteUserById',
+    async (id: number) => {
+        try{
+            await RegisterService.deleteUser(id);
+            const data = await RegisterService.getAllUsersDTO();
+            return { data }
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserRole = (state : any) => state.user.userRole.role;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
@@ -168,6 +181,9 @@ const userSlice = createSlice({
                 state.isLoaded = true;
             })
             .addCase(fetchAllUsersDTOThunk.rejected, (state, action) => {
+            })
+            .addCase(deletingUserThunk.fulfilled, (state, action) => {
+                state.allUsersDetailsDTO = action.payload.data;
             })
     }
 

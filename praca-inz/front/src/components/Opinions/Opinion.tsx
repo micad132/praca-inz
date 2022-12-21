@@ -69,7 +69,7 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
     }
 
     console.log('ROLA', userRole);
-    const showIcon = (isProperScreen || isAdminPanel) && userRole;
+    const showIcon = (isProperScreen || isAdminPanel) && userRole === 'ADMIN';
 
 
     const opinionStyle = isOpinionVulgar

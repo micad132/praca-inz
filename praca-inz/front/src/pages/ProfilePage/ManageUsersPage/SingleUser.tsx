@@ -1,12 +1,13 @@
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
+import DeleteIcon from '@mui/icons-material/Delete';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Button from '@mui/material/Button';
 import { useState } from "react";
 import styles from './ManageUsersPage.module.scss';
 import {useAppDispatch} from "../../../utils/types/hooks";
-import {updateUserRoleThunk} from "../../../store/userSlice";
+import {deletingUserThunk, updateUserRoleThunk} from "../../../store/userSlice";
 import {toast} from "react-toastify";
 
 interface Props {
@@ -43,6 +44,7 @@ const SingleUser = ({id,name,cityName,postalCode,userRole} : Props) => {
         setIsShowButton(false);
 
     }
+
 
     return(
         <div className={styles.singleUserWrapper}>

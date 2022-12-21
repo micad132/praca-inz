@@ -1,18 +1,30 @@
 import styles from './SingleNews.module.scss';
+import {fetchingImagesURL} from "../../utils/GlobalVariables";
+import {useNavigate} from "react-router-dom";
 
-const SingleNews = () => {
+interface Props {
+    description: string,
+    imageSrc: string,
+    postCategory: string,
+    postId: number,
+    title: string,
+}
+
+const SingleNews = ({description,imageSrc,postCategory,postId,title} : Props) => {
+
+
+    const navigate = useNavigate();
+
     return(
-        <section className={styles.wrapper}>
+        <section className={styles.wrapper} onClick={() => navigate(`/news/${postId}`)}>
             <div className={styles.wrapper__image}>
-                <img src={'https://picsum.photos/1200'}  alt={'dummy car'}/>
+                <img src={`${fetchingImagesURL}/${imageSrc}`}  alt={'dummy car'}/>
             </div>
 
             <div className={styles.wrapper__content}>
-                <h2>BMW M3 to niezle autko</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent dolor elit, finibus in elementum
-                    faucibus, faucibus a diam. In ullamcorper mauris non lacus interdum finibus vitae porttitor risus.
-                    Sed et
-                </p>
+                <h2>Kategoria {postCategory}</h2>
+                <h2>{title}</h2>
+                <p>{description}</p>
             </div>
         </section>
     )

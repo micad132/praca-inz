@@ -19,9 +19,13 @@ const SimilarNews = ({similarNews} : Props) => {
     const similarSingleNews = similarNews.map(({postId, title,date,author, imageSrc, postCategory}) =>
         <SimilarSingleNews postId={postId} title={title} date={date}  author={author} imageSrc={imageSrc}/>);
 
+    const similarNewsHeader = similarNews.length > 0
+        ? `Podobne posty tej samej kategorii (${similarNews[0]?.postCategory})`
+        : 'Brak postow o tej samej kategorii';
+
     return(
         <section className={styles.wrapper}>
-            <h3>Podobne posty tej samej kategorii ({similarNews[0]?.postCategory})</h3>
+            <h3>{similarNewsHeader}</h3>
             <div className={styles.similarSingleNewsWrapper}>
                 {similarSingleNews}
             </div>

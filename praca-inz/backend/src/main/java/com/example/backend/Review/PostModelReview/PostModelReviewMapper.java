@@ -12,6 +12,7 @@ public class PostModelReviewMapper {
                 .description(postModelReview.getDescription())
                 .rate(postModelReview.getRate())
                 .isVulgar(postModelReview.getIsVulgar())
+                .isCarModelReview(postModelReview.getIsCarModelReview())
                 .date(postModelReview.getDate())
                 .userNick(postModelReview.getUserModel().getName())
                 .reviewHeader(postModelReview.getPostModel().getTitle())

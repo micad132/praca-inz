@@ -11,29 +11,6 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import {useEffect, useState} from "react";
 import {fetchAlNewsThunk, getAllNews} from "../../store/newsSlice";
 
-const dummyArr = [
-    {
-        id: 1,
-        title: 'lorem ipsum1',
-        src: 'https://picsum.photos/400'
-    },
-    {
-        id: 1,
-        title: 'lorem ipsum1',
-        src: 'https://picsum.photos/400'
-    },
-    {
-        id: 1,
-        title: 'lorem ipsum1',
-        src: 'https://picsum.photos/400'
-    },
-    {
-        id: 1,
-        title: 'lorem ipsum1',
-        src: 'https://picsum.photos/400'
-    },
-
-]
 
 const PolandInfo = () => {
 
@@ -61,11 +38,16 @@ const PolandInfo = () => {
                             postId={post.postId} title={post.title} />)
 
     const userRole = useAppSelector(getLoggedUserRole);
+
+    const postLength = category === 'ALL'
+        ? allNewsList.length
+        : filteredList.length;
+
+
     return (
         <div className={styles.wrapper}>
             <div className={styles.centralInfo}>
                 <h1 className={styles.title}>Motoryzacyjne posty</h1>
-                <h2>Na portalu znajduje się ({allPosts.length}) postów</h2>
                 {userRole === 'USER'
                     ? <AddingNews />
                     : <h2>Musisz miec role USER aby dodac post</h2>
@@ -87,6 +69,7 @@ const PolandInfo = () => {
                     </Select>
                 </FormControl>
             </div>
+            <h2 style={{marginTop: '30px'}}>Liczba postów na portalu w danej kategorii({postLength})</h2>
             {category === 'ALL'
                 ? allNewsList
                 : filteredList

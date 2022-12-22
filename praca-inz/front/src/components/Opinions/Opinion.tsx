@@ -22,9 +22,10 @@ interface Props {
     isCarModel?: boolean,
     postId?: number,
     isCarReview?: boolean,
+    isCarModelReview: boolean,
 }
 
-const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview,isCarModelReview} : Props) => {
 
     const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(isVulgar);
     const formattedDate = moment(date).format('MM/DD/YYYY');
@@ -58,9 +59,9 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
 
     const deleteVulgarReview = () => {
 
-        if(isCarReview){
+        if(isCarModelReview){
             dispatch(deleteReviewById(id));
-        } else if(!isCarReview && postId) {
+        } else if(!isCarModelReview && postId) {
             console.log('HALOJD');
             dispatch(deletePostReviewById(postId));
         }

@@ -12,6 +12,7 @@ public class ReviewModelDTO {
     private String description;
     private Double rate;
     private Boolean isVulgar;
+    private Boolean isCarModelReview;
     private Timestamp date;
     private Long carModelId;
     private String reviewHeader;

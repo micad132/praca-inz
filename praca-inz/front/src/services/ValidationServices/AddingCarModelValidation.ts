@@ -41,7 +41,7 @@ const carEnginePowerValidation = (power : number) : boolean => {
 }
 
 const carEngineCapacityValidation = (capacity : number) : boolean => {
-    return capacity > 10 && capacity < 10.0;
+    return capacity > 0 && capacity < 10.0;
 }
 
 

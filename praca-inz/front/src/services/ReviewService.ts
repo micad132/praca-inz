@@ -8,7 +8,8 @@ export type ReviewType = {
     date: string,
     userNick: string,
     isVulgar: boolean,
-    reviewHeader: string
+    reviewHeader: string,
+    isCarModelReview: boolean,
 }
 
 // export type ReviewForNewsType = {

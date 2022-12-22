@@ -185,6 +185,9 @@ const userSlice = createSlice({
             .addCase(deletingUserThunk.fulfilled, (state, action) => {
                 state.allUsersDetailsDTO = action.payload.data;
             })
+            .addCase(updateUserRoleThunk.fulfilled, (state, action) => {
+                state.allUsersDetailsDTO = action.payload.data;
+            })
     }
 
 })

@@ -32,6 +32,7 @@ public class PostModelReviewService {
         postModelReview.setPostModel(postModel);
         postModelReview.setDate(Timestamp.from(Instant.now()));
         postModelReview.setIsVulgar(false);
+        postModelReview.setIsCarModelReview(false);
         postModelReview.setUserModel(userWrapper.getUserModel());
         postModelReviewRepository.save(postModelReview);
     }

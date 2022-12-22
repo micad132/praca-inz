@@ -19,7 +19,7 @@ const ManageUsersPage = () => {
 
     return(
         <>
-            <h1>Lista zarejestrowanych uzytkownikow (3)</h1>
+            <h1>Lista zarejestrowanych uzytkownikow ({usersList.length})</h1>
             {usersList}
         </>
     )

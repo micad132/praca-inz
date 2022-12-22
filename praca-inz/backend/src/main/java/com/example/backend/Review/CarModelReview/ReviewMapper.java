@@ -20,6 +20,7 @@ public class ReviewMapper {
                 .userNick(reviewModel.getUserModel().getName())
                 .description(reviewModel.getDescription())
                 .isVulgar(reviewModel.getIsVulgar())
+                .isCarModelReview(reviewModel.getIsCarModelReview())
                 .rate(reviewModel.getRate())
                 .reviewHeader(reviewModel.getCarModel().getName())
                 .date(reviewModel.getDate())

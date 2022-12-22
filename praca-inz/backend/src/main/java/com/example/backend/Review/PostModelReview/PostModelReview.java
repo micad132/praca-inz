@@ -42,4 +42,7 @@ public class PostModelReview {
     @JoinColumn(name = "post_model_id")
     private PostModel postModel;
 
+    @Column(name = "is_car_model_review")
+    private Boolean isCarModelReview;
+
 }

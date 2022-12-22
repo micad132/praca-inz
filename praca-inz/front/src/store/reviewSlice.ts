@@ -17,7 +17,7 @@ export interface ReviewState {
 
 
 const initialState : ReviewState  = {
-    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, reviewHeader: ''},
+    singleReview: {reviewModelId: 1, description: '', date: '', rate: 0, userNick: '', isVulgar: false, reviewHeader: '',isCarModelReview: false},
     allReviews: [],
     reviewsForCarModel: [],
     reviewsForNews: [],
@@ -197,7 +197,7 @@ const carModelSlice = createSlice({
                 state.reviewsForNews = action.payload.data;
             })
             .addCase(deleteReviewById.fulfilled, (state, action) => {
-                state.reviewsForCarModel = action.payload.data;
+                state.allReviews = action.payload.data;
             })
             .addCase(deletePostReviewById.fulfilled, (state, action) => {
                 state.reviewsForNews = action.payload.data;

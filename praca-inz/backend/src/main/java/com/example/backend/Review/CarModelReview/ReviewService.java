@@ -43,6 +43,7 @@ public class ReviewService {
         reviewModel1.setCarModel(carModel);
         reviewModel1.setDate(Timestamp.from(Instant.now()));
         reviewModel1.setIsVulgar(false);
+        reviewModel1.setIsCarModelReview(true);
         reviewRepository.save(reviewModel1);
     }
 

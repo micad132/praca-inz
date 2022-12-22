@@ -171,8 +171,9 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                 draggable: true,
                 progress: undefined,
             });
-            // dispatch(addingCarModelThunk(data));
+            dispatch(addingCarModelThunk(data));
             setCarModelValues(initialState);
+            setIsOpen(false);
         } else{
             toast.error('Niepoprawne dane', {
                 position: "top-left",
@@ -325,16 +326,16 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                         <Button variant="contained" component="label">
                             Dodaj zdjecie
                             <input hidden accept="image/*" multiple type="file" onChange={(e) => {
-                                // const formData = new FormData();
-                                // // @ts-ignore
-                                // console.log(e.target.files[0]);
-                                // // @ts-ignore
-                                // formData.append("image",e.target.files[0])
-                                //
-                                // // dispatch(addingImageThunk(formData))
-                                // ImageService.addImage(formData).then((image) => {
-                                //     imageId = image.id;
-                                // })
+                                const formData = new FormData();
+                                // @ts-ignore
+                                console.log(e.target.files[0]);
+                                // @ts-ignore
+                                formData.append("image",e.target.files[0])
+
+                                // dispatch(addingImageThunk(formData))
+                                ImageService.addImage(formData).then((image) => {
+                                    imageId = image.id;
+                                })
                             }} />
                             <CameraAltIcon />
                         </Button>

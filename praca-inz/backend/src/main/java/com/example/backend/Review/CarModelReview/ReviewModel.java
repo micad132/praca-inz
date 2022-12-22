@@ -44,6 +44,8 @@ public class ReviewModel {
     @Column(name = "is_vulgar")
     private Boolean isVulgar;
 
+    @Column(name = "is_car_model_review")
+    private Boolean isCarModelReview;
 
 //    @ManyToOne
 //    @JoinColumn(name = "product_model_id")

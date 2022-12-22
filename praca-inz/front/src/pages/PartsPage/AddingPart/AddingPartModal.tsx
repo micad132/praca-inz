@@ -13,6 +13,7 @@ import Button from "@mui/material/Button";
 import {FormEvent, useState} from "react";
 import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
 import TextField from "@mui/material/TextField";
+import {toast} from "react-toastify";
 
 
 
@@ -38,6 +39,16 @@ const AddingPartModal = () => {
         console.log(partValues);
         console.log(Number(partValues.partPrice));
         dispatch(addingPartThunk(partValues))
+        toast.success('Dodano czesc!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        dispatch(changeAddingPartToDatabaseVisibility(false));
         setPartValues(addingPartInitialState);
     }
 

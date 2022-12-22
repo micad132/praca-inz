@@ -8,6 +8,7 @@ import {ReviewType} from "../../services/ReviewService";
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import {useState} from "react";
+import Pagination from '@mui/material/Pagination';
 
 
 interface Props {
@@ -52,13 +53,15 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
                          isVulgar={opinion.isVulgar} rating={opinion.rate} description={opinion.description}
                          date={opinion.date} isAdminPanel={isAdminPanel} isProperScreen={true}
                          userRole={userRole} reviewHeader={opinion.reviewHeader} isCarModel={isCarModelScreen} postId={opinion.reviewModelId}
-                         isCarReview={isCarReview} />)
+                         isCarModelReview={opinion.isCarModelReview}  />)
         : <h4>Brak</h4>
 
 
     const properAddingOpinion = isCarModelScreen
         ? <AddingOpinion carModelId={carModelId} userRole={userRole} isCarModelScreen={true} />
         : <AddingOpinion postId={postId} userRole={userRole}  isCarModelScreen={false} />;
+
+
 
 
     return(

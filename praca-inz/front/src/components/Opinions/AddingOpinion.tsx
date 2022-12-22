@@ -4,7 +4,7 @@ import Button from "@mui/material/Button";
 import Rating from '@mui/material/Rating';
 import styles from "./Opinions.module.scss";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
-import {getLoggedUserRole} from "../../store/userSlice";
+import {getLoggedUserNickname, getLoggedUserRole} from "../../store/userSlice";
 import TextField from "@mui/material/TextField";
 import TextareaAutosize from '@mui/material/TextareaAutosize';
 import InputLabel from "@mui/material/InputLabel";
@@ -29,6 +29,8 @@ const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props)
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const [ratingValue, setRatingValue] = useState<number | null>(1);
     const [textAreaValue, setTextAreaValue] = useState<string>('');
+
+    const userNick = useAppSelector(getLoggedUserNickname);
 
 
     const submitForm = (e: any) => {
@@ -57,7 +59,8 @@ const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props)
 
     return(
         <div>
-            {userRole ?
+            {userRole === 'USER'
+                ?
                     <Button
                         variant="contained"
                         type="submit"
@@ -66,7 +69,8 @@ const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props)
                     >
                         Dodaj komentarz
                     </Button>
-                    : <h3 className={styles.notLoggedText}>Zaloguj sie aby dodac komentarz</h3>
+
+                : <h3 className={styles.notLoggedText}>Zaloguj sie na konto uzytkownika aby dodac komentarz</h3>
             }
             <Modal
                 open={isOpen}
@@ -77,7 +81,7 @@ const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props)
 
                 <div className={styles.modalWrapper}>
                     <form className={styles.addingOpinionForm} onSubmit={(e) => submitForm(e)}>
-                        <p>Dodajesz opinie jako micad132</p>
+                        <p>Dodajesz opinie jako {userNick}</p>
                         <Rating  className={styles.rating} name="half-rating" defaultValue={1} precision={0.5} onChange={(e, newValue) => setRatingValue(newValue)} />
                         <TextareaAutosize
                             onChange={(e : any) => setTextAreaValue(e.target.value)}

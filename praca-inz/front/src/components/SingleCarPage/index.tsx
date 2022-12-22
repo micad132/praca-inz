@@ -11,27 +11,7 @@ import {fetchReviewsForCarModel, getReviewsForCarModel} from "../../store/review
 
 
 
-const dummyOpinions = [
-    {
-        id: 1,
-        nick: 'micad132',
-        rating: 4.5,
-        description: 'NIEZLE AUTKO KURDE',
-    },
-    {
-        id: 2,
-        nick: 'noscanx',
-        rating: 2.5,
-        description: 'calkiem ladne',
-    },
-    {
-        id: 3,
-        nick: 'repix',
-        rating: 1.7,
-        description: 'nie podoba sie dla mnie',
-    },
 
-]
 
 const SingleCarPage = () => {
 
@@ -58,7 +38,7 @@ const SingleCarPage = () => {
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions opinions={opinions} carModelId={carId} isAddingAvailable={true}
+            <Opinions opinions={opinions} carModelId={carId}  isAddingAvailable={true}
                       headerTitle={'Sekcja komentarzy'} isAdminPanel={false} isCarModelScreen={true}/>
         </div>
     )

@@ -32,11 +32,15 @@ const ReviewService = {
         return res.data;
     },
 
+    getAllReviewsForNews: async () => {
+        const res = await axios.get<ReviewType[]>(`${URL}/postreview/getAllPostReviews`);
+        return res.data;
+    },
+
     getReviewsForCarModel: async (id: number)  => {
         const res = await axios.get<ReviewType[]>(`${URL}/review/${id}`)
         return res.data;
     },
-
 
 
     addReviewForCarModel: async (review : AddingReviewType ,id : number) => {
@@ -75,6 +79,10 @@ const ReviewService = {
 
     deleteReviewById: async (id: number) => {
         return await axios.delete(`${URL}/review/deleteById/${id}`)
+    },
+
+    deletePostReviewById: async (id: number) => {
+        return await axios.delete(`${URL}/postreview/deletePostReview/${id}`)
     }
 
 }

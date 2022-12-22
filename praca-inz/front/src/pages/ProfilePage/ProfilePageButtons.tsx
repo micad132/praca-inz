@@ -37,9 +37,10 @@ const ProfilePageButtons = ({role} : Props) => {
                 </Button>
 
 
-             </>}
+             </>
+            }
             {isAdmin &&
-                <ButtonWrapper>
+                <>
                     <Button
                         variant="contained"
                         onClick={()=> navigate("/profile/reviews",{replace: true})}
@@ -52,7 +53,7 @@ const ProfilePageButtons = ({role} : Props) => {
                     >
                         Zarzadzaj reklamami
                     </Button>
-                </ButtonWrapper>
+                </>
             }
 
         </ButtonWrapper>

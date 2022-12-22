@@ -8,6 +8,7 @@ import reviewReducer from './reviewSlice';
 import partReducer from './partSlice';
 import orderReducer from './orderSlice';
 import newsReducer from './newsSlice';
+import pageReducer from './pageSlice';
 
 export const store = configureStore({
     reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
         parts: partReducer,
         orders: orderReducer,
         posts: newsReducer,
+        page: pageReducer,
 
     }
 })

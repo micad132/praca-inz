@@ -39,6 +39,18 @@ export const fetchAllReviewsForCarModels = createAsyncThunk(
     }
 )
 
+export const fetchAllReviewsForNews = createAsyncThunk(
+    "review/getAllNewsReviews",
+    async () => {
+        try {
+            const data = await ReviewService.getAllReviewsForNews();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const fetchReviewsForCarModel = createAsyncThunk(
     "review/getReviewForCarModel",
     async (id : number) => {
@@ -115,6 +127,19 @@ export const deleteReviewById = createAsyncThunk(
     }
 )
 
+export const deletePostReviewById = createAsyncThunk(
+    "review/deletePostReviewById",
+    async (id: number) => {
+        try {
+            await ReviewService.deletePostReviewById(id);
+            const data = await ReviewService.getAllReviewsForNews();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const getAllReviewsForCarModel = (state : RootState)  => state.reviews.allReviews;
 export const getReviewsForCarModel = (state : RootState) => state.reviews.reviewsForCarModel;
 export const getReviewsForNews = (state: RootState) => state.reviews.reviewsForNews;
@@ -166,6 +191,15 @@ const carModelSlice = createSlice({
                 state.reviewsForNews = action.payload.data;
             })
             .addCase(fetchingReviewsForNews.fulfilled, (state, action) => {
+                state.reviewsForNews = action.payload.data;
+            })
+            .addCase(fetchAllReviewsForNews.fulfilled, (state, action) => {
+                state.reviewsForNews = action.payload.data;
+            })
+            .addCase(deleteReviewById.fulfilled, (state, action) => {
+                state.reviewsForCarModel = action.payload.data;
+            })
+            .addCase(deletePostReviewById.fulfilled, (state, action) => {
                 state.reviewsForNews = action.payload.data;
             })
     }

@@ -52,4 +52,10 @@ public class PostModelReviewController {
         return postModelReviewService.getPostReviews(id);
     }
 
+    @DeleteMapping("/deletePostReview/{id}")
+    public ResponseEntity<String> deletePostReviewById(@PathVariable ("id") Long id){
+        postModelReviewService.deletePostReviewById(id);
+        return ResponseEntity.ok("Successfully deleted!");
+    }
+
 }

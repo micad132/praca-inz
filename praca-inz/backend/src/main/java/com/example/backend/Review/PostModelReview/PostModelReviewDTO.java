@@ -9,7 +9,7 @@ import java.sql.Timestamp;
 @Builder
 public class PostModelReviewDTO {
 
-    private Long postModelReviewId;
+    private Long reviewModelId;
     private String description;
     private Double rate;
     private Boolean isVulgar;

@@ -18,12 +18,13 @@ interface Props {
     headerTitle?: string,
     isAdminPanel: boolean,
     isCarModelScreen: boolean,
+    isCarReview?: boolean,
 }
 
-const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel,isCarModelScreen, postId}: Props) => {
+const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel,isCarModelScreen, postId, isCarReview}: Props) => {
 
     const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
-    console.log(opinions);
+    console.log('OPINIE', opinions);
     const userRole = useAppSelector(getLoggedUserRole);
 
     let sortedOpinionsAsc : ReviewType[] = [];
@@ -43,13 +44,15 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
 
     const opinionsToMap = isAscSorted ? [...sortedOpinionsAsc] : [...sortedOpinionsDesc];
 
+    console.log('OPINIONS TO MAP', opinionsToMap);
     const opinionsList = opinionsToMap
         ? opinionsToMap
             .map(opinion =>
                 <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick}
                          isVulgar={opinion.isVulgar} rating={opinion.rate} description={opinion.description}
                          date={opinion.date} isAdminPanel={isAdminPanel} isProperScreen={true}
-                         userRole={userRole} reviewHeader={opinion.reviewHeader} />)
+                         userRole={userRole} reviewHeader={opinion.reviewHeader} isCarModel={isCarModelScreen} postId={opinion.reviewModelId}
+                         isCarReview={isCarReview} />)
         : <h4>Brak</h4>
 
 

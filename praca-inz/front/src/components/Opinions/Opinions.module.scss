@@ -76,6 +76,9 @@
     cursor: pointer;
     color: black;
     transform: scale(1.5);
+    &:hover{
+      color: red;
+    }
   }
 
 

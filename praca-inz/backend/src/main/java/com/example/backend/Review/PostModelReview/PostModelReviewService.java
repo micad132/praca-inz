@@ -48,4 +48,8 @@ public class PostModelReviewService {
                 .sorted(Comparator.comparing(PostModelReviewDTO::getDate))
                 .collect(Collectors.toList());
     }
+
+    public void deletePostReviewById(Long id){
+        postModelReviewRepository.deleteById(id);
+    }
 }

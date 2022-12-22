@@ -7,7 +7,7 @@ public class PostModelReviewMapper {
 
     public PostModelReviewDTO mapEntityToDTO(PostModelReview postModelReview){
         return PostModelReviewDTO.builder()
-                .postModelReviewId(postModelReview.getId())
+                .reviewModelId(postModelReview.getId())
                 .postId(postModelReview.getPostModel().getId())
                 .description(postModelReview.getDescription())
                 .rate(postModelReview.getRate())

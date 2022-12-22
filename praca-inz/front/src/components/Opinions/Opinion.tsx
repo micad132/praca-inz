@@ -5,7 +5,7 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {toast} from "react-toastify";
 import {useAppDispatch} from "../../utils/types/hooks";
-import {deleteReviewById, updatingReview} from "../../store/reviewSlice";
+import {deletePostReviewById, deleteReviewById, updatingReview} from "../../store/reviewSlice";
 import {useState} from "react";
 
 interface Props {
@@ -19,17 +19,18 @@ interface Props {
     isAdminPanel : boolean,
     userRole?: string,
     reviewHeader: string,
+    isCarModel?: boolean,
+    postId?: number,
+    isCarReview?: boolean,
 }
 
-const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview} : Props) => {
 
     const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(isVulgar);
-    console.log(nick);
-    console.log('PRZYCHODZI DO KOMPONENTU', isVulgar);
     const formattedDate = moment(date).format('MM/DD/YYYY');
     const formattedDateHours = moment(date).format('HH:mm');
     const dispatch = useAppDispatch();
-
+    console.log('ISCARREVIEW, POSTID', isCarReview,postId,id);
 
     const showAddingToListInfo = () => {
          const isVulgarChanged = !isVulgar;
@@ -56,7 +57,15 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
     }
 
     const deleteVulgarReview = () => {
-        toast.success('Usunieto reklame!', {
+
+        if(isCarReview){
+            dispatch(deleteReviewById(id));
+        } else if(!isCarReview && postId) {
+            console.log('HALOJD');
+            dispatch(deletePostReviewById(postId));
+        }
+
+        toast.success('Usunieto komentarz!', {
             position: "top-left",
             autoClose: 5000,
             hideProgressBar: false,
@@ -65,7 +74,7 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
             draggable: true,
             progress: undefined,
         });
-        dispatch(deleteReviewById(id));
+
     }
 
     console.log('ROLA', userRole);

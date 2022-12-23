@@ -12,9 +12,9 @@ const PartsPage = () => {
     const dispatch = useAppDispatch();
     const parts = useAppSelector(getAllParts);
     const isOpen = useAppSelector(getIsAddingModalOpen);
-    useEffect(() => {
-       dispatch(fetchPartsThunk());
-    }, [dispatch]);
+    // useEffect(() => {
+    //    dispatch(fetchPartsThunk());
+    // }, [dispatch]);
 
     const rows = parts.map((part) => {
         return {

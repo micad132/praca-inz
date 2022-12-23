@@ -11,6 +11,8 @@ import {fetchUserDetailsThunk, getLoggedUser} from "./store/userSlice";
 import Footer from "./components/Footer/Footer";
 import {ToastContainer} from "react-toastify";
 import {fetchAllReviewsForCarModels} from "./store/reviewSlice";
+import {fetchPartsThunk} from "./store/partSlice";
+import {fetchOrdersThunk} from "./store/orderSlice";
 
 function App() {
 
@@ -20,6 +22,8 @@ function App() {
         dispatch(fetchImagesThunk())
         dispatch(fetchCarModelsThunk())
         dispatch(fetchUserDetailsThunk())
+        dispatch(fetchPartsThunk())
+        dispatch(fetchOrdersThunk());
     }, [dispatch]);
     // console.log('REKLAMY', commercials);
     const images = useAppSelector(getAllImages);

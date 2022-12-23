@@ -24,7 +24,26 @@ header{
 		}
 	}
 
+	.loggedUserDetails{
+		width: max-content;
+		text-align: center;
+		font-size: 18px;
 
+		p{
+			margin: 5px 0;
+		}
+
+		.userNick{
+			font-weight: bold;
+		}
+	}
+
+	.guestText{
+		background-color: darkgray;
+		padding: 6px 10px;
+		border-radius: 250px;
+		color: #fff;
+	}
 
 
 }

@@ -9,13 +9,16 @@ import HelpIcon from '@mui/icons-material/Help';
 import {useState, useRef} from 'react';
 import {useClickAway} from 'react-use';
 import {useAppSelector} from "../../utils/types/hooks";
-import {getLoggedUser} from "../../store/userSlice";
+import {getLoggedUser, getLoggedUserNickname, getLoggedUserRole} from "../../store/userSlice";
 import HelpModal from "./HelpModal";
 import logo from "../../assets/logo.jpg";
+import {loggedUserStyle} from "../../utils/GlobalFunctions";
 
 const Header = () => {
     let navigate = useNavigate();
     const loggedUser = useAppSelector(getLoggedUser);
+    const loggedUserNick = useAppSelector(getLoggedUserNickname);
+    const loggedUserRole = useAppSelector(getLoggedUserRole);
     const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
     const [showHamburerMenu, setShowHamburgerMenu] = useState<boolean>(false);
     const [showAuthorInfo, setShowAuthorInfo] = useState<boolean>(false);
@@ -82,16 +85,16 @@ const Header = () => {
                     >
                         Zaloguj się
                     </Button>
-                    <Button
-                        className={styles.authButton}
-                        variant="contained"
-                        onClick={() => {
-                            setShowMobileNav(false)
-                            navigate("/register", {replace: true})
-                        }}
-                    >
-                        Zarejestruj się
-                    </Button>
+                    {/*<Button*/}
+                    {/*    className={styles.authButton}*/}
+                    {/*    variant="contained"*/}
+                    {/*    onClick={() => {*/}
+                    {/*        setShowMobileNav(false)*/}
+                    {/*        navigate("/register", {replace: true})*/}
+                    {/*    }}*/}
+                    {/*>*/}
+                    {/*    Zarejestruj się*/}
+                    {/*</Button>*/}
 
                 </nav>
                 {loggedUser &&
@@ -101,6 +104,16 @@ const Header = () => {
 
                     />
                 }
+                <div>
+                    {loggedUser
+                        ? <div className={styles.loggedUserDetails}>
+                            <p className={styles.userNick}>{loggedUserNick}</p>
+                            <p style={loggedUserStyle(loggedUserRole)}>{loggedUserRole}</p>
+                          </div>
+                        : <div className={styles.guestText}>GOŚĆ</div>
+                    }
+
+                </div>
                 <HelpIcon className={styles.icon} onClick={() => navigate("/help", { replace: true})}/>
             </div>
             <Nav/>

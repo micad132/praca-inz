@@ -22,7 +22,24 @@
 }
 
 .tabPanelWrapper{
-  border: 2px solid red;
+
+  max-width: 500px;
+  margin: 0 auto;
+
+
+  h2{
+    padding: 10px 0;
+  }
+
+  ul{
+    list-style-position: inside;
+  }
+
+  li{
+    list-style: square;
+    text-align: justify;
+    margin: 5px 0;
+  }
 }
 
 .addingWrapper{

@@ -9,7 +9,7 @@ import CommercialsPanel from "./TabPanels/CommercialsPanel";
 import OrdersPanel from "./TabPanels/OrdersPanel";
 import CarsPanel from "./TabPanels/CarsPanel";
 import PartsPanel from "./TabPanels/PartsPanel";
-import ProfilePagePanel from "./TabPanels/ProfilePagePanel";
+import ProfilePagePanel from "./TabPanels/ProfilePagePanel/ProfilePagePanel";
 import DealersPanel from "./TabPanels/DealersPanel";
 
 export default function HelpTabs() {

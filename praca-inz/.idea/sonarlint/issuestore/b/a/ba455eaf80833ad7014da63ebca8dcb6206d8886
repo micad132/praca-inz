@@ -1,0 +1,12 @@
+
+Wtypescript:S1128"6Remove this unused import of 'fetchingReviewsForNews'.(Ö„øâşÿÿÿÿ
+Vtypescript:S1128"5Remove this unused import of 'getReviewsForCarModel'.(’æò™ùÿÿÿÿ
+Htypescript:S1128"'Remove this unused import of 'Opinion'.(¬¿’ÿÿÿÿÿ
+Rtypescript:S1854"6Remove this useless assignment to variable "userRole".(¯ Ò‘
+Xtypescript:S1854$"<Remove this useless assignment to variable "sortedOpinions".(ö¾ù¤
+:typescript:S125("Remove this commented out code.(Ğ»‹ì
+ctypescript:S1854."BRemove this useless assignment to variable "opinionsListFiltered".(úŸâ¦øÿÿÿÿ
+?typescript:S1256"Remove this commented out code.( ûÿÿÿÿÿ
+btypescript:S18547"ARemove this useless assignment to variable "allOpinionsFiltered".(Ğ‹õ›üÿÿÿÿ
+:typescript:S1258"Remove this commented out code.(˜şí…
+?typescript:S125R"Remove this commented out code.(Úœşüúÿÿÿÿ

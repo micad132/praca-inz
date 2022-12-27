@@ -11,6 +11,7 @@ import CarsPanel from "./TabPanels/CarsPanel";
 import PartsPanel from "./TabPanels/PartsPanel";
 import ProfilePagePanel from "./TabPanels/ProfilePagePanel/ProfilePagePanel";
 import DealersPanel from "./TabPanels/DealersPanel";
+import ReviewsPanel from "./TabPanels/ProfilePagePanel/ReviewsPanel";
 
 export default function HelpTabs() {
     const [value, setValue] = React.useState('1');
@@ -29,8 +30,10 @@ export default function HelpTabs() {
                         <Tab label="Zamowienia" value="3" />
                         <Tab label="Samochody" value="4" />
                         <Tab label="Czesci" value="5" />
-                        <Tab label="Profil uzytkownika" value="6" />
+                        <Tab label="Role użytkownika" value="6" />
                         <Tab label="Dealerzy" value="7" />
+                        <Tab label="Komentarze" value="8" />
+                        <Tab label="Posty" value="9" />
                     </TabList>
                 </Box>
                 <TabPanel value="1">
@@ -53,6 +56,9 @@ export default function HelpTabs() {
                 </TabPanel>
                 <TabPanel value="7">
                     <DealersPanel />
+                </TabPanel>
+                <TabPanel value="8">
+                    <ReviewsPanel />
                 </TabPanel>
             </TabContext>
         </div>

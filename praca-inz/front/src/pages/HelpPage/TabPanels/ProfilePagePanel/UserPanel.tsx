@@ -4,7 +4,12 @@ const UserPanel = () => {
 
     return(
         <TabPanelWrapper>
-            <h2>UserPanel</h2>
+            <h2>Operacje dostępne dla roli użytkownika</h2>
+            <ul>
+                <li>Dodawanie postu</li>
+                <li>Dodawanie komentarzy</li>
+                <li></li>
+            </ul>
         </TabPanelWrapper>
     )
 }

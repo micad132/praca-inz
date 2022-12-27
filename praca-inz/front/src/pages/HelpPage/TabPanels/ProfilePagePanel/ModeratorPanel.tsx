@@ -4,7 +4,12 @@ const ModeratorPanel = () => {
 
     return(
         <TabPanelWrapper>
-            <h2>ModeratorPanel</h2>
+            <h2>Operacje dostępne dla roli moderatora</h2>
+            <ul>
+                <li>Dodawanie modeli aut</li>
+                <li>Usuwanie modeli aut</li>
+                <li>Zmiana ról użytkowników</li>
+            </ul>
         </TabPanelWrapper>
     )
 }

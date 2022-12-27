@@ -24,28 +24,37 @@ const ProfilePagePanel = () => {
         setValue(newValue);
     };
     return(
-        <TabContext value={value}>
-            <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                <TabList onChange={handleChange} aria-label="lab API tabs example" centered={true}>
-                    <Tab label="Gość" value="1" />
-                    <Tab label="Użytkownik" value="2" />
-                    <Tab label="Administrator" value="3" />
-                    <Tab label="Moderator" value="4" />
-                </TabList>
-            </Box>
-            <TabPanel value="1">
-                <GuestPanel />
-            </TabPanel>
-            <TabPanel value="2">
-                <UserPanel />
-            </TabPanel>
-            <TabPanel value="3">
-                <AdminPanel />
-            </TabPanel>
-            <TabPanel value="4">
-                <ModeratorPanel />
-            </TabPanel>
-        </TabContext>
+        <>
+            <TabPanelWrapper>
+                <h2>Wspólne operacje</h2>
+                <ul>
+                    <li>Przeglądanie portalu</li>
+                    <li>Zmiana szczegołów własnego konta (z wyjątkiem roli gościa)</li>
+                </ul>
+            </TabPanelWrapper>
+            <TabContext value={value}>
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <TabList onChange={handleChange} aria-label="lab API tabs example" centered={true}>
+                        <Tab label="Gość" value="1" />
+                        <Tab label="Użytkownik" value="2" />
+                        <Tab label="Administrator" value="3" />
+                        <Tab label="Moderator" value="4" />
+                    </TabList>
+                </Box>
+                <TabPanel value="1">
+                    <GuestPanel />
+                </TabPanel>
+                <TabPanel value="2">
+                    <UserPanel />
+                </TabPanel>
+                <TabPanel value="3">
+                    <AdminPanel />
+                </TabPanel>
+                <TabPanel value="4">
+                    <ModeratorPanel />
+                </TabPanel>
+            </TabContext>
+        </>
     )
 }
 

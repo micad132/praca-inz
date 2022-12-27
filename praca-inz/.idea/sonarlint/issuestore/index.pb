@@ -49,3 +49,15 @@ _backend/src/main/java/com/example/backend/Review/PostModelReview/PostModelRevie
 \backend/src/main/java/com/example/backend/Review/PostModelReview/PostModelReviewService.java,4\8\480c01fd7faee5635264599009ebf7a6f66739d3
 Å
 Qbackend/src/main/java/com/example/backend/Review/CarModelReview/ReviewMapper.java,6\1\61a2ecb49f20392ac92a38be26a2ed09bae83c7a
+e
+5front/src/pages/ProfilePage/ReviewPage/ReviewList.tsx,b\a\ba455eaf80833ad7014da63ebca8dcb6206d8886
+i
+9front/src/pages/HelpPage/TabPanels/AuthorizationPanel.tsx,9\1\917978eaa4b15c92b7cedf7c88df40866a1b60ee
+a
+1front/src/components/Wrappers/TabPanelWrapper.tsx,6\4\641ec2cafdb4a4af3fedb9b6c29f6b57a6cabe80
+b
+2front/src/components/Wrappers/Wrappers.module.scss,3\4\344e42cfaad96d6406fc3186e6e4c423d4da8e1d
+g
+7front/src/pages/HelpPage/TabPanels/CommercialsPanel.tsx,0\e\0ea06caeaa90919e63c4d964ed1f4444b576680c
+c
+3front/src/pages/HelpPage/TabPanels/DealersPanel.tsx,9\c\9c257c95ae3d2af66fcb213faa385dd8d5b130e0

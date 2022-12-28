@@ -73,6 +73,19 @@ export const fetchNewsByIdThunk = createAsyncThunk(
     }
 )
 
+export const deleteNewsByIdThunk = createAsyncThunk(
+    "posts/deletePostById",
+    async (id: number) => {
+        try {
+            await NewsService.deleteNewsById(id);
+            const data = await NewsService.getAllNews();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 
 
 export const getAllNews = (state : RootState)  => state.posts.news;
@@ -103,6 +116,9 @@ const newsSlice = createSlice({
             })
             .addCase(fetchNewsByIdThunk.fulfilled, (state, action ) => {
                 state.singleNews = action.payload.data;
+            })
+            .addCase(deleteNewsByIdThunk.fulfilled, (state, action) => {
+                state.news = action.payload.data;
             })
     }
 

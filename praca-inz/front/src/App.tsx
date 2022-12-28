@@ -13,6 +13,7 @@ import {ToastContainer} from "react-toastify";
 import {fetchAllReviewsForCarModels} from "./store/reviewSlice";
 import {fetchPartsThunk} from "./store/partSlice";
 import {fetchOrdersThunk} from "./store/orderSlice";
+import {fetchAlNewsThunk} from "./store/newsSlice";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
         dispatch(fetchUserDetailsThunk())
         dispatch(fetchPartsThunk())
         dispatch(fetchOrdersThunk());
+        dispatch(fetchAlNewsThunk());
     }, [dispatch]);
     // console.log('REKLAMY', commercials);
     const images = useAppSelector(getAllImages);

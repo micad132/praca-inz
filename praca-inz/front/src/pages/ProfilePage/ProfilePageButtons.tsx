@@ -35,8 +35,12 @@ const ProfilePageButtons = ({role} : Props) => {
                 >
                     Zarzadzaj modelami aut
                 </Button>
-
-
+                 <Button
+                     variant="contained"
+                     onClick={()=> navigate("/profile/news",{replace: true})}
+                 >
+                     Zarzadzaj postami
+                 </Button>
              </>
             }
             {isAdmin &&

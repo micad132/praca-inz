@@ -48,6 +48,10 @@ const NewsService = {
     getNewsById: async (id : number) => {
         const res = await axios.get(`${URL}/post/getPostById/${id}`);
         return res.data;
+    },
+
+    deleteNewsById: async (id: number) => {
+        await axios.delete(`${URL}/post/deletePost/${id}`);
     }
 }
 

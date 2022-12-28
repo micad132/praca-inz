@@ -26,10 +26,21 @@ const ProfilePagePanel = () => {
     return(
         <>
             <TabPanelWrapper>
-                <h2>Wspólne operacje</h2>
+                <h2>Na portalu dostępne są 4 role</h2>
+                <ul>
+                    <li>Gość</li>
+                    <li>Użytkownik</li>
+                    <li>Administrator</li>
+                    <li>Moderator</li>
+                </ul>
+                <h2>Wspólne operacje dla każdej z ról</h2>
                 <ul>
                     <li>Przeglądanie portalu</li>
-                    <li>Zmiana szczegołów własnego konta (z wyjątkiem roli gościa)</li>
+                </ul>
+                <h2>Wspólne operacje dla roli użytkownika, admina i moderatora</h2>
+                <ul>
+                    <li>Wylogowanie się</li>
+                    <li>Zmiana szczegółów konta</li>
                 </ul>
             </TabPanelWrapper>
             <TabContext value={value}>

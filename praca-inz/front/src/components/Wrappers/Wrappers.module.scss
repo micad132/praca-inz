@@ -53,3 +53,42 @@
   margin: 10px auto 5px auto;
   max-width: 300px;
 }
+
+.previewWrapper{
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto 0 auto;
+  max-width: 700px;
+  justify-content: space-evenly;
+  gap: 10px;
+
+}
+
+.singlePreviewItemWrapper{
+  border: 2px solid #000;
+  height: 400px;
+  width: 600px;
+  position: relative;
+
+  img{
+    height: 90%;
+    width: 100%;
+  }
+
+  p{
+    padding: 10px 0;
+    font-weight: bold;
+  }
+
+  .deletingIcon{
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    transform: scale(1.5);
+    cursor: pointer;
+
+    &:hover{
+      color: red;
+    }
+  }
+}

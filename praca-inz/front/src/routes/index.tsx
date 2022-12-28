@@ -18,6 +18,7 @@ import ReviewPage from "../pages/ProfilePage/ReviewPage";
 import SingleNewsPage from "../components/SingleNewsPage";
 import ManageUsersPage from "../pages/ProfilePage/ManageUsersPage";
 import HelpPage from "../pages/HelpPage";
+import NewsPreviewPage from "../pages/ProfilePage/NewsPreviewPage";
 
 const routes = (
   <Routes>
@@ -41,6 +42,7 @@ const routes = (
         <Route path="carmodels" element={<CarmodelsPage />} />
         <Route path="reviews" element={<ReviewPage />} />
         <Route path="users" element={<ManageUsersPage />} />
+        <Route path="news" element={<NewsPreviewPage />} />
     </Route>
     <Route path="/failed" element={<ErrorPage />} />
     <Route path="/opinions" element={<Opinions isAdminPanel={false} isCarModelScreen={false}/>} />

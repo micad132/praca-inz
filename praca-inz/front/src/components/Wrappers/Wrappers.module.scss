@@ -91,4 +91,16 @@
       color: red;
     }
   }
+  .editingIcon{
+    position: absolute;
+    top: 20px;
+    right: 60px;
+    transform: scale(1.5);
+    cursor: pointer;
+
+    &:hover{
+      color: blue;
+    }
+  }
+
 }

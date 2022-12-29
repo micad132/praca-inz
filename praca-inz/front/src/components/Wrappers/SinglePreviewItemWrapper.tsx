@@ -1,12 +1,15 @@
 import {fetchingImagesURL} from "../../utils/GlobalVariables";
 import styles from './Wrappers.module.scss';
 import DeleteIcon from '@mui/icons-material/Delete';
+import EditIcon from '@mui/icons-material/Edit';
 import { useState } from "react";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {deletingCarModelThunk, deletingCarModelWithCommercialThunk} from "../../store/carModelSlice";
 import {deleteNewsByIdThunk} from "../../store/newsSlice";
 import {toast} from "react-toastify";
 import {getAllCommercials} from "../../store/carModelSlice";
+import EditingCarmodelModal from "../../pages/ProfilePage/CarmodelsPage/EditingCarmodelModal";
+import EditingNewsModal from "../../pages/ProfilePage/NewsPreviewPage/EditingNewsModal";
 
 interface Props {
     id: number,
@@ -20,6 +23,7 @@ const SinglePreviewItemWrapper = ({id,title,src,isCar} : Props) => {
     const commercials = useAppSelector(getAllCommercials);
     console.log('REKLAMY', commercials);
     const [isIconVisible,setIconVisible] = useState<boolean>(false);
+    const [isOpen,setIsOpen] = useState<boolean>(false);
     const dispatch = useAppDispatch();
 
     const deleteItem = () => {
@@ -54,7 +58,18 @@ const SinglePreviewItemWrapper = ({id,title,src,isCar} : Props) => {
         <div className={styles.singlePreviewItemWrapper} onMouseEnter={() => setIconVisible(true)} onMouseLeave={() => setIconVisible(false)}>
             <img src={`${fetchingImagesURL}/${src}`} alt={'carmodel'} />
             <p>{title}</p>
-            {isIconVisible && <DeleteIcon className={styles.deletingIcon} onClick={deleteItem} />}
+            {isIconVisible &&
+                <>
+                    <EditIcon className={styles.editingIcon} onClick={() => setIsOpen(true)}/>
+                    <DeleteIcon className={styles.deletingIcon} onClick={deleteItem} />
+                </>
+            }
+
+            {isCar
+                ? <EditingCarmodelModal isOpen={isOpen} setIsOpen={setIsOpen} />
+                : <EditingNewsModal isOpen={isOpen} setIsOpen={setIsOpen} />
+            }
+
         </div>
     )
 }

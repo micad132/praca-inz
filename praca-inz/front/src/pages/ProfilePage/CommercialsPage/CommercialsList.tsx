@@ -2,7 +2,7 @@ import CommercialPreview from "./CommercialPreview";
 // import styles from './CommercialsPage.module.scss';
 import styles from './../../../utils/styles/Utils.module.scss';
 import {useAppSelector} from "../../../utils/types/hooks";
-import {getAllCommercials} from "../../../store/commercialSlice";
+import {getAllCommercials} from "../../../store/carModelSlice";
 import {fetchingImagesURL} from "../../../utils/GlobalVariables";
 import {CommercialType} from "../../../services/CommercialService";
 

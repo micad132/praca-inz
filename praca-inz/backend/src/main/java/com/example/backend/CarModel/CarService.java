@@ -1,5 +1,7 @@
 package com.example.backend.CarModel;
 
+import com.example.backend.Commercial.CommercialModel;
+import com.example.backend.Commercial.CommercialRepository;
 import com.example.backend.Image.ImageModel;
 import com.example.backend.Image.ImageRepository;
 import lombok.AllArgsConstructor;
@@ -16,6 +18,8 @@ public class CarService {
     private final CarModelRepository carModelRepository;
 
     private final ImageRepository imageRepository;
+
+    private final CommercialRepository commercialRepository;
 
     private final CarModelMapper carModelMapper;
 
@@ -43,5 +47,10 @@ public class CarService {
 
     public void deleteCarModelById(Long id){
         carModelRepository.deleteById(id);
+    }
+
+    public void deleteCarModelWithCommercial(Long carId, Long commercialId) {
+        commercialRepository.deleteById(commercialId);
+        carModelRepository.deleteById(carId);
     }
 }

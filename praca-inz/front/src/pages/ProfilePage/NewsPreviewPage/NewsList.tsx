@@ -11,7 +11,7 @@ interface Props {
 
 const NewsList = ({allNews} : Props) => {
 
-    const newsPreview = allNews.map(news => <SinglePreviewItemWrapper src={news.imageModel.name} title={news.title} />)
+    const newsPreview = allNews.map(news => <SinglePreviewItemWrapper src={news.imageModel.name} title={news.title} isCar={false} id={news.postId} />)
     return(
         <PreviewWrapper>
             {newsPreview}

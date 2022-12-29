@@ -3,7 +3,7 @@ import {useState} from 'react';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {useAppDispatch} from "../../../utils/types/hooks";
-import {deleteCommercialThunk} from "../../../store/commercialSlice";
+import {deleteCommercialThunk} from "../../../store/carModelSlice";
 import {toast} from "react-toastify";
 
 interface Props {

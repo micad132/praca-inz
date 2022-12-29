@@ -15,7 +15,10 @@ const NewsPreviewPage = () => {
         <section>
             {
                 allNews.length > 0
-                    ? <NewsList allNews={allNews} />
+                    ? <>
+                        <h2>Pogląd postów dostępnych na portalu ({allNews.length})</h2>
+                        <NewsList allNews={allNews} />
+                    </>
                     : <h2>Brak postów</h2>
             }
         </section>

@@ -45,9 +45,11 @@ const DealersMap = () => {
     return(
         <>
             <div className={styles.dealersWrapper}>
-                {dealers.length > 0 ? dealers : <h1>Obecnie nie wspolpracujemy z nikim</h1>}
+                {dealers.length > 0 ?
+                    dealers :
+                    <h1>Obecnie nie wspolpracujemy z nikim</h1>}
             </div>
-            <DealersInfo dealerInfo={dealerInfo}/>
+            {dealers.length > 0 && <DealersInfo dealerInfo={dealerInfo}/>}
         </>
     )
 }

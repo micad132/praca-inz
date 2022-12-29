@@ -11,7 +11,11 @@ const CarmodelsPage = () => {
     console.log('boolean', isCarModelsFetched);
     return(
         <section>
-            {carModels.length>0 ? <h1>Podgląd modeli aut dostępnych w bazie</h1>
+            {carModels.length>0
+                ? <>
+                    <h1>Podgląd modeli aut dostępnych w bazie ({carModels.length})</h1>
+                    <h4>Usunięcie auta z reklamą na nie spowoduje także usunięcie reklamy</h4>
+                </>
                 : <h1 style={{color: 'red'}}>Brak dostępnych modeli aut</h1>}
             {isCarModelsFetched
                 ? <CarmodelsList carModels={carModels} />

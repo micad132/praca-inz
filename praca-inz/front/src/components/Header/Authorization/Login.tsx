@@ -115,6 +115,7 @@ const Login = () => {
           variant="outlined"
           type="password"
           name="password"
+          inputProps={{ "data-testid": "password" }}
           value={loginValues.passwordValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({
@@ -132,6 +133,7 @@ const Login = () => {
           variant="outlined"
           helperText="Proszę potwierdzić hasło"
           type="password"
+          inputProps={{ "data-testid": "confirm-password" }}
           value={loginValues.confirmPasswordValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({

@@ -41,6 +41,12 @@ public class CarModelController {
         return ResponseEntity.ok("Successfully deleted");
     }
 
+    @DeleteMapping("/deleteCarModelWithCommercial/{carId}/{commercialId}")
+    public ResponseEntity<String> deleteCarModelWithCommercial(@PathVariable ("carId") Long carId, @PathVariable ("commercialId") Long commercialId){
+        carService.deleteCarModelWithCommercial(carId,commercialId);
+        return ResponseEntity.ok("Successfully deleted!");
+    }
+
 }
 
 

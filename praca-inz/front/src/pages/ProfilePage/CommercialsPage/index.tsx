@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CommercialsList from "./CommercialsList";
 import AddingCommercialModal from "./AddingCommercialModal";
 import {useAppSelector} from "../../../utils/types/hooks";
-import {getAllCommercials} from "../../../store/commercialSlice";
+import {getAllCommercials} from "../../../store/carModelSlice";
 const CommercialsPage = () => {
 
     let navigate = useNavigate();

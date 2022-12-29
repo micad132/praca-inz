@@ -1,6 +1,7 @@
 import {CarModelType} from "../../../services/CarModelService";
 import SingleCarmodel from "./SingleCarmodel";
 import styles from './../../../utils/styles/Utils.module.scss';
+import SinglePreviewItemWrapper from "../../../components/Wrappers/SinglePreviewItemWrapper";
 
 interface Props {
     carModels: CarModelType[]
@@ -8,8 +9,8 @@ interface Props {
 
 const CarmodelsList = ({carModels} : Props) => {
 
-    const carsList = carModels.map(({name, imageModel}) =>
-         <SingleCarmodel title={name} src={imageModel.name}/>
+    const carsList = carModels.map((car) =>
+        <SinglePreviewItemWrapper id={car.carModelId} title={car.name} src={car.imageModel.name} isCar={true} />
     )
     return(
         <div className={styles.previewWrapper}>

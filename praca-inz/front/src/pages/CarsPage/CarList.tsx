@@ -4,6 +4,7 @@ import styles from './CarsPage.module.scss';
 import AddingCar from "./AddingCar";
 import {useAppSelector} from "../../utils/types/hooks";
 import {getLoggedUserRole} from "../../store/userSlice";
+import CarsPageHeader from "./CarsPageHeader";
 
 interface Props {
     cars: CarModelType[]
@@ -16,9 +17,8 @@ const CarList = ({cars} : Props) => {
     const carList = cars.map(car => <SingleCar id={car.carModelId} src={car.imageModel.name} name={car.name} price={car.price} rating={car.rating} />)
     return(
         <section className={styles.carsWrapper}>
-            {carList.length > 0
-                ? <h1>Wszystkie modele aut na portalu ({carList.length})</h1>
-                : <h1 className={styles.errorTitle}>Brak dostepnych aut</h1>
+            {
+                <CarsPageHeader carListLength={carList.length}/>
             }
             {userRole === 'ADMIN'
                 ? <AddingCar/>

@@ -11,7 +11,7 @@ import MenuItem from '@mui/material/MenuItem';
 import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
 import {getAllCarModels} from "../../../store/carModelSlice";
 import CommercialService from "../../../services/CommercialService";
-import {addCommercialThunk} from "../../../store/commercialSlice";
+import {addCommercialThunk} from "../../../store/carModelSlice";
 import {toast} from "react-toastify";
 
 

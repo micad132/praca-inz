@@ -2,7 +2,7 @@
 import styles from './Commercials.module.scss';
 import Commercial from "./Commercial";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
-import {fetchCommercialsThunk, getAllCommercials,} from "../../store/commercialSlice";
+import {fetchCommercialsThunk, getAllCommercials,} from "../../store/carModelSlice";
 import {useEffect} from "react";
 import Button from "@mui/material/Button";
 

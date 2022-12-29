@@ -175,6 +175,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.email ? 'Wprowadz poprawny email'
                       : 'Wprowadz email'}
                   variant="outlined"
+                  inputProps={{ "data-testid": "email" }}
                   value={registerValues.email}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({

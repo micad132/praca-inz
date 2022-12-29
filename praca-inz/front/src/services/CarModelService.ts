@@ -53,6 +53,14 @@ const CarModelService = {
             headers: {
             }
         })
+    },
+
+    deleteCarModelById : async (id : number) => {
+        return axios.delete(`${URL}/car/deleteCarModelById/${id}`);
+    },
+
+    deleteCarModelWithCommercial: async (data : any ) => {
+        return axios.delete(`${URL}/car/deleteCarModelWithCommercial/${data.carId}/${data.commercialId}`)
     }
 }
 

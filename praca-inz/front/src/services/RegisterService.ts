@@ -60,9 +60,8 @@ const RegisterService = {
     },
 
     updateUserDetails: async (data : NewUserDetailsType) => {
-        console.log('WTF', data);
         // await axios.put(`${URL}/user/updateUserDetails`,{ newUserDetails: data})
-        const res = await axios({
+        await axios({
             method: 'put',
             url: `${URL}/user/updateUserDetails`,
             // data: {

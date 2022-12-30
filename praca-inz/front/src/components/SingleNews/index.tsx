@@ -16,7 +16,7 @@ const SingleNews = ({description,imageSrc,postCategory,postId,title} : Props) =>
     const navigate = useNavigate();
 
     return(
-        <section className={styles.wrapper} onClick={() => navigate(`/news/${postId}`)}>
+        <section className={styles.wrapper} onClick={() => navigate(`/news/${postId}`)} data-testid={"proper-div"}>
             <div className={styles.wrapper__image}>
                 <img src={`${fetchingImagesURL}/${imageSrc}`}  alt={'dummy car'}/>
             </div>

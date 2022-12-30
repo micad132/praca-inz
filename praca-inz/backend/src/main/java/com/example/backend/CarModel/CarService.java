@@ -53,4 +53,18 @@ public class CarService {
         commercialRepository.deleteById(commercialId);
         carModelRepository.deleteById(carId);
     }
+
+    public void updateCarModel(CarModelUpdateRequestDTO carModelUpdateRequestDTO){
+        CarModel carModel = carModelRepository.findById(carModelUpdateRequestDTO.getCarId()).orElseThrow(() -> new UsernameNotFoundException("not found"));
+        carModel.setCarBody(carModelUpdateRequestDTO.getCarBody());
+        carModel.setDescription(carModelUpdateRequestDTO.getDescription());
+        carModel.setEngineCapacity(carModelUpdateRequestDTO.getEngineCapacity());
+        carModel.setEnginePower(carModelUpdateRequestDTO.getEnginePower());
+        carModel.setGearbox(carModelUpdateRequestDTO.getGearbox());
+        carModel.setName(carModelUpdateRequestDTO.getName());
+        carModel.setPrice(carModelUpdateRequestDTO.getPrice());
+        carModel.setProductionCountry(carModelUpdateRequestDTO.getProductionCountry());
+        carModel.setRating(carModelUpdateRequestDTO.getRating());
+        carModelRepository.save(carModel);
+    }
 }

@@ -28,6 +28,13 @@ export type NewsToAddType = {
     postCategory: string,
 }
 
+export type NewsToEditType = {
+    postId: number,
+    title: string,
+    description: string,
+    postCategory: string,
+}
+
 const NewsService = {
 
     addNews: async (data: NewsTypeRequestDTO) => {
@@ -52,7 +59,15 @@ const NewsService = {
 
     deleteNewsById: async (id: number) => {
         await axios.delete(`${URL}/post/deletePost/${id}`);
-    }
+    },
+
+    updateNews: async (data: NewsToEditType) => {
+        return axios({
+            method: 'PUT',
+            url: `${URL}/post/updatePost`,
+            data: data,
+        })
+}
 }
 
 export default  NewsService;

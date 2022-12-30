@@ -61,6 +61,14 @@ const CarModelService = {
 
     deleteCarModelWithCommercial: async (data : any ) => {
         return axios.delete(`${URL}/car/deleteCarModelWithCommercial/${data.carId}/${data.commercialId}`)
+    },
+
+    editCarModel: async (data : any) => {
+        return axios({
+            method: 'PUT',
+            url: `${URL}/car/updateCar`,
+            data: data,
+        })
     }
 }
 

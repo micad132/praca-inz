@@ -6,23 +6,38 @@ import {useNavigate} from "react-router-dom";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import MenuIcon from '@mui/icons-material/Menu';
 import HelpIcon from '@mui/icons-material/Help';
-import {useState, useRef} from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {useClickAway} from 'react-use';
-import {useAppSelector} from "../../utils/types/hooks";
-import {getLoggedUser, getLoggedUserNickname, getLoggedUserRole} from "../../store/userSlice";
+import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
+import {
+    fetchUserDTODetailsThunk,
+    getLoggedUser,
+    getLoggedUserDetailsDTO,
+    getLoggedUserNickname,
+    getLoggedUserRole
+} from "../../store/userSlice";
 import HelpModal from "./HelpModal";
 import logo from "../../assets/logo.jpg";
 import {loggedUserStyle} from "../../utils/GlobalFunctions";
 
 const Header = () => {
+    const dispatch = useAppDispatch();
     let navigate = useNavigate();
     const loggedUser = useAppSelector(getLoggedUser);
     const loggedUserNick = useAppSelector(getLoggedUserNickname);
     const loggedUserRole = useAppSelector(getLoggedUserRole);
+    const loggedUserDetails = useAppSelector(getLoggedUserDetailsDTO);
+
+    useEffect(() => {
+        // dispatch(fetchUpdatedUser());
+        dispatch(fetchUserDTODetailsThunk(loggedUser.id));
+    }, [dispatch]);
+
     const [showMobileNav, setShowMobileNav] = useState<boolean>(false);
     const [showHamburerMenu, setShowHamburgerMenu] = useState<boolean>(false);
     const [showAuthorInfo, setShowAuthorInfo] = useState<boolean>(false);
     const [isShowHelpModal, setIsShowHelpModal] = useState<boolean>(false);
+
 
     const mobileNavRef = useRef(null);
 
@@ -107,7 +122,7 @@ const Header = () => {
                 <div>
                     {loggedUser
                         ? <div className={styles.loggedUserDetails}>
-                            <p className={styles.userNick}>{loggedUserNick}</p>
+                            <p className={styles.userNick}>{loggedUserDetails.name}</p>
                             <p style={loggedUserStyle(loggedUserRole)}>{loggedUserRole}</p>
                           </div>
                         : <div className={styles.guestText}>GOŚĆ</div>

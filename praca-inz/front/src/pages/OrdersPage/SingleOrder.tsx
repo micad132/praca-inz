@@ -47,7 +47,7 @@ const SingleOrder = ({id,orderDate,userNick,partName,partPrice, partAmount,total
             <BookmarkBorderIcon className={styles.bookmarkIcon} />
             <div className={styles.icons}>
                 <EditIcon onClick={() => setIsModalShow(true)}/>
-                <DeleteIcon className={styles.deletingIcon} onClick={deleteOrder} />
+                <DeleteIcon className={styles.deletingIcon} onClick={deleteOrder} data-testid={"deleting-icon"}/>
             </div>
             <p className={styles.orderMainInfo}><span>Złozone:</span> {formattedDate} {formattedDateHours}</p>
             <p className={styles.orderMainInfo}><span>Przez uzytkownika:</span> {userNick}</p>

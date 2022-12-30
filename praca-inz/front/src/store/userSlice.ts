@@ -1,6 +1,6 @@
 import {createSlice, createAsyncThunk} from "@reduxjs/toolkit";
 import RegisterService, {UpdateUserRoleType, UserDTOType, UserType} from "../services/RegisterService";
-import {NewUserDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
+import {NewUserDetailsType, UserUpdateDetailsType} from "../pages/ProfilePage/AccountSettings/UpdatingInfo";
 import {RootState} from "./index";
 
 
@@ -63,12 +63,11 @@ export const fetchUserDTODetailsThunk = createAsyncThunk(
 
 export const updateUserDetailsThunk = createAsyncThunk(
     'user/updateUserDetails',
-    async (data : NewUserDetailsType) => {
+    async (data : UserUpdateDetailsType) => {
         try{
-            console.log('NOWEDANE', data);
-            await RegisterService.updateUserDetails(data)
-            const res = await RegisterService.getUserDetailsDTO(data.id);
-            return { res };
+            await RegisterService.updateUserDetails(data);
+            const newData = await RegisterService.getUserDetailsDTO(data.id);
+            return { newData };
         }catch (e){
             throw e;
         }
@@ -167,7 +166,7 @@ const userSlice = createSlice({
             })
             .addCase(updateUserDetailsThunk.fulfilled, (state, action) => {
                 state.isLoaded = true;
-                state.userDetailsDTO = action.payload.res;
+                state.userDetailsDTO = action.payload.newData;
             })
             .addCase(updateUserDetailsThunk.rejected, (state, action) => {
                 state.isLoaded = false;

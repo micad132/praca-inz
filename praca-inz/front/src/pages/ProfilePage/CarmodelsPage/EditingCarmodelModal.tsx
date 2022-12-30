@@ -16,6 +16,8 @@ import {
     initialValidationValues,
     InitialValidationValuesType
 } from "../../../services/ValidationServices/AddingCarModelValidation";
+import {editingCarModelThunk} from "../../../store/carModelSlice";
+import {toast} from "react-toastify";
 
 const initialState = {
     name: '',
@@ -32,15 +34,29 @@ const initialState = {
 interface Props {
     isOpen: boolean,
     setIsOpen: Dispatch<SetStateAction<boolean>>,
+    carId: number,
 }
 
-const EditingCarmodelModal = ({isOpen,setIsOpen} : Props) => {
+const EditingCarmodelModal = ({isOpen,setIsOpen,carId} : Props) => {
 
     const dispatch = useAppDispatch();
     const [carModelValues,setCarModelValues] = useState<CarModelToAddType>(initialState);
     const [isCarModelValuesIncorrect, setIsCarModelValuesIncorrect] = useState<InitialValidationValuesType>(initialValidationValues)
 
     const editCarmodel = () => {
+
+        const data = {carId,...carModelValues};
+        toast.success('Edycja udana!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        dispatch(editingCarModelThunk(data));
+        setIsOpen(false);
 
     }
 

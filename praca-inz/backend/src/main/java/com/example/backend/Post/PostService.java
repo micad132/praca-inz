@@ -45,4 +45,13 @@ public class PostService {
     public void deletePost(Long id){
         postRepository.deleteById(id);
     }
+
+    public void updatePost(PostToEditRequestDTO postToEditRequestDTO){
+        PostModel postModel = postRepository.findById(postToEditRequestDTO.getPostId()).orElseThrow(() -> new UsernameNotFoundException("not found"));
+        postModel.setDescription(postToEditRequestDTO.getDescription());
+        postModel.setTitle(postToEditRequestDTO.getTitle());
+        postModel.setPostCategories(PostCategories.valueOf(postToEditRequestDTO.getPostCategory()));
+        postModel.setDate(Timestamp.from(Instant.now()));
+        postRepository.save(postModel);
+    }
 }

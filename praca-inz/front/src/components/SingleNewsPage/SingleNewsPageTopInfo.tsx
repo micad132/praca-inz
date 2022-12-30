@@ -19,10 +19,10 @@ const SingleNewsPageTopInfo = ({dataTopInfo} : Props) => {
     return(
         <div className={styles.topInfoWrapper}>
             <div>
-                <p>Napisane przez: <span className={styles.postAuthor}>{author}</span></p>
+                <p>Post dodany przez: <span className={styles.postAuthor}>{author}</span></p>
             </div>
             <div className={styles.date}>
-                <p>Data dodania:</p>
+                <p>Data dodania/Ostatniej edycji:</p>
                 <p>{formattedDate}</p>
                 <p>{formattedDateHours}</p>
             </div>

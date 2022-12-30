@@ -42,7 +42,7 @@ const Orders = ({orders} : Props) => {
     ));
 
     return(
-        <div>
+        <div data-testid={"orders-container"}>
             <SortingWrapper isAscSorted={isAscSorted} setIsAscSorted={setIsAscSorted} />
             {ordersMapped}
         </div>

@@ -1,15 +1,18 @@
 import UpdatingInfo from "./UpdatingInfo";
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
-import {getLoggedUser} from "../../../store/userSlice";
+import {fetchUserDTODetailsThunk, getLoggedUser, getLoggedUserDetailsDTO} from "../../../store/userSlice";
+import UserDetails from "./UserDetails";
 
 const AccountSettings = () => {
 
-    const loggedUserDetails = useAppSelector(getLoggedUser);
+    const initialUserDetails = useAppSelector(getLoggedUser);
+    console.log('DANEHUJ', initialUserDetails);
     return (
         <div>
             <h2>Zaktualizuj swoje dane!</h2>
-            <UpdatingInfo/>
+            <UserDetails id={initialUserDetails.id}/>
+            <UpdatingInfo userId={initialUserDetails.id}/>
         </div>
     )
 }

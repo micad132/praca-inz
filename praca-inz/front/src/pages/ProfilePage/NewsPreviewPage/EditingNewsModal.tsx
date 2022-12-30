@@ -8,14 +8,16 @@ import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import Button from "@mui/material/Button";
-import ImageService from "../../../services/ImageService";
-import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import {Dispatch, SetStateAction, useState} from "react";
 import {NewsToAddType} from "../../../services/NewsService";
+import {useAppDispatch} from "../../../utils/types/hooks";
+import {editingNewsThunk} from "../../../store/newsSlice";
+import {toast} from "react-toastify";
 
 interface Props {
     isOpen: boolean,
-    setIsOpen: Dispatch<SetStateAction<boolean>>
+    setIsOpen: Dispatch<SetStateAction<boolean>>,
+    postId: number,
 }
 
 const initialState = {
@@ -24,12 +26,25 @@ const initialState = {
     postCategory: ''
 }
 
-const EditingNewsModal = ({isOpen,setIsOpen} : Props) => {
+const EditingNewsModal = ({isOpen,setIsOpen,postId} : Props) => {
 
+    const dispatch = useAppDispatch();
     const [newsValues,setNewsValues] = useState<NewsToAddType>(initialState);
 
     const submitForm = ( e: any) => {
-
+        e.preventDefault();
+        const data = {postId, ...newsValues}
+        dispatch(editingNewsThunk(data));
+        toast.success('Edycja udana!', {
+            position: "top-left",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+        });
+        setIsOpen(false);
     }
 
     return(
@@ -87,7 +102,7 @@ const EditingNewsModal = ({isOpen,setIsOpen} : Props) => {
                             type="submit"
 
                         >
-                            Dodaj
+                            Edytuj
                         </Button>
                     </form>
                 </ModalWrapper>

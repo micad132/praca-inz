@@ -48,4 +48,19 @@ public class CarModelMapper {
                 .rating(carModelDTORequest.getRating())
                 .build();
     }
+
+    public CarModel mapUpdateRequestDTOToEntity(CarModelUpdateRequestDTO carModelUpdateRequestDTO){
+        return CarModel.builder()
+                .id(carModelUpdateRequestDTO.getCarId())
+                .carBody(carModelUpdateRequestDTO.getCarBody())
+                .description(carModelUpdateRequestDTO.getDescription())
+                .engineCapacity(carModelUpdateRequestDTO.getEngineCapacity())
+                .enginePower(carModelUpdateRequestDTO.getEnginePower())
+                .gearbox(carModelUpdateRequestDTO.getGearbox())
+                .name(carModelUpdateRequestDTO.getName())
+                .price(carModelUpdateRequestDTO.getPrice())
+                .productionCountry(carModelUpdateRequestDTO.getProductionCountry())
+                .rating(carModelUpdateRequestDTO.getRating())
+                .build();
+    }
 }

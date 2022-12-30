@@ -1,13 +1,19 @@
-import {useAppSelector} from "../../utils/types/hooks";
-import {getAllCarModels, getIsCarModelFetched} from "../../store/carModelSlice";
+import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
+import {fetchCarModelsThunk, getAllCarModels, getIsCarModelFetched} from "../../store/carModelSlice";
 import SingleCar from "./SingleCar";
 import CarList from "./CarList";
+import {useEffect} from "react";
 
 
 
 
 const CarsPage = () => {
 
+
+    const dispatch = useAppDispatch();
+    useEffect(() => {
+        dispatch(fetchCarModelsThunk());
+    }, [dispatch]);
 
 
     const cars = useAppSelector(getAllCarModels)

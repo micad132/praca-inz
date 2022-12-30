@@ -47,6 +47,12 @@ public class CarModelController {
         return ResponseEntity.ok("Successfully deleted!");
     }
 
+    @PutMapping("/updateCar")
+    public ResponseEntity<String> updateCarModel(@RequestBody CarModelUpdateRequestDTO carModelUpdateRequestDTO){
+        carService.updateCarModel(carModelUpdateRequestDTO);
+        return ResponseEntity.ok("Successfully updated!");
+    }
+
 }
 
 

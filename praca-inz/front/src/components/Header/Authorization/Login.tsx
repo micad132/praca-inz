@@ -95,6 +95,7 @@ const Login = () => {
           }
           variant="outlined"
           name="username"
+          inputProps={{ "data-testid": "login" }}
           value={loginValues.emailValue}
           onChange={(e) => {
             setLoginValues((prevState) => ({

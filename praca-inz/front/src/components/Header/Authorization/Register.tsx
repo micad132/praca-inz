@@ -161,6 +161,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.name ? 'Wprowadz poprawna nazwe'
                       : 'Wprowadz nazwe'}
                   variant="outlined"
+                  inputProps={{ "data-testid": "name" }}
                   value={registerValues.name}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -191,6 +192,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.password ? 'Wprowadz poprawne haslo'
                       : 'Wprowadz haslo'}
                   helperText="Przynajmniej 4 znaki"
+                  inputProps={{ "data-testid": "password" }}
                   type="password"
                   variant="outlined"
                   value={registerValues.password}
@@ -208,6 +210,7 @@ const Register = () => {
                       : 'Wprowadz ponownie haslo'}
                   helperText="Proszę potwierdz haslo"
                   type="password"
+                  inputProps={{ "data-testid": "confirm-password" }}
                   variant="outlined"
                   value={registerValues.confirmPassword}
                   onChange={(e) => {
@@ -223,6 +226,7 @@ const Register = () => {
                   label={isRegisterValidationIncorrect.cityName ? 'Wprowadz poprawna nazwe miasta'
                       : 'Wprowadz nazwe miasta'}
                   variant="outlined"
+                  inputProps={{ "data-testid": "cityname" }}
                   value={registerValues.cityName}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
@@ -239,6 +243,7 @@ const Register = () => {
                       : 'Wprowadz kod pocztowy'}
                   variant="outlined"
                   value={registerValues.postalCode}
+                  inputProps={{ "data-testid": "postalcode" }}
                   onChange={(e) => {
                       setRegisterValues((prevState) => ({
                           ...prevState,
@@ -268,7 +273,7 @@ const Register = () => {
                   variant="contained"
                   type="submit"
                   sx={{ width: "50%", margin: "0 auto" }}
-
+                  data-testid={"button"}
               >
                   Zarejestruj się
               </Button>

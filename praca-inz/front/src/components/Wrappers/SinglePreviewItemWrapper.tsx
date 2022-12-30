@@ -21,7 +21,6 @@ interface Props {
 const SinglePreviewItemWrapper = ({id,title,src,isCar} : Props) => {
 
     const commercials = useAppSelector(getAllCommercials);
-    console.log('REKLAMY', commercials);
     const [isIconVisible,setIconVisible] = useState<boolean>(false);
     const [isOpen,setIsOpen] = useState<boolean>(false);
     const dispatch = useAppDispatch();
@@ -66,8 +65,8 @@ const SinglePreviewItemWrapper = ({id,title,src,isCar} : Props) => {
             }
 
             {isCar
-                ? <EditingCarmodelModal isOpen={isOpen} setIsOpen={setIsOpen} />
-                : <EditingNewsModal isOpen={isOpen} setIsOpen={setIsOpen} />
+                ? <EditingCarmodelModal isOpen={isOpen} setIsOpen={setIsOpen} carId={id} />
+                : <EditingNewsModal isOpen={isOpen} setIsOpen={setIsOpen} postId={id} />
             }
 
         </div>

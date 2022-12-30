@@ -27,16 +27,20 @@ public class UserService implements UserDetailsService {
     }
 
     public void updateUserDetails(UserDTO userDTO){
-        UserModel newUserModel = new UserModel();
-        Optional<UserModel> userModelToChange = Optional.of(userRepository.findById(userDTO.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found")));
-        newUserModel.setId(userModelToChange.get().getId());
-        newUserModel.setName(userDTO.getName());
-        newUserModel.setEmail(userModelToChange.get().getEmail());
-        newUserModel.setPassword(userModelToChange.get().getPassword());
-        newUserModel.setCityName(userDTO.getCityName());
-        newUserModel.setPostalCode(userDTO.getPostalCode());
-        newUserModel.setRole(userModelToChange.get().getRole());
-        userRepository.save(newUserModel);
+//        UserModel newUserModel = new UserModel();
+//        Optional<UserModel> userModelToChange = Optional.of(userRepository.findById(userDTO.getId()).orElseThrow(() -> new UsernameNotFoundException("User not found")));
+        UserModel userModel = userRepository.findById(userDTO.getId()).orElseThrow(() -> new UsernameNotFoundException("not found"));
+//        newUserModel.setId(userModelToChange.get().getId());
+//        newUserModel.setName(userDTO.getName());
+//        newUserModel.setEmail(userModelToChange.get().getEmail());
+//        newUserModel.setPassword(userModelToChange.get().getPassword());
+//        newUserModel.setCityName(userDTO.getCityName());
+//        newUserModel.setPostalCode(userDTO.getPostalCode());
+//        newUserModel.setRole(userModelToChange.get().getRole());
+        userModel.setName(userDTO.getName());
+        userModel.setPostalCode(userDTO.getPostalCode());
+        userModel.setCityName(userDTO.getCityName());
+        userRepository.save(userModel);
 
     }
 

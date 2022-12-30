@@ -59,6 +59,7 @@ const PolandInfo = () => {
                         id="demo-simple-select"
                         className={styles.select}
                         value={category}
+                        inputProps={{ "data-testid": "category-select" }}
                         label="Kategoria"
                         onChange={handleChange}
                     >
@@ -70,10 +71,12 @@ const PolandInfo = () => {
                 </FormControl>
             </div>
             <h2 style={{marginTop: '30px'}}>Liczba postów na portalu w danej kategorii({postLength})</h2>
-            {category === 'ALL'
-                ? allNewsList
-                : filteredList
-            }
+            <div data-testid={'container'}>
+                {category === 'ALL'
+                    ? allNewsList
+                    : filteredList
+                }
+            </div>
         </div>
     )
 }

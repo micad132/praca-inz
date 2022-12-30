@@ -48,5 +48,11 @@ public class PostController {
         return ResponseEntity.ok("Successfully deleted!");
     }
 
+    @PutMapping("/updatePost")
+    public ResponseEntity<String> updatePost(@RequestBody PostToEditRequestDTO postModelRequestDTO){
+        postService.updatePost(postModelRequestDTO);
+        return ResponseEntity.ok("Successfully updated!");
+    }
+
 
 }

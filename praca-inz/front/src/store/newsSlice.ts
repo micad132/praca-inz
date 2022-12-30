@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { RootState } from "./index";
-import NewsService, {NewsTypeDTO, NewsTypeRequestDTO} from "../services/NewsService";
+import NewsService, {NewsToEditType, NewsTypeDTO, NewsTypeRequestDTO} from "../services/NewsService";
 
 
 
@@ -86,6 +86,18 @@ export const deleteNewsByIdThunk = createAsyncThunk(
     }
 )
 
+export const editingNewsThunk = createAsyncThunk(
+    "posts/editPost",
+    async (newData : NewsToEditType) => {
+        try {
+            await NewsService.updateNews(newData);
+            const data = await NewsService.getAllNews();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
 
 
 export const getAllNews = (state : RootState)  => state.posts.news;
@@ -118,6 +130,9 @@ const newsSlice = createSlice({
                 state.singleNews = action.payload.data;
             })
             .addCase(deleteNewsByIdThunk.fulfilled, (state, action) => {
+                state.news = action.payload.data;
+            })
+            .addCase(editingNewsThunk.fulfilled, (state, action) => {
                 state.news = action.payload.data;
             })
     }

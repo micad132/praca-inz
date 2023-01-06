@@ -8,7 +8,6 @@ const UserPanel = () => {
             <ul>
                 <li>Dodawanie postu</li>
                 <li>Dodawanie komentarzy</li>
-                <li></li>
             </ul>
         </TabPanelWrapper>
     )

@@ -57,7 +57,9 @@ a
 1front/src/components/Wrappers/TabPanelWrapper.tsx,6\4\641ec2cafdb4a4af3fedb9b6c29f6b57a6cabe80
 b
 2front/src/components/Wrappers/Wrappers.module.scss,3\4\344e42cfaad96d6406fc3186e6e4c423d4da8e1d
-g
-7front/src/pages/HelpPage/TabPanels/CommercialsPanel.tsx,0\e\0ea06caeaa90919e63c4d964ed1f4444b576680c
 c
 3front/src/pages/HelpPage/TabPanels/DealersPanel.tsx,9\c\9c257c95ae3d2af66fcb213faa385dd8d5b130e0
+a
+1front/src/pages/HelpPage/TabPanels/PartsPanel.tsx,b\2\b2e9f9a14aa209139294eb63ba6795461d9eb0aa
+]
+-front/src/pages/HelpPage/HelpPage.module.scss,a\2\a285a7f6e382670a179138ccfa5b27b09717412f

@@ -8,6 +8,9 @@ const ModeratorPanel = () => {
             <ul>
                 <li>Dodawanie modeli aut</li>
                 <li>Usuwanie modeli aut</li>
+                <li>Edycja modeli aut</li>
+                <li>Usuwanie postów</li>
+                <li>Edycja postów</li>
                 <li>Zmiana ról użytkowników</li>
             </ul>
         </TabPanelWrapper>

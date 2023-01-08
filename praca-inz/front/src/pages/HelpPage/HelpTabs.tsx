@@ -12,6 +12,7 @@ import PartsPanel from "./TabPanels/PartsPanel";
 import ProfilePagePanel from "./TabPanels/ProfilePagePanel/ProfilePagePanel";
 import DealersPanel from "./TabPanels/DealersPanel";
 import ReviewsPanel from "./TabPanels/ProfilePagePanel/ReviewsPanel";
+import NewsPanel from "./TabPanels/NewsPanel";
 
 export default function HelpTabs() {
     const [value, setValue] = React.useState('1');
@@ -59,6 +60,9 @@ export default function HelpTabs() {
                 </TabPanel>
                 <TabPanel value="8">
                     <ReviewsPanel />
+                </TabPanel>
+                <TabPanel value="9">
+                    <NewsPanel />
                 </TabPanel>
             </TabContext>
         </div>

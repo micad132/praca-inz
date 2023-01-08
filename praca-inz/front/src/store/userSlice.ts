@@ -7,6 +7,7 @@ import {RootState} from "./index";
 interface UserInitialStateType {
     userDetailsDTO: UserDTOType,
     allUsersDetailsDTO: UserDTOType[],
+    allUsers: UserType[],
     userRole: UserType,
     isLoaded: boolean
 }
@@ -20,6 +21,7 @@ const initialState : UserInitialStateType = {
         postalCode: '',
         userRole: 'USER'
     },
+    allUsers: [],
     allUsersDetailsDTO: [],
     userRole: {
         id: 1,
@@ -125,11 +127,24 @@ export const deletingUserThunk = createAsyncThunk(
     }
 )
 
+export const getAllUsersThunk = createAsyncThunk(
+    'user/getAllUsersFull',
+    async () => {
+        try {
+           const data =  await RegisterService.getAllUsers();
+           return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
 export const getLoggedUser = (state : any) => state.user.userRole;
 export const getLoggedUserRole = (state : any) => state.user.userRole.role;
 export const getLoggedUserDetailsDTO = (state : any) => state.user.userDetailsDTO;
 export const getLoggedUserNickname = (state : RootState) => state.user.userRole.name;
 export const getAllUsers = (state: RootState) => state.user.allUsersDetailsDTO;
+export const getAllUsersFullData = (state : RootState) => state.user.allUsers;
 
 const userSlice = createSlice({
     name: 'user',
@@ -186,6 +201,9 @@ const userSlice = createSlice({
             })
             .addCase(updateUserRoleThunk.fulfilled, (state, action) => {
                 state.allUsersDetailsDTO = action.payload.data;
+            })
+            .addCase(getAllUsersThunk.fulfilled, (state, action) => {
+                state.allUsers = action.payload.data;
             })
     }
 

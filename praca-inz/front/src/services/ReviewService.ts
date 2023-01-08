@@ -43,7 +43,6 @@ const ReviewService = {
         return res.data;
     },
 
-
     addReviewForCarModel: async (review : AddingReviewType ,id : number) => {
         return axios({
             method: 'POST',

@@ -8,7 +8,7 @@ import FormControl from '@mui/material/FormControl';
 import Select, {SelectChangeEvent} from '@mui/material/Select';
 import 'react-toastify/dist/ReactToastify.css';
 import {toast, ToastContainer} from 'react-toastify';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FormChangeEventHandler} from "../../../utils/types";
 import RegisterService from "../../../services/RegisterService";
 import styles from './Authorization.module.scss';
@@ -26,6 +26,9 @@ import {
     postalCodeValidation
 } from "../../../services/ValidationServices/AuthorizationValidation";
 import {useNavigate} from "react-router-dom";
+import {useAppDispatch, useAppSelector} from "../../../utils/types/hooks";
+import {getAllUsers, getAllUsersFullData, getAllUsersThunk} from "../../../store/userSlice";
+import {useError} from "react-use";
 
 
 const initialValidationValues = {
@@ -53,13 +56,30 @@ const Register = () => {
   const [isRegisterValidationIncorrect,setIsRegisterValidationIncorrect] = useState<RegisterValidationValuesTypes>(initialValidationValues)
   const [registerValues,setRegisterValues] = useState<RegisterValuesTypes>(initialRegisterValues);
   let isRegisterInvalid = false;
+  const allUsers = useAppSelector(getAllUsersFullData);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+      dispatch(getAllUsersThunk());
+  }, [dispatch])
 
     const handleChange = (e: SelectChangeEvent) => {
             setRegisterValues((prevState) => ({
                 ...prevState,
                 role: mapProperRole(e.target.value)
             }));
+    }
+
+    const checkIfEmailIsUsed = (email: string) : boolean => {
+      let ifUsed = false;
+        allUsers.forEach( user => {
+            console.log(user.email,email);
+            if(user.email === email) {
+                ifUsed = true;
+            }
+        })
+        return ifUsed;
     }
 
 
@@ -91,7 +111,7 @@ const Register = () => {
                 name: true
             }));
         }
-        if(!emailValidation(email)){
+        if(!emailValidation(email) || checkIfEmailIsUsed(email)){
 
             isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
@@ -132,18 +152,18 @@ const Register = () => {
 
         console.log(registerValues);
         if(!isRegisterInvalid){
-            const data = await RegisterService.addUser(registerValues);
+            // const data = await RegisterService.addUser(registerValues);
             setRegisterValues(initialRegisterValues);
-            toast.success('Rejestracja udana! Za chwilę nastąpi przekierowanie do strony głównej', {
-                position: "top-left",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-            });
-            setTimeout(()=> navigate("/",{ replace: true}),2000);
+            // toast.success('Rejestracja udana! Za chwilę nastąpi przekierowanie do strony głównej', {
+            //     position: "top-left",
+            //     autoClose: 5000,
+            //     hideProgressBar: false,
+            //     closeOnClick: true,
+            //     pauseOnHover: true,
+            //     draggable: true,
+            //     progress: undefined,
+            // });
+            // setTimeout(()=> navigate("/",{ replace: true}),2000);
 
         }
 
@@ -253,21 +273,21 @@ const Register = () => {
                   error={isRegisterValidationIncorrect.postalCode}
 
               />
-              <Box sx={{ minWidth: 120 }}>
-                  <FormControl fullWidth>
-                      <InputLabel id="demo-simple-select-label">Rola</InputLabel>
-                      <Select
-                          labelId="demo-simple-select-label"
-                          id="demo-simple-select"
-                          value={registerValues.role}
-                          onChange={(e) => handleChange(e)}
-                      >
-                          <MenuItem value={USER_TYPE_ROLES.USER}>Uzytkownik</MenuItem>
-                          <MenuItem value={USER_TYPE_ROLES.MODERATOR}>Moderator</MenuItem>
-                          <MenuItem value={USER_TYPE_ROLES.ADMIN}>Admin</MenuItem>
-                      </Select>
-                  </FormControl>
-              </Box>
+              {/*<Box sx={{ minWidth: 120 }}>*/}
+              {/*    <FormControl fullWidth>*/}
+              {/*        <InputLabel id="demo-simple-select-label">Rola</InputLabel>*/}
+              {/*        <Select*/}
+              {/*            labelId="demo-simple-select-label"*/}
+              {/*            id="demo-simple-select"*/}
+              {/*            value={registerValues.role}*/}
+              {/*            onChange={(e) => handleChange(e)}*/}
+              {/*        >*/}
+              {/*            <MenuItem value={USER_TYPE_ROLES.USER}>Uzytkownik</MenuItem>*/}
+              {/*            <MenuItem value={USER_TYPE_ROLES.MODERATOR}>Moderator</MenuItem>*/}
+              {/*            <MenuItem value={USER_TYPE_ROLES.ADMIN}>Admin</MenuItem>*/}
+              {/*        </Select>*/}
+              {/*    </FormControl>*/}
+              {/*</Box>*/}
 
               <Button
                   variant="contained"

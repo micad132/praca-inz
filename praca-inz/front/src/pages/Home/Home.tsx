@@ -7,6 +7,7 @@ import {fetchCarModelsThunk, getAllCarModels} from "../../store/carModelSlice";
 import {fetchUserDetailsThunk, getLoggedUser} from "../../store/userSlice";
 import {loggedUserStyle} from "../../utils/GlobalFunctions";
 import {fetchAlNewsThunk, getAllNews} from "../../store/newsSlice";
+import HomeDetails from "./HomeDetails";
 
 
 export interface NewsPreview {
@@ -80,6 +81,7 @@ const Home = () => {
             <h1>Witaj na portalu motoryzacyjnym!</h1>
             <h2>{loggedUser}<span style={loggedUserStyle(userDetails.role)}>{userDetails.role}</span></h2>
         </div>
+        <HomeDetails />
         <InfoWrapper title='Najnowsze informacje z Polski' details={polandNewsToDisplay} about={'news'} />
         <InfoWrapper title='Najnowsze informacje z Europy' details={europeNewsToDisplay} about={'news'}/>
         <InfoWrapper title='Najnowsze informacje ze Świata' details={worldNewsToDisplay} about={'news'}/>

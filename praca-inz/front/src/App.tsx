@@ -10,7 +10,7 @@ import {fetchCarModelsThunk, getAllCarModels} from "./store/carModelSlice";
 import {fetchUserDetailsThunk, getLoggedUser} from "./store/userSlice";
 import Footer from "./components/Footer/Footer";
 import {ToastContainer} from "react-toastify";
-import {fetchAllReviewsForCarModels} from "./store/reviewSlice";
+import {fetchAllReviewsForCarModels, fetchAllReviewsForNews} from "./store/reviewSlice";
 import {fetchPartsThunk} from "./store/partSlice";
 import {fetchOrdersThunk} from "./store/orderSlice";
 import {fetchAlNewsThunk} from "./store/newsSlice";
@@ -26,6 +26,8 @@ function App() {
         dispatch(fetchPartsThunk())
         dispatch(fetchOrdersThunk());
         dispatch(fetchAlNewsThunk());
+        dispatch(fetchAllReviewsForCarModels())
+        dispatch(fetchAllReviewsForNews())
     }, [dispatch]);
     // console.log('REKLAMY', commercials);
     const images = useAppSelector(getAllImages);

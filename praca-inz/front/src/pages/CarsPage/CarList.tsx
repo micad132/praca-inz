@@ -20,9 +20,9 @@ const CarList = ({cars} : Props) => {
             {
                 <CarsPageHeader carListLength={carList.length}/>
             }
-            {userRole === 'ADMIN'
+            {userRole === 'MODERATOR'
                 ? <AddingCar/>
-                : <h2 className={styles.roleError}>Aby dodać auto musisz miec uprawnienia admina</h2>
+                : <h2 className={styles.roleError}>Aby dodać auto musisz miec uprawnienia moderatora</h2>
             }
             {carList}
         </section>

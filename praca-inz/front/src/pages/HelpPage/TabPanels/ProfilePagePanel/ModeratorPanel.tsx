@@ -12,6 +12,8 @@ const ModeratorPanel = () => {
                 <li>Usuwanie postów</li>
                 <li>Edycja postów</li>
                 <li>Zmiana ról użytkowników</li>
+                <li>Edycja części</li>
+                <li>Usuwanie części</li>
             </ul>
         </TabPanelWrapper>
     )

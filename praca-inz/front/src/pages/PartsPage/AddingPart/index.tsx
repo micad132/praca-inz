@@ -3,14 +3,15 @@ import AddingPartInfo from "./AddingPartInfo";
 import styles from '../PartsPage.module.scss';
 
 interface Props {
-    partsLength: number;
+    partsLength: number,
+    userRole: string,
 }
 
-const AddingPart = ({partsLength} : Props) => {
+const AddingPart = ({partsLength,userRole} : Props) => {
 
     return(
         <div className={styles.addingPartWrapper}>
-            <AddingPartInfo />
+            <AddingPartInfo userRole={userRole} />
             <AddingPartModal />
         </div>
     )

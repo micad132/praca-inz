@@ -4,7 +4,8 @@ const CarsPanel = () => {
 
     return(
         <TabPanelWrapper>
-            <h2>Dodawanie samochodu</h2>
+            <h2>Wymagane są uprawnienia moderatora</h2>
+            <h3>Dodawanie samochodu</h3>
             <ul>
                 <li>W celu dodania samochodu należy udać się na stronę ,,Samochody"</li>
                 <li>Następnie należy kliknąć przycisk ,,Dodaj"</li>
@@ -12,7 +13,7 @@ const CarsPanel = () => {
                 <li>Ważnym krokiem jest dodanie zdjęcia samochodu poprzez kliknięcie przycisku ,,dodaj" z ikoną aparatu</li>
                 <li>Ostatnim krokiem jest potwierdzenie dodawania poprzez kliknięcie przycisku ,,dodaj"</li>
             </ul>
-            <h2>Edycja samochodu</h2>
+            <h3>Edycja samochodu</h3>
             <ul>
                 <li>W celu edycji samochodu należy udać się na stronę profilu użytkownika</li>
                 <li>Następnie należy kliknąć przycisk ,,zarządzanie samochodami"</li>
@@ -20,7 +21,7 @@ const CarsPanel = () => {
                 <li>Należy w tym momencie uzupełnić dane według kryterium oraz dodać zdjęcie samochodu</li>
                 <li>Edycję zatwierdza się poprzez kliknięcie przycisku ,,edytuj"</li>
             </ul>
-            <h2>Usunięcie samochodu</h2>
+            <h3>Usunięcie samochodu</h3>
             <ul>
                 <li>W celu usunięcia samochodu należy udać się na stronę profilu użytkownika</li>
                 <li>Następnie należy kliknąć przycisk ,,zarządzanie samochodami"</li>

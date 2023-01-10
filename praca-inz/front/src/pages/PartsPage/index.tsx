@@ -6,12 +6,14 @@ import styles from './PartsPage.module.scss';
 import Modal from '@mui/material/Modal';
 import PartActionModal from "./PartTable/PartActionModal";
 import AddingPart from "./AddingPart";
+import {getLoggedUserRole} from "../../store/userSlice";
 
 const PartsPage = () => {
 
     const dispatch = useAppDispatch();
     const parts = useAppSelector(getAllParts);
     const isOpen = useAppSelector(getIsAddingModalOpen);
+    const userRole = useAppSelector(getLoggedUserRole);
     // useEffect(() => {
     //    dispatch(fetchPartsThunk());
     // }, [dispatch]);
@@ -30,8 +32,8 @@ const PartsPage = () => {
     return(
         <div className={styles.wrapper}>
 
-            <PartsTable rows={rows}/>
-            <AddingPart partsLength={parts?.length}/>
+            <PartsTable rows={rows} userRole={userRole}/>
+            <AddingPart partsLength={parts?.length} userRole={userRole}/>
         </div>
     )
 }

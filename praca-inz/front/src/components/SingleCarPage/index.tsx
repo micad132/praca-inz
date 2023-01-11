@@ -18,18 +18,13 @@ const SingleCarPage = () => {
     const dispatch = useAppDispatch();
 
     const { carId } = useParams();
-    console.log(carId);
     useEffect(() => {
-       console.log('halo');
        dispatch(fetchCarModelById(Number(carId)));
        dispatch(fetchReviewsForCarModel(Number(carId)));
     }, [dispatch,carId]);
 
     const carModel = useAppSelector(getCarModelById);
     const opinions = useAppSelector(getReviewsForCarModel);
-    console.log( carId);
-    console.log('CARMODEL WCZYTANY', carModel);
-    console.log('OPINIE', opinions);
 
 
     return(

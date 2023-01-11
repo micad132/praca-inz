@@ -36,8 +36,6 @@ const SingleNewsPage = () => {
         ))
 
 
-    console.log('POSTDATA', postData);
-    console.log('POST REVIEWS', newsReviews);
 
 
     return(

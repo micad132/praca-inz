@@ -58,8 +58,6 @@ const UpdatingInfo = ({userId} : Props) => {
 
         e.preventDefault();
 
-        console.log('wartosci', newUserDetails);
-        console.log('ID zalogowanego', userId);
         const newUserModel = {
             id: userId,
             name: newUserDetails.name,

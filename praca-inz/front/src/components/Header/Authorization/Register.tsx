@@ -74,7 +74,6 @@ const Register = () => {
     const checkIfEmailIsUsed = (email: string) : boolean => {
       let ifUsed = false;
         allUsers.forEach( user => {
-            console.log(user.email,email);
             if(user.email === email) {
                 ifUsed = true;
             }
@@ -101,9 +100,6 @@ const Register = () => {
         e.preventDefault();
         setIsRegisterValidationIncorrect(initialValidationValues);
         const {name,email,password,confirmPassword,cityName,postalCode,role} = registerValues;
-        console.log(isFinite(Number(cityName)));
-        console.log(containsNumbers(cityName));
-        console.log(cityNameValidation(cityName));
         if(!nameValidation(name)){
             isRegisterInvalid = true;
             setIsRegisterValidationIncorrect((prevState) => ({
@@ -150,7 +146,6 @@ const Register = () => {
             }));
         }
 
-        console.log(registerValues);
         if(!isRegisterInvalid){
             // const data = await RegisterService.addUser(registerValues);
             setRegisterValues(initialRegisterValues);

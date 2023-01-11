@@ -12,7 +12,6 @@ interface Props {
 
 const CarList = ({cars} : Props) => {
 
-    console.log('AUCIKI', cars);
     const userRole = useAppSelector(getLoggedUserRole);
     const carList = cars.map(car => <SingleCar id={car.carModelId} src={car.imageModel.name} name={car.name} price={car.price} rating={car.rating} />)
     return(

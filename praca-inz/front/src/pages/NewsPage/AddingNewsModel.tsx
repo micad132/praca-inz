@@ -106,7 +106,6 @@ const AddingNewsModel = ({isOpen, setIsOpen} : Props) => {
                         <input hidden accept="image/*" multiple type="file" onChange={(e) => {
                             const formData = new FormData();
                             // @ts-ignore
-                            console.log(e.target.files[0]);
                             // @ts-ignore
                             formData.append("image",e.target.files[0])
 

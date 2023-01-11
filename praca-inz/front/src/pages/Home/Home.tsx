@@ -26,7 +26,6 @@ const Home = () => {
     const userDetails = useAppSelector(getLoggedUser);
     const carModels = useAppSelector(getAllCarModels);
     const allNews = useAppSelector(getAllNews);
-    console.log('WIADOMOSCI', allNews);
 
 
     const polandNewsToDisplay = [...allNews]
@@ -72,7 +71,6 @@ const Home = () => {
             }
         ))
 
-    console.log(bestRatedCarModels);
     const loggedUser = userDetails ? `Jesteś zalogowany jako`  : 'Zaloguj sie aby w pełni skorzystać z portalu';
 
   return (

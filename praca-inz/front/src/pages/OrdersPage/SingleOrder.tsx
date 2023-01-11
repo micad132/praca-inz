@@ -17,10 +17,11 @@ interface Props {
     partName: string,
     partPrice: number,
     partAmount: number,
-    totalPrice: number
+    totalPrice: number,
+    userRole: string,
 }
 
-const SingleOrder = ({id,orderDate,userNick,partName,partPrice, partAmount,totalPrice} : Props) => {
+const SingleOrder = ({id,orderDate,userNick,partName,partPrice, partAmount,totalPrice,userRole} : Props) => {
 
     const [isModalShow,setIsModalShow] = useState<boolean>(false);
     const dispatch = useAppDispatch();
@@ -37,6 +38,7 @@ const SingleOrder = ({id,orderDate,userNick,partName,partPrice, partAmount,total
         });
     }
 
+    const isButtonsVisible = userRole === 'MODERATOR';
     const formattedDate = moment(orderDate).format('MM/DD/YYYY');
     const formattedDateHours = moment(orderDate).format('HH:mm');
     const dataToEditingModal = {orderId: id,partName};
@@ -45,10 +47,10 @@ const SingleOrder = ({id,orderDate,userNick,partName,partPrice, partAmount,total
         <section className={styles.singleOrderWrapper}>
             <h3>Zamowienie numer: {id}</h3>
             <BookmarkBorderIcon className={styles.bookmarkIcon} />
-            <div className={styles.icons}>
+            {isButtonsVisible && <div className={styles.icons}>
                 <EditIcon onClick={() => setIsModalShow(true)}/>
                 <DeleteIcon className={styles.deletingIcon} onClick={deleteOrder} data-testid={"deleting-icon"}/>
-            </div>
+            </div>}
             <p className={styles.orderMainInfo}><span>Złozone/Ostatnio edytowane:</span> {formattedDate} {formattedDateHours}</p>
             <p className={styles.orderMainInfo}><span>Przez uzytkownika:</span> {userNick}</p>
             <div className={styles.orderPartInfo}>

@@ -7,7 +7,6 @@ import UserDetails from "./UserDetails";
 const AccountSettings = () => {
 
     const initialUserDetails = useAppSelector(getLoggedUser);
-    console.log('DANEHUJ', initialUserDetails);
     return (
         <div>
             <h2>Zaktualizuj swoje dane!</h2>

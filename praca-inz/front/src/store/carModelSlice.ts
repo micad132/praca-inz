@@ -39,11 +39,9 @@ export const fetchCarModelsThunk = createAsyncThunk(
     async () => {
         try{
             const data = await CarModelService.getAllCarModels();
-            console.log('DANE REDUX', data.data);
             return { data };
 
         }catch(err){
-            console.log(err);
             throw err;
         }
     }
@@ -109,7 +107,6 @@ export const fetchCommercialsThunk = createAsyncThunk(
             return { data }
 
         }catch(err){
-            console.log(err);
             throw err;
         }
     }
@@ -119,7 +116,6 @@ export const deleteCommercialThunk = createAsyncThunk(
     "commercial/deleteCommercial",
     async (commercialId : number) => {
         try{
-            console.log('COMMERCIAL ID');
             await CommercialService.deleteCommercial(commercialId);
             const data = await CommercialService.getAllCommercials();
             return { data };
@@ -133,7 +129,6 @@ export const addCommercialThunk = createAsyncThunk(
     'commercial/addCommercial',
     async ({id,name} : any) => {
         try{
-            console.log('co jest 5');
             await CommercialService.addNewCommercial(id,name);
             const data = await CommercialService.getAllCommercials();
             return { data };

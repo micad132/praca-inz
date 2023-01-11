@@ -64,7 +64,6 @@ const ReviewService = {
 
     getReviewsForNews: async (id: number) => {
         const res = await axios.get(`${URL}/postreview/getPostReviews/${id}`);
-        console.log('HUJ', res);
         return res.data;
     },
 
@@ -74,6 +73,13 @@ const ReviewService = {
             url: `${URL}/review/updateReview/${id}?isVulgar=${isVulgar}`,
             headers: {
             }
+        })
+    },
+
+    updatePostReview: async (id: number, isVulgar: boolean) => {
+        return axios({
+            method: 'PUT',
+            url: `${URL}/postreview/updatePostReview/${id}?isVulgar=${isVulgar}`
         })
     },
 

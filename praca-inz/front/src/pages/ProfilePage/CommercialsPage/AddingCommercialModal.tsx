@@ -36,9 +36,7 @@ const AddingCommercialModal = () => {
     const [commercialName,setCommercialName] = useState<string>('');
     const carModels = useAppSelector(getAllCarModels);
     const dispatch = useAppDispatch();
-    console.log('CARMODELS Z ADDING', carModels);
     const handleChange = (event: SelectChangeEvent) => {
-        console.log(event.target.value);
         setIdForCommercial(event.target.value);
     };
     // const images = useSelector(getAllImages);

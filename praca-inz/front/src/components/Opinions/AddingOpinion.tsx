@@ -42,7 +42,6 @@ const AddingOpinion = ({carModelId, userRole, isCarModelScreen, postId} : Props)
         if(isCarModelScreen){
             dispatch(addingReviewForCarModel({ id: carModelId, review: reviewModel}))
         } else if(!isCarModelScreen) {
-            console.log('EJEJ', postId);
             dispatch(addingReviewForNews({id: postId, review: reviewModel}))
         }
         toast.success('Komentarz dodany!', {

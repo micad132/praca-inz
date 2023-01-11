@@ -5,7 +5,7 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {toast} from "react-toastify";
 import {useAppDispatch} from "../../utils/types/hooks";
-import {deletePostReviewById, deleteReviewById, updatingReview} from "../../store/reviewSlice";
+import {deletePostReviewById, deleteReviewById, updatingPostReview, updatingReview} from "../../store/reviewSlice";
 import {useState} from "react";
 
 interface Props {
@@ -27,15 +27,14 @@ interface Props {
 
 const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview,isCarModelReview} : Props) => {
 
-    const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(isVulgar);
+    let realBoolean = isVulgar;
+    const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(realBoolean);
     const formattedDate = moment(date).format('MM/DD/YYYY');
     const formattedDateHours = moment(date).format('HH:mm');
     const dispatch = useAppDispatch();
-    console.log('ISCARREVIEW, POSTID', isCarReview,postId,id);
-
+    console.log('TYTUL', description, isOpinionVulgar,realBoolean);
     const showAddingToListInfo = () => {
          const isVulgarChanged = !isVulgar;
-         console.log('ZMIANA NA', isVulgarChanged);
         // console.log(isVulgarChanged);
         // console.log('PRZED ZMIANA', isOpinionVulgar);
         setIsOpinionVulgar((prevState) => !prevState);
@@ -53,8 +52,11 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
             draggable: true,
             progress: undefined,
         });
-        console.log('PRZED WYSLANIEM', !isOpinionVulgar);
-        dispatch(updatingReview({id: id, isVulgar: !isOpinionVulgar}));
+        if(isCarModelReview){
+            dispatch(updatingReview({id: id, isVulgar: !isOpinionVulgar}));
+        } else if(!isCarModelReview && postId){
+            dispatch(updatingPostReview({id: postId, isVulgar: !realBoolean }));
+        }
     }
 
     const deleteVulgarReview = () => {
@@ -62,7 +64,6 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
         if(isCarModelReview){
             dispatch(deleteReviewById(id));
         } else if(!isCarModelReview && postId) {
-            console.log('HALOJD');
             dispatch(deletePostReviewById(postId));
         }
 
@@ -78,7 +79,6 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
 
     }
 
-    console.log('ROLA', userRole);
     const showIcon = (isProperScreen || isAdminPanel) && userRole === 'ADMIN';
 
 

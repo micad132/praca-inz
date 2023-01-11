@@ -11,7 +11,6 @@ const ManageUsersPage = () => {
         dispatch(fetchAllUsersDTOThunk())
     }, [dispatch]);
 
-    console.log('ALL USERS', allUsers);
     const usersList = allUsers.filter(user => user.userRole !== 'MODERATOR').map((user) =>
         <SingleUser  id={user.id} key={user.id} name={user.name} cityName={user.cityName}
                     postalCode={user.postalCode} userRole={user.userRole}/>

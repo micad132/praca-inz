@@ -33,7 +33,6 @@ export const fetchAllReviewsForCarModels = createAsyncThunk(
             return { data };
 
         }catch(err){
-            console.log(err);
             throw err;
         }
     }
@@ -92,7 +91,6 @@ export const addingReviewForNews = createAsyncThunk(
     "review/addingReviewForNews",
     async ({ id, review} : any) => {
         try{
-            console.log('ID,REVIEW', id, review);
             await ReviewService.addReviewForNews(review,id);
             const data = await ReviewService.getReviewsForNews(id);
             return { data };
@@ -106,8 +104,18 @@ export const updatingReview = createAsyncThunk(
     "review/updateReview",
     async ({id,isVulgar} : any) => {
         try{
-            console.log('Z REDUXA', isVulgar);
             await ReviewService.updateReview(id,isVulgar);
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const updatingPostReview = createAsyncThunk(
+    "postreview/updateReview",
+    async ({id,isVulgar} : any) => {
+        try {
+            await ReviewService.updatePostReview(id,isVulgar);
         } catch (e) {
             throw e;
         }
@@ -201,6 +209,8 @@ const carModelSlice = createSlice({
             })
             .addCase(deletePostReviewById.fulfilled, (state, action) => {
                 state.reviewsForNews = action.payload.data;
+            })
+            .addCase(updatingPostReview.fulfilled, (state, action) => {
             })
     }
 

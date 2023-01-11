@@ -10,7 +10,6 @@ export type SingleNewsPreview = {
 const NewsPreviewPage = () => {
 
     const allNews = useAppSelector(getAllNews);
-    console.log('JOL', allNews);
     return(
         <section>
             {

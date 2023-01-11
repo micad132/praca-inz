@@ -32,13 +32,10 @@ const EditingOrder = ({isModalShow, setIsModalShow, orderId, partName} : Props) 
     }, [dispatch]);
 
     const allParts = useAppSelector(getAllParts);
-    console.log('CZESCI', allParts);
 
     const editOrder = () => {
 
         const partToEdit = allParts.find(part => part.partName === newPartName);
-        console.log(partToEdit?.partId);
-        console.log(newPartName,amount);
         const data = {orderId, partAmount: Number(amount), partId: partToEdit?.partId}
         toast.success('Edytowano zamowienie', {
             position: "top-left",

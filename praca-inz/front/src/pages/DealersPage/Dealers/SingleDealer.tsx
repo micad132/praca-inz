@@ -13,8 +13,6 @@ interface Props {
 
 const SingleDealer = ({ dealerInfo,setDealerInfo} : Props) => {
 
-    console.log('DEALERINFO', dealerInfo);
-    console.log(`${fetchingImagesURL}/${dealerInfo.imageModel.image}}`);
     return(
         <>
             <div className={styles.singleDealer} onClick={() => setDealerInfo(dealerInfo)}>

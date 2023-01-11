@@ -22,11 +22,9 @@ export const fetchImagesThunk = createAsyncThunk(
     async () => {
         try{
             const data = await ImageService.getAllImages();
-            console.log('DANE REDUX', data.data);
             return { data };
 
         }catch(err){
-            console.log(err);
             throw err;
         }
     }
@@ -37,7 +35,6 @@ export const addingImageThunk = createAsyncThunk(
     async (newData : any) => {
         try{
             const imageData = await ImageService.addImage(newData);
-            console.log('DANE', imageData);
             return { imageData };
 
         } catch (e) {

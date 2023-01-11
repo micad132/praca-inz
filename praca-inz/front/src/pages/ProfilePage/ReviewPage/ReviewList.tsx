@@ -28,6 +28,7 @@ const ReviewList = ({isChecked,reviewType} : Props) => {
     const opinions = useAppSelector(getAllReviewsForCarModel);
     const newsOpinions = useAppSelector(getReviewsForNews);
     const userRole = useAppSelector(getLoggedUserRole);
+    console.log('ODSWIEZ');
 
     const properOpinions = reviewType === 'CAR'
         ? opinions
@@ -48,9 +49,7 @@ const ReviewList = ({isChecked,reviewType} : Props) => {
     const offSet = pageNumber * 5;
 
     const allOpinions = [...opinions,...newsOpinions];
-    console.log('PRZED SLICEM', allOpinions);
     const slicedArray = [...allOpinions].slice(offSet,offSet + 5);
-    console.log('PO SLICE', slicedArray);
     // const allOpinions = [...opinions,...newsOpinions];
     const allOpinionsFiltered = allOpinions.filter((opinion) => opinion.isVulgar);
     // const vulgarOpinionsList = opinionsListFiltered.map((opinion) =>
@@ -61,7 +60,6 @@ const ReviewList = ({isChecked,reviewType} : Props) => {
     //     /> );
 
     const handleChange = (e : any,value : any) => {
-        console.log(value);
         setPageNumber(value);
     }
 

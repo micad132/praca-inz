@@ -23,7 +23,6 @@ const ProfilePage = () => {
         dispatch(fetchUserDTODetailsThunk(userDetails.id));
     }, [dispatch]);
 
-    console.log('USERDETAILS', userDetails);
     const loggedUserDetails = useAppSelector(getLoggedUserDetailsDTO);
 
     return(

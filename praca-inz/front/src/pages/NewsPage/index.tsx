@@ -24,7 +24,6 @@ const PolandInfo = () => {
 
     const allPosts = useAppSelector(getAllNews);
 
-    console.log('POSTY', allPosts);
 
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value as string);

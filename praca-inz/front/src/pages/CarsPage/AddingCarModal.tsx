@@ -53,7 +53,6 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
     const [selectedFile,setSelectedFile] = useState(null);
     let isAddingCarModelInvalid = false;
     const addingImage = (e : any) => {
-        console.log('WBILO');
         const formData = new FormData();
         formData.append("file",e.target.value)
         dispatch(addingImageThunk(formData))
@@ -156,8 +155,6 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
 
         setIsCarModelValuesIncorrect(initialValidationValues);
         e.preventDefault();
-        console.log('JOL');
-        console.log('imageId', imageId);
 
         validateValues();
         if(!isAddingCarModelInvalid){
@@ -328,7 +325,6 @@ const AddingCarModal = ({isOpen,setIsOpen} : Props) => {
                             <input hidden accept="image/*" multiple type="file" onChange={(e) => {
                                 const formData = new FormData();
                                 // @ts-ignore
-                                console.log(e.target.files[0]);
                                 // @ts-ignore
                                 formData.append("image",e.target.files[0])
 

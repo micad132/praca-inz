@@ -45,7 +45,6 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
 
     const opinionsToMap = isAscSorted ? [...sortedOpinionsAsc] : [...sortedOpinionsDesc];
 
-    console.log('OPINIONS TO MAP', opinionsToMap);
     const opinionsList = opinionsToMap
         ? opinionsToMap
             .map(opinion =>

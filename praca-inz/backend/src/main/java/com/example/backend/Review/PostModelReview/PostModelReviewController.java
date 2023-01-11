@@ -52,6 +52,12 @@ public class PostModelReviewController {
         return postModelReviewService.getPostReviews(id);
     }
 
+    @PutMapping("/updatePostReview/{id}")
+    public ResponseEntity<String> updatePostReview(@PathVariable ("id") Long id, @RequestParam Boolean isVulgar){
+        postModelReviewService.updatePostReview(id,isVulgar);
+        return ResponseEntity.ok("Successfully updated!");
+    }
+
     @DeleteMapping("/deletePostReview/{id}")
     public ResponseEntity<String> deletePostReviewById(@PathVariable ("id") Long id){
         postModelReviewService.deletePostReviewById(id);

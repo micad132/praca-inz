@@ -33,8 +33,6 @@ function App() {
     const images = useAppSelector(getAllImages);
     const cars = useAppSelector(getAllCarModels)
     const userDetails = useAppSelector(getLoggedUser);
-    console.log('ZDJECIA', images);
-    console.log('AUTA', cars);
 
   return (
     <div className="App">

@@ -45,7 +45,6 @@ const CarModelService = {
     },
 
     addCarModel: async (data : any) => {
-        console.log('DANE REDUX', data);
         return axios({
             method: 'POST',
             url: `${URL}/car`,

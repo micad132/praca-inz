@@ -8,10 +8,11 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import SortingWrapper from "../../components/Wrappers/SortingWrapper";
 
 interface Props {
-    orders: OrderType[]
+    orders: OrderType[],
+    userRole: string,
 }
 
-const Orders = ({orders} : Props) => {
+const Orders = ({orders,userRole} : Props) => {
 
 
     const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
@@ -37,7 +38,7 @@ const Orders = ({orders} : Props) => {
             id={order.orderId} key={order.orderId} orderDate={order.orderDate}
             userNick={order.userNick} partName={order.partModelDTO.partName}
             partPrice={order.partModelDTO.partPrice} partAmount={order.partAmount}
-            totalPrice={order.totalPrice}
+            totalPrice={order.totalPrice} userRole={userRole}
         />
     ));
 

@@ -14,7 +14,6 @@ const Commercial = ({id,src, header}: Props) => {
 
 
     const navigate = useNavigate();
-    console.log(`${fetchingImagesURL}/${src}`);
     return (
         <div className={styles.commercial} onClick={() => navigate(`/cars/${id}`, { replace: true})}>
             <img className={styles.commercial__img} src={`${fetchingImagesURL}/${src}`} alt="placeholder"></img>

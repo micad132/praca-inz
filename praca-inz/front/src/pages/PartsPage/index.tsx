@@ -27,8 +27,6 @@ const PartsPage = () => {
         }
     });
 
-    console.log('PARTS', parts);
-    console.log('ISOPEN', isOpen);
     return(
         <div className={styles.wrapper}>
 

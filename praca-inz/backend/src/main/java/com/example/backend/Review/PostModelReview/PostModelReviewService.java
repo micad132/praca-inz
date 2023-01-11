@@ -50,6 +50,12 @@ public class PostModelReviewService {
                 .collect(Collectors.toList());
     }
 
+    public void updatePostReview(Long id, Boolean isVulgar){
+        PostModelReview postModelReview = postModelReviewRepository.findById(id).orElseThrow(() -> new UsernameNotFoundException("not found"));
+        postModelReview.setIsVulgar(isVulgar);
+        postModelReviewRepository.save(postModelReview);
+    }
+
     public void deletePostReviewById(Long id){
         postModelReviewRepository.deleteById(id);
     }

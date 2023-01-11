@@ -8,7 +8,6 @@ const CarmodelsPage = () => {
 
     const carModels = useAppSelector(getAllCarModels);
     const isCarModelsFetched = useAppSelector(getIsCarModelFetched);
-    console.log('boolean', isCarModelsFetched);
     return(
         <section>
             {carModels.length>0

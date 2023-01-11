@@ -29,7 +29,6 @@ export const fetchOrdersThunk = createAsyncThunk(
             return { data }
 
         }catch(err){
-            console.log(err);
             throw err;
         }
     }
@@ -63,7 +62,6 @@ export const editingOrderThunk = createAsyncThunk(
     'orders/editOrder',
     async (newData : any) => {
         try{
-            console.log('NEWDATA', newData);
             await OrderService.editOrder(newData);
             const data = await  OrderService.getAllOrders();
             return { data }

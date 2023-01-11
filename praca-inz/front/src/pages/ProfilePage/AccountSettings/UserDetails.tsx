@@ -15,7 +15,6 @@ const UserDetails = ({id} : Props) => {
      }, [dispatch]);
 
     const loggedUserDetails = useAppSelector(getLoggedUserDetailsDTO);
-    console.log('WTF', loggedUserDetails);
     return(
         <div>
             <h3>Aktualne dane:</h3>

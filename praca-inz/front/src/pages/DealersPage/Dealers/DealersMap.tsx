@@ -35,7 +35,6 @@ const DealersMap = () => {
         dispatch(fetchCompaniesThunk());
     }, [dispatch]);
     const companies = useAppSelector(getAllCompanies);
-    console.log('COMPANIES', companies);
     // const [isClicked,setIsClicked] = useState<boolean>(false);
     const [dealerInfo,setDealerInfo] = useState<CompanyType>(initialDealerInfo);
     const dealers = companies.map((dealer) =>

@@ -36,8 +36,6 @@ const AddingPartModal = () => {
 
     const submitForm = (e : FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        console.log(partValues);
-        console.log(Number(partValues.partPrice));
         dispatch(addingPartThunk(partValues))
         toast.success('Dodano czesc!', {
             position: "top-left",

@@ -79,7 +79,6 @@ const PartActionModal = ({isShow,setIsShowModal, partDetails, isAddingAction} : 
             progress: undefined,
         });
         setIsShowModal(false);
-        console.log('dziala');
     }
 
     const mainTitle = isAddingAction

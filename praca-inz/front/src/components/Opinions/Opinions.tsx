@@ -25,7 +25,7 @@ interface Props {
 const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdminPanel,isCarModelScreen, postId, isCarReview}: Props) => {
 
     const [isAscSorted,setIsAscSorted] = useState<boolean>(false);
-    console.log('OPINIE', opinions);
+    console.log('ISADMIN', isAdminPanel);
     const userRole = useAppSelector(getLoggedUserRole);
 
     let sortedOpinionsAsc : ReviewType[] = [];
@@ -42,17 +42,34 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
     }
 
 
-
     const opinionsToMap = isAscSorted ? [...sortedOpinionsAsc] : [...sortedOpinionsDesc];
+    // let realOpinions = [];
+    const realOpinions = !isAdminPanel && !isCarModelScreen
+        ? [...opinionsToMap].filter(opinion => opinion.postId === postId)
+        : [...opinionsToMap];
+    // let realOpinions = [];
+    //
+    // if(!isAdminPanel && !isCarModelScreen) {
+    //     realOpinions =
+    // }
+    // if(!isAdminPanel){
+    //     if(isCarModelScreen) {
+    //         realOpinions = [...opinionsToMap].filter(opinion => opinion.carModelId === carModelId)
+    //     } else {
+    //         realOpinions = [...opinionsToMap].filter(opinion => opinion.postId === postId)
+    //     }
+    // } else {
+    //     realOpinions = [...opinionsToMap];
+    // }
 
-    const opinionsList = opinionsToMap
-        ? opinionsToMap
+    const opinionsList = realOpinions
+        ? realOpinions
             .map(opinion =>
                 <Opinion key={opinion.reviewModelId} id={opinion.reviewModelId} nick={opinion.userNick}
                          isVulgar={opinion.isVulgar} rating={opinion.rate} description={opinion.description}
                          date={opinion.date} isAdminPanel={isAdminPanel} isProperScreen={true}
-                         userRole={userRole} reviewHeader={opinion.reviewHeader} isCarModel={isCarModelScreen} postId={opinion.reviewModelId}
-                         isCarModelReview={opinion.isCarModelReview}  />)
+                         userRole={userRole} reviewHeader={opinion.reviewHeader} isCarModel={isCarModelScreen} postId={opinion.postId}
+                         isCarModelReview={opinion.isCarModelReview} carModelId={opinion.carModelId}  />)
         : <h4>Brak</h4>
 
 
@@ -66,7 +83,7 @@ const Opinions = ({opinions, carModelId, isAddingAvailable, headerTitle, isAdmin
     return(
         <div className={styles.opinionsWrapper}>
 
-            <h2>{headerTitle}: ({opinions?.length})</h2>
+            <h2>{headerTitle}:</h2>
             <div className={styles.opinionsSortingDiv}>
                 <h3>Sortowanie według daty</h3>
                 <div onClick={() => setIsAscSorted(!isAscSorted)}>

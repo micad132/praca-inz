@@ -104,7 +104,7 @@ const ReviewList = ({isChecked,reviewType} : Props) => {
         <div>
             <Opinions  opinions={opinionsListAfterFiltering} isAddingAvailable={false}
                        headerTitle={'Lista komentarzy'} isAdminPanel={true} isCarModelScreen={false} isCarReview={true} />
-            <Pagination count={5} onChange={handleChange} />
+            {/*<Pagination count={5} onChange={handleChange} />*/}
         </div>
     )
 

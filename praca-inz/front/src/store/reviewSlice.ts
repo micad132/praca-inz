@@ -105,6 +105,21 @@ export const updatingReview = createAsyncThunk(
     async ({id,isVulgar} : any) => {
         try{
             await ReviewService.updateReview(id,isVulgar);
+            const data = await ReviewService.getAllReviewsForCarModels();
+            return { data };
+        } catch (e) {
+            throw e;
+        }
+    }
+)
+
+export const updatingReviewForSingleCar = createAsyncThunk(
+    "review/updateSingleReview",
+    async ({id,isVulgar,carModelId} : any) => {
+        try{
+            await ReviewService.updateReview(id,isVulgar);
+            const data = await ReviewService.getReviewsForCarModel(carModelId);
+            return { data };
         } catch (e) {
             throw e;
         }
@@ -113,9 +128,12 @@ export const updatingReview = createAsyncThunk(
 
 export const updatingPostReview = createAsyncThunk(
     "postreview/updateReview",
-    async ({id,isVulgar} : any) => {
+    async ({id,isVulgar,postId} : any) => {
         try {
+            console.log('ID', id);
             await ReviewService.updatePostReview(id,isVulgar);
+            const data = await ReviewService.getAllReviewsForNews();
+            return { data };
         } catch (e) {
             throw e;
         }
@@ -194,6 +212,7 @@ const carModelSlice = createSlice({
             .addCase(updatingReview.pending, (state, action) => {
             })
             .addCase(updatingReview.fulfilled, (state, action) => {
+                state.allReviews = action.payload.data;
             })
             .addCase(addingReviewForNews.fulfilled, (state, action) => {
                 state.reviewsForNews = action.payload.data;
@@ -211,6 +230,10 @@ const carModelSlice = createSlice({
                 state.reviewsForNews = action.payload.data;
             })
             .addCase(updatingPostReview.fulfilled, (state, action) => {
+                state.reviewsForNews = action.payload.data;
+            })
+            .addCase(updatingReviewForSingleCar.fulfilled, (state, action) => {
+                state.reviewsForCarModel = action.payload.data;
             })
     }
 

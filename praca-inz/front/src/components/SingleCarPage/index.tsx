@@ -7,7 +7,7 @@ import styles from './SingleCarPage.module.scss';
 import {useEffect} from "react";
 import {useAppDispatch, useAppSelector} from "../../utils/types/hooks";
 import {fetchCarModelById, getCarModelById} from "../../store/carModelSlice";
-import {fetchReviewsForCarModel, getReviewsForCarModel} from "../../store/reviewSlice";
+import {fetchReviewsForCarModel, getAllReviewsForCarModel, getReviewsForCarModel} from "../../store/reviewSlice";
 
 
 
@@ -24,8 +24,11 @@ const SingleCarPage = () => {
     }, [dispatch,carId]);
 
     const carModel = useAppSelector(getCarModelById);
-    const opinions = useAppSelector(getReviewsForCarModel);
-
+    const opinions = useAppSelector(getAllReviewsForCarModel);
+    console.log('ID', carId);
+    console.log(opinions);
+    const realOpinions = [...opinions].filter(opinion => opinion.carModelId === Number(carId));
+    console.log(realOpinions);
 
     return(
         <div className={styles.wrapper}>
@@ -33,7 +36,7 @@ const SingleCarPage = () => {
                 <SingleCarImage  name={carModel.name} src={carModel.imageModel.name}/>
                 <SingleCarDetails carModel={carModel}/>
             </div>
-            <Opinions opinions={opinions} carModelId={carId}  isAddingAvailable={true}
+            <Opinions opinions={realOpinions} carModelId={carId}  isAddingAvailable={true}
                       headerTitle={'Sekcja komentarzy'} isAdminPanel={false} isCarModelScreen={true}/>
         </div>
     )

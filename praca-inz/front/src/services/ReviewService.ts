@@ -10,6 +10,8 @@ export type ReviewType = {
     isVulgar: boolean,
     reviewHeader: string,
     isCarModelReview: boolean,
+    postId? : number,
+    carModelId? : number,
 }
 
 // export type ReviewForNewsType = {

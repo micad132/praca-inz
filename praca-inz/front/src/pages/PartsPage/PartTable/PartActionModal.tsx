@@ -93,7 +93,9 @@ const PartActionModal = ({isShow,setIsShowModal, partDetails, isAddingAction} : 
 
     const partInfo = isAddingAction
         ? <p>{partName}</p>
-        : <p>Stara nazwa: {partName} stara cena: {partPrice}</p>
+        : <><p style={{fontWeight: 'bold'}}>Stara nazwa: {partName}</p>
+            <p style={{fontWeight: 'bold'}}>Stara cena: {partPrice}</p>
+          </>
 
     const modalContent = isAddingAction
         ?  <>

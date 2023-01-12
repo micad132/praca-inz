@@ -5,7 +5,13 @@ import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {toast} from "react-toastify";
 import {useAppDispatch} from "../../utils/types/hooks";
-import {deletePostReviewById, deleteReviewById, updatingPostReview, updatingReview} from "../../store/reviewSlice";
+import {
+    deletePostReviewById,
+    deleteReviewById,
+    updatingPostReview,
+    updatingReview,
+    updatingReviewForSingleCar
+} from "../../store/reviewSlice";
 import {useState} from "react";
 
 interface Props {
@@ -23,16 +29,16 @@ interface Props {
     postId?: number,
     isCarReview?: boolean,
     isCarModelReview: boolean,
+    carModelId?: number,
 }
 
-const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview,isCarModelReview} : Props) => {
+const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isAdminPanel, userRole, reviewHeader,isCarModel, postId,isCarReview,isCarModelReview,carModelId} : Props) => {
 
     let realBoolean = isVulgar;
     const [isOpinionVulgar,setIsOpinionVulgar] = useState<boolean>(realBoolean);
     const formattedDate = moment(date).format('MM/DD/YYYY');
     const formattedDateHours = moment(date).format('HH:mm');
     const dispatch = useAppDispatch();
-    console.log('TYTUL', description, isOpinionVulgar,realBoolean);
     const showAddingToListInfo = () => {
          const isVulgarChanged = !isVulgar;
         // console.log(isVulgarChanged);
@@ -53,9 +59,14 @@ const Opinion = ({id,nick,rating,description,date, isVulgar, isProperScreen, isA
             progress: undefined,
         });
         if(isCarModelReview){
-            dispatch(updatingReview({id: id, isVulgar: !isOpinionVulgar}));
-        } else if(!isCarModelReview && postId){
-            dispatch(updatingPostReview({id: postId, isVulgar: !realBoolean }));
+
+                dispatch(updatingReview({id: id, isVulgar: !realBoolean}));
+            // } else {
+            //     dispatch(updatingReviewForSingleCar({id: id, isVulgar: !isOpinionVulgar, carModelId: carModelId}));
+            // }
+
+        } else if(!isCarModelReview){
+            dispatch(updatingPostReview({id: id, isVulgar: !realBoolean }));
         }
     }
 
